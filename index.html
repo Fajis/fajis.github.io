@@ -487,39 +487,36 @@
 				<!-- <form action="https://formsubmit.co/de816cac761733cd7e84afac08345097" method="POST"> -->
 				<form action="https://formspree.io/f/xpwrjorn" method="POST">
 					<div class="row form-group">
-						<div class="col-md-6">
-							<input type="text" id="fname" name="fname" class="form-control" placeholder="Your firstname">
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-md-6">
-							<input type="text" id="lname" name="lname"class="form-control" placeholder="Your lastname">
+						<div class="col-md-12">
+							<input type="text" id="name" name="name" class="form-control" placeholder="What’s your name?" required>
 						</div>
 					</div>
 
 					<div class="row form-group">
 						<div class="col-md-12">
-							<input type="text" id="email" name="email" class="form-control" placeholder="Your email address">
+							<input type="text" id="email" name="email" class="form-control" placeholder="Your email address" required>
 						</div>
 					</div>
 
 					<div class="row form-group">
 						<div class="col-md-12">
-							<input type="text" id="subject" class="form-control"
-								placeholder="Your subject of this message">
+							<input type="text" id="subject" name="subject" class="form-control"
+								placeholder="What’s this about?">
 						</div>
 					</div>
 
 					<div class="row form-group">
 						<div class="col-md-12">
 							<textarea name="message" id="message" cols="30" rows="10" class="form-control"
-								placeholder="Say something about us"></textarea>
+								placeholder="How can I help you?"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
 						<input type="submit" value="Send Message" class="btn btn-primary">
 					</div>
-
+					<div id="form-message" style="display:none; margin-top:10px; color:green;">
+    				✅ Thank you! Your message has been sent.
+  					</div>
 				</form>
 			</div>
 		</div>
@@ -553,9 +550,9 @@
 	<!-- Easy PieChart -->
 	<script src="js/jquery.easypiechart.min.js"></script>
 	<!-- Google Map -->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="js/google_map.js"></script>
+	<!-- <script
+		src="https://maps.googleapis.com/maps/api/js?key=API_KEY&sensor=false"></script>
+	<script src="js/google_map.js"></script> -->
 
 	<!-- Main -->
 	<script src="js/main.js"></script>
