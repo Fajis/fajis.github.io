@@ -116,8 +116,8 @@
 	};
 
 	var skillsWayPoint = function() {
-		if ($('#fh5co-skills').length > 0 ) {
-			$('#fh5co-skills').waypoint( function( direction ) {
+		if ($('#content-skills').length > 0 ) {
+			$('#content-skills').waypoint( function( direction ) {
 										
 				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
 					setTimeout( pieChart , 400);					
@@ -131,7 +131,7 @@
 
 	// Loading page
 	var loaderPage = function() {
-		$(".fh5co-loader").fadeOut("slow");
+		$(".content-loader").fadeOut("slow");
 	};
 
 	
