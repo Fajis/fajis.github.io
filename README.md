@@ -28,14 +28,12 @@ This is my personal website hosted on **GitHub Pages**, built using a pre-design
 
 ## 📂 Project Structure (Simplified)
 <pre>
-```text
 📁 fajis.github.io
 ├── index.html
 ├── css/
 ├── js/
 ├── images/
 └── assets/
-```
 </pre>
 
 
