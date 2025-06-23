@@ -27,12 +27,17 @@ This is my personal website hosted on **GitHub Pages**, built using a pre-design
 - Template base: *[Template Name or Source, if known]*
 
 ## 📂 Project Structure (Simplified)
+<pre>
+```text
 📁 fajis.github.io
 ├── index.html
 ├── css/
 ├── js/
 ├── images/
 └── assets/
+```
+</pre>
+
 
 ## 📄 License & Credits
 
