@@ -55,9 +55,7 @@ Modified and maintained by [Fajis](https://github.com/Fajis)
 
 **Fajis**  
 Developer | Explorer  
-💼 Skilled in HTML, CSS, PHP, MySQL, React Native  
+💼 Skilled in HTML, CSS, PHP, MySQL, and React Native  
 📍 Based in Bahrain
 
----
-
-> “Adapting templates, building ideas.”
+Passionate about building practical digital solutions and continuously exploring new technologies.
