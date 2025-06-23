@@ -960,9 +960,10 @@ h1, h2, h3, h4, h5, h6, figure {
 .fh5co-video {
   overflow: hidden;
 }
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 768) {
   .fh5co-video {
-    height: 450px;
+    height: 100%;
+    width: 100%;
   }
 }
 .fh5co-video .overlay {
