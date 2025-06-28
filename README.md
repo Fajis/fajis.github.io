@@ -23,7 +23,7 @@ This is my personal website hosted on **GitHub Pages**, built using a pre-design
 
 - HTML5
 - CSS3
-- JavaScript (if applicable)
+- JavaScript
 - Template base: *[Template Name or Source, if known]*
 
 ## 📂 Project Structure (Simplified)
