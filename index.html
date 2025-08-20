@@ -1,362 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="favicon.ico" />
-    <title>FAJIS PALLIMOOPAN</title>
-    <link href="templatemo-electric-xtra.css" rel="stylesheet" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
 
-    </style>
-  </head>
-  <body>
-    <!-- Animated Grid Background -->
-    <div class="grid-bg"></div>
-    <div class="gradient-overlay"></div>
-    <div class="scanlines"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <title>FAJIS PALLIMOOPAN</title>
+  <link href="templatemo-electric-xtra.css" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
 
-    <!-- Animated Shapes -->
-    <div class="shapes-container">
-      <div class="shape shape-circle"></div>
-      <div class="shape shape-triangle"></div>
-      <div class="shape shape-square"></div>
+  </style>
+</head>
+
+<body>
+  <!-- Animated Grid Background -->
+  <div class="grid-bg"></div>
+  <div class="gradient-overlay"></div>
+  <div class="scanlines"></div>
+
+  <!-- Animated Shapes -->
+  <div class="shapes-container">
+    <div class="shape shape-circle"></div>
+    <div class="shape shape-triangle"></div>
+    <div class="shape shape-square"></div>
+  </div>
+
+  <!-- Floating Particles -->
+  <div id="particles"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo-link">
+        <svg class="logo-svg" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color: #ff5e00; stop-opacity: 1" />
+              <stop offset="100%" style="stop-color: #00b2ff; stop-opacity: 1" />
+            </linearGradient>
+          </defs>
+          <polygon points="20,2 38,14 38,26 20,38 2,26 2,14" fill="none" stroke="url(#logoGradient)" stroke-width="2" />
+          <polygon points="20,8 32,16 32,24 20,32 8,24 8,16" fill="url(#logoGradient)" opacity="0.3" />
+          <circle cx="20" cy="20" r="3" fill="url(#logoGradient)" />
+        </svg>
+        <span class="logo-text">FAJIS PALLIMOOPAN</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#features" class="nav-link">Skills</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="text-rotator">
+        <div class="text-set active">
+          <h1 class="glitch-text" data-text="FULL-STACK DEV">FULL-STACK DEV</h1>
+          <p class="subtitle">Building modern apps with React Native, PHP & MySQL</p>
+        </div>
+        <div class="text-set">
+          <h1 class="glitch-text" data-text="CODE. BUILD. INNOVATE.">CODE. BUILD. INNOVATE.</h1>
+          <p class="subtitle">Turning ideas into scalable solutions</p>
+        </div>
+        <div class="text-set">
+          <h1 class="glitch-text" data-text="BUILDING SOLUTIONS">BUILDING SOLUTIONS</h1>
+          <p class="subtitle">Web & mobile apps tailored for real business needs</p>
+        </div>
+
+      </div>
+    </div>
+    <div class="cta-container">
+      <a href="#features" class="cta-button cta-primary">View My Skills</a>
+      <a href="#about" class="cta-button cta-secondary">About Me</a>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="features" id="features">
+    <h2 class="section-title">My Skills</h2>
+    <div class="features-container">
+      <div class="feature-tabs">
+        <div class="tab-item active" data-tab="web">
+          <span class="tab-icon">
+            <i data-lucide="monitor"></i>
+          </span>
+          <span>Web Development</span>
+        </div>
+        <div class="tab-item" data-tab="backend">
+          <span class="tab-icon">
+            <i data-lucide="lock"></i>
+          </span>
+          <span>Backend</span>
+        </div>
+        <div class="tab-item" data-tab="mobile">
+          <span class="tab-icon">
+            <i data-lucide="smartphone"></i>
+          </span>
+          <span>Mobile Apps</span>
+        </div>
+        <div class="tab-item" data-tab="database">
+          <span class="tab-icon">
+            <i data-lucide="database"></i>
+          </span>
+          <span>Databases</span>
+        </div>
+        <div class="tab-item" data-tab="api">
+          <span class="tab-icon">
+            <i data-lucide="link"></i>
+          </span>
+          <span>APIs</span>
+        </div>
+      </div>
+
+      <div class="feature-content">
+        <div class="content-panel active" id="web">
+          <h3>Responsive Web Development</h3>
+          <p>
+            Creating clean, optimized websites using HTML, CSS, and JavaScript
+            with modern UI/UX principles.
+          </p>
+          <ul class="feature-list">
+            <li>Responsive layouts</li>
+            <li>Cross-browser compatibility</li>
+            <li>SEO-friendly structures</li>
+            <li>Performance optimization</li>
+          </ul>
+        </div>
+        <div class="content-panel" id="backend">
+          <h3>Secure Backend Development</h3>
+          <p>
+            Building scalable backend systems with PHP and MySQL, ensuring
+            data integrity and security.
+          </p>
+          <ul class="feature-list">
+            <li>RESTful APIs</li>
+            <li>Authentication & authorization</li>
+            <li>Database security practices</li>
+            <li>Clean MVC architecture</li>
+          </ul>
+        </div>
+        <div class="content-panel" id="mobile">
+          <h3>Cross-Platform Mobile Apps</h3>
+          <p>
+            Developing mobile apps using React Native, delivering smooth
+            performance across iOS and Android.
+          </p>
+          <ul class="feature-list">
+            <li>Native-like experience</li>
+            <li>Custom UI components</li>
+            <li>Camera, NFC & GPS integrations</li>
+            <li>App store deployment</li>
+          </ul>
+        </div>
+        <div class="content-panel" id="database">
+          <h3>Database Design & Management</h3>
+          <p>
+            Designing efficient MySQL databases with strong relational
+            structures and optimized queries.
+          </p>
+          <ul class="feature-list">
+            <li>Schema design</li>
+            <li>Stored procedures</li>
+            <li>Query optimization</li>
+            <li>Backup & recovery</li>
+          </ul>
+        </div>
+        <div class="content-panel" id="api">
+          <h3>API Development & Integration</h3>
+          <p>Building and integrating APIs to connect systems seamlessly.</p>
+          <ul class="feature-list">
+            <li>RESTful architecture</li>
+            <li>Third-party integrations</li>
+            <li>Custom SDKs</li>
+            <li>WebSocket support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <h2>Who I Am</h2>
+        <p>
+          I'm <strong>Fajis Pallimoopan</strong>, a developer specializing in
+          web and mobile solutions. With experience in HTML, CSS, PHP, MySQL,
+          and React Native, I deliver projects that combine clean design with
+          solid functionality.
+        </p>
+        <p>
+          My journey includes 5 years in finance and over a year in IT,
+          allowing me to merge technical expertise with business understanding.
+          This combination of experience enables me to approach challenges with both
+          analytical precision and practical problem-solving skills, ensuring that the
+          solutions I deliver are efficient, reliable, and aligned with real-world needs.
+        </p>
+        <p>
+          I focus on creating scalable, maintainable, and user-friendly
+          applications that drive real value.
+        </p>
+      </div>
+      <div class="about-visual">
+        <div class="about-graphic"></div>
+      </div>
     </div>
 
-    <!-- Floating Particles -->
-    <div id="particles"></div>
-
-    <!-- Navigation -->
-    <nav id="navbar">
-      <div class="nav-container">
-        <a href="#home" class="logo-link">
-          <svg
-            class="logo-svg"
-            viewBox="0 0 40 40"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient
-                id="logoGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop
-                  offset="0%"
-                  style="stop-color: #ff5e00; stop-opacity: 1"
-                />
-                <stop
-                  offset="100%"
-                  style="stop-color: #00b2ff; stop-opacity: 1"
-                />
-              </linearGradient>
-            </defs>
-            <polygon
-              points="20,2 38,14 38,26 20,38 2,26 2,14"
-              fill="none"
-              stroke="url(#logoGradient)"
-              stroke-width="2"
-            />
-            <polygon
-              points="20,8 32,16 32,24 20,32 8,24 8,16"
-              fill="url(#logoGradient)"
-              opacity="0.3"
-            />
-            <circle cx="20" cy="20" r="3" fill="url(#logoGradient)" />
-          </svg>
-          <span class="logo-text">FAJIS PALLIMOOPAN</span>
-        </a>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#home" class="nav-link">Home</a></li>
-          <li><a href="#features" class="nav-link">Skills</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <div class="menu-toggle" id="menuToggle">
-          <span></span>
-          <span></span>
-          <span></span>
+    <!-- Second row with reversed layout -->
+    <div class="about-content" style="margin-top: 80px">
+      <div class="about-visual">
+        <div class="about-graphic-alt">
+          <div class="hexagon"></div>
+          <div class="hexagon"></div>
+          <div class="hexagon"></div>
         </div>
       </div>
-    </nav>
+      <div class="about-text">
+        <h2>My Approach</h2>
+        <p>
+          I prioritize performance, security, and clean code. From responsive
+          websites to mobile apps and backend systems, my goal is to provide
+          solutions that are efficient and reliable.
+        </p>
+        <p>
+          By keeping up with modern frameworks and practices, I ensure each
+          project is future-proof and easy to maintain.
+        </p>
+        <p>
+          Technology for me is not just code—it’s solving problems and
+          enabling growth.
+        </p>
+      </div>
+    </div>
+  </section>
+  <style></style>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <div class="text-rotator">
-          <div class="text-set active">
-            <h1 class="glitch-text" data-text="FULL-STACK DEV">FULL-STACK DEV</h1>
-            <p class="subtitle">Building modern apps with React Native, PHP & MySQL</p>
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-container">
+      <div class="contact-form">
+        <form id="contactForm" action="https://formspree.io/f/xpwrjorn" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
           </div>
-          <div class="text-set">
-            <h1 class="glitch-text" data-text="CODE. BUILD. INNOVATE.">CODE. BUILD. INNOVATE.</h1>
-            <p class="subtitle">Turning ideas into scalable solutions</p>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
           </div>
-          <div class="text-set">
-            <h1 class="glitch-text" data-text="BUILDING SOLUTIONS">BUILDING SOLUTIONS</h1>
-            <p class="subtitle">Web & mobile apps tailored for real business needs</p>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required />
           </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+          <div class="form-message" id="formMessage"></div>
+        </form>
+      </div>
+      <div class="contact-info">
+        <h3>Connect With Me</h3>
 
+        <div class="info-item">
+          <div class="info-icon">
+            <i data-lucide="mail"></i>
+          </div>
+          <div class="info-details">
+            <h4>Email</h4>
+            <p>pmfajis@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <i data-lucide="phone"></i>
+          </div>
+          <div class="info-details">
+            <h4>Phone</h4>
+            <p>+973 3563 4629</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <i data-lucide="map-pin"></i>
+          </div>
+          <div class="info-details">
+            <h4>Location</h4>
+            <p>Bahrain / Seef</p>
+          </div>
+        </div>
+
+        <div class="map-container">
+          <div id="map" style="width: 100%; height: 300px"></div>
         </div>
       </div>
-      <div class="cta-container">
-        <a href="#features" class="cta-button cta-primary">View My Skills</a>
-        <a href="#about" class="cta-button cta-secondary">About Me</a>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="features" id="features">
-      <h2 class="section-title">My Skills</h2>
-      <div class="features-container">
-        <div class="feature-tabs">
-          <div class="tab-item active" data-tab="web">
-            <span class="tab-icon">
-              <i data-lucide="monitor"></i>
-            </span>
-            <span>Web Development</span>
-          </div>
-          <div class="tab-item" data-tab="backend">
-            <span class="tab-icon">
-              <i data-lucide="lock"></i>
-            </span>
-            <span>Backend</span>
-          </div>
-          <div class="tab-item" data-tab="mobile">
-            <span class="tab-icon">
-              <i data-lucide="smartphone"></i>
-            </span>
-            <span>Mobile Apps</span>
-          </div>
-          <div class="tab-item" data-tab="database">
-            <span class="tab-icon">
-              <i data-lucide="database"></i>
-            </span>
-            <span>Databases</span>
-          </div>
-          <div class="tab-item" data-tab="api">
-            <span class="tab-icon">
-              <i data-lucide="link"></i>
-            </span>
-            <span>APIs</span>
-          </div>
-        </div>
-
-        <div class="feature-content">
-          <div class="content-panel active" id="web">
-            <h3>Responsive Web Development</h3>
-            <p>
-              Creating clean, optimized websites using HTML, CSS, and JavaScript
-              with modern UI/UX principles.
-            </p>
-            <ul class="feature-list">
-              <li>Responsive layouts</li>
-              <li>Cross-browser compatibility</li>
-              <li>SEO-friendly structures</li>
-              <li>Performance optimization</li>
-            </ul>
-          </div>
-          <div class="content-panel" id="backend">
-            <h3>Secure Backend Development</h3>
-            <p>
-              Building scalable backend systems with PHP and MySQL, ensuring
-              data integrity and security.
-            </p>
-            <ul class="feature-list">
-              <li>RESTful APIs</li>
-              <li>Authentication & authorization</li>
-              <li>Database security practices</li>
-              <li>Clean MVC architecture</li>
-            </ul>
-          </div>
-          <div class="content-panel" id="mobile">
-            <h3>Cross-Platform Mobile Apps</h3>
-            <p>
-              Developing mobile apps using React Native, delivering smooth
-              performance across iOS and Android.
-            </p>
-            <ul class="feature-list">
-              <li>Native-like experience</li>
-              <li>Custom UI components</li>
-              <li>Camera, NFC & GPS integrations</li>
-              <li>App store deployment</li>
-            </ul>
-          </div>
-          <div class="content-panel" id="database">
-            <h3>Database Design & Management</h3>
-            <p>
-              Designing efficient MySQL databases with strong relational
-              structures and optimized queries.
-            </p>
-            <ul class="feature-list">
-              <li>Schema design</li>
-              <li>Stored procedures</li>
-              <li>Query optimization</li>
-              <li>Backup & recovery</li>
-            </ul>
-          </div>
-          <div class="content-panel" id="api">
-            <h3>API Development & Integration</h3>
-            <p>Building and integrating APIs to connect systems seamlessly.</p>
-            <ul class="feature-list">
-              <li>RESTful architecture</li>
-              <li>Third-party integrations</li>
-              <li>Custom SDKs</li>
-              <li>WebSocket support</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-      <h2 class="section-title">About Me</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <h2>Who I Am</h2>
-          <p>
-            I'm <strong>Fajis Pallimoopan</strong>, a developer specializing in
-            web and mobile solutions. With experience in HTML, CSS, PHP, MySQL,
-            and React Native, I deliver projects that combine clean design with
-            solid functionality.
-          </p>
-          <p>
-            My journey includes 5 years in finance and over a year in IT,
-            allowing me to merge technical expertise with business
-            understanding. I currently work in Bahrain and collaborate globally.
-          </p>
-          <p>
-            I focus on creating scalable, maintainable, and user-friendly
-            applications that drive real value.
-          </p>
-        </div>
-        <div class="about-visual">
-          <div class="about-graphic"></div>
-        </div>
-      </div>
-
-      <!-- Second row with reversed layout -->
-      <div class="about-content" style="margin-top: 80px">
-        <div class="about-visual">
-          <div class="about-graphic-alt">
-            <div class="hexagon"></div>
-            <div class="hexagon"></div>
-            <div class="hexagon"></div>
-          </div>
-        </div>
-        <div class="about-text">
-          <h2>My Approach</h2>
-          <p>
-            I prioritize performance, security, and clean code. From responsive
-            websites to mobile apps and backend systems, my goal is to provide
-            solutions that are efficient and reliable.
-          </p>
-          <p>
-            By keeping up with modern frameworks and practices, I ensure each
-            project is future-proof and easy to maintain.
-          </p>
-          <p>
-            Technology for me is not just code—it’s solving problems and
-            enabling growth.
-          </p>
-        </div>
-      </div>
-    </section>
-    <style></style>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-      <h2 class="section-title">Get In Touch</h2>
-      <div class="contact-container">
-        <div class="contact-form">
-          <form
-            id="contactForm"
-            action="https://formspree.io/f/xpwrjorn"
-            method="POST"
-          >
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required />
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" required />
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Message</button>
-            <div class="form-message" id="formMessage"></div>
-          </form>
-        </div>
-        <div class="contact-info">
-          <h3>Connect With Me</h3>
-
-          <div class="info-item">
-            <div class="info-icon">
-              <i data-lucide="mail"></i>
-            </div>
-            <div class="info-details">
-              <h4>Email</h4>
-              <p>pmfajis@gmail.com</p>
-            </div>
-          </div>
-
-          <div class="info-item">
-            <div class="info-icon">
-              <i data-lucide="phone"></i>
-            </div>
-            <div class="info-details">
-              <h4>Phone</h4>
-              <p>+973 3563 4629</p>
-            </div>
-          </div>
-
-          <div class="info-item">
-            <div class="info-icon">
-              <i data-lucide="map-pin"></i>
-            </div>
-            <div class="info-details">
-              <h4>Location</h4>
-              <p>Bahrain / Seef</p>
-            </div>
-          </div>
-
-          <div class="map-container">
-            <div id="map" style="width: 100%; height: 300px"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Footer -->
-    <footer>
-      <div class="footer-content">
-        <!-- <div class="footer-links">
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <!-- <div class="footer-links">
                 <a href="#privacy">Privacy Policy</a>
                 <a href="#terms">Terms of Service</a>
                 <a href="#careers">Careers</a>
             </div> -->
-        <p class="copyright">
-          © 2025 FAJIS PALLIMOOPAN. All rights reserved. Building tomorrow,
-          today.
-        </p>
-      </div>
-    </footer>
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="templatemo-electric-scripts.js"></script>
-  </body>
+      <p class="copyright">
+        © 2025 FAJIS PALLIMOOPAN. All rights reserved. Building tomorrow,
+        today.
+      </p>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="templatemo-electric-scripts.js"></script>
+</body>
+
 </html>
