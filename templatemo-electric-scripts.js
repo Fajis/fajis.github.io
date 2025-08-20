@@ -173,8 +173,7 @@ function wrapTextInSpans(element) {
     .split("")
     .map(
       (char, i) =>
-        `<span class="char" style="animation-delay: ${i * 0.05}s">${
-          char === " " ? "&nbsp;" : char
+        `<span class="char" style="animation-delay: ${i * 0.05}s">${char === " " ? "&nbsp;" : char
         }</span>`
     )
     .join("");
@@ -255,17 +254,33 @@ setInterval(() => {
 }, 3000);
 
 lucide.createIcons();
-// Coordinates for Seef, Bahrain
-const seef = [26.2235, 50.58];
+
+// let location = "Manama, Bahrain";
+// let url = `https://www.google.com/maps?q=${encodeURIComponent(location)}&output=embed&z=17`;
+// let iframe = `<iframe src="${url}" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+// document.getElementById("map").innerHTML = iframe;
 
 // Initialize the map
-const map = L.map("map").setView(seef, 14);
+const locations = {
+  kannur: { coords: [11.8745, 75.3704], name: "Kannur, India" },
+  manama: { coords: [26.2235, 50.5800], name: "Manama, Bahrain" }
+};
 
-// Add OpenStreetMap tiles
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+const currentLocation = locations.manama; 
+
+// Initialize the map
+const map = L.map("map").setView(currentLocation.coords, 14);
+
+// Add Dark Mode tiles (Carto Dark)
+L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
   attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+  subdomains: "abcd",
+  maxZoom: 20
 }).addTo(map);
 
 // Add a marker
-L.marker(seef).addTo(map).bindPopup("Seef, Bahrain").openPopup();
+L.marker(currentLocation.coords)
+  .addTo(map)
+  .bindPopup(currentLocation.name)
+  .openPopup();
