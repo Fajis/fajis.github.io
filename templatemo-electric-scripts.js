@@ -258,7 +258,15 @@ lucide.createIcons();
 const seef = [26.2235, 50.58];
 
 // Initialize the map
-const map = L.map("map").setView(seef, 14);
+const locations = {
+  kannur: { coords: [11.8745, 75.3704], name: "Kannur, India" },
+  manama: { coords: [26.2235, 50.5800], name: "Manama, Bahrain" }
+};
+
+const currentLocation = locations.manama; 
+
+// Initialize the map
+const map = L.map("map").setView(currentLocation.coords, 14);
 
 // Add Dark Mode tiles (Carto Dark)
 L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
@@ -269,4 +277,7 @@ L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
 }).addTo(map);
 
 // Add a marker
-L.marker(seef).addTo(map).bindPopup("Seef, Bahrain").openPopup();
+L.marker(currentLocation.coords)
+  .addTo(map)
+  .bindPopup(currentLocation.name)
+  .openPopup();
