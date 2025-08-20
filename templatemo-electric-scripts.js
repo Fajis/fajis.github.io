@@ -173,8 +173,7 @@ function wrapTextInSpans(element) {
     .split("")
     .map(
       (char, i) =>
-        `<span class="char" style="animation-delay: ${i * 0.05}s">${
-          char === " " ? "&nbsp;" : char
+        `<span class="char" style="animation-delay: ${i * 0.05}s">${char === " " ? "&nbsp;" : char
         }</span>`
     )
     .join("");
