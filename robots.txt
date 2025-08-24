@@ -1,0 +1,6 @@
+# Allow all bots to crawl everything
+User-agent: *
+Disallow:
+
+# Optional: specify sitemap
+Sitemap: https://fajis.is-a.dev/sitemap.xml
