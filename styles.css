@@ -1265,5 +1265,14 @@ footer {
     display: block;
     opacity: 1;
 }
+.leaflet-control-attribution {
+  background: transparent !important;
+  color: #aaa !important;      /* light gray on dark */
+  font-size: 11px !important;
+}
+.leaflet-control-attribution a {
+  color: #ff9800 !important;   /* orange links */
+  text-decoration: none;
+}
 
 /* END */

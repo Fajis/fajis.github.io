@@ -256,6 +256,8 @@ const locations = {
   manama: { coords: [26.2235, 50.5800], name: "Manama, Bahrain" }
 };
 
+
+
 const currentLocation = locations.manama; 
 
 // Initialize the map
@@ -269,8 +271,25 @@ L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
   maxZoom: 20
 }).addTo(map);
 
+const orangeIcon = L.divIcon({
+  className: "custom-marker",
+  html: `
+    <div style="
+      width: 20px;
+      height: 20px;
+      background-color: orange;
+      border: 3px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    "></div>
+  `,
+  iconSize: [20, 20],
+  iconAnchor: [10, 10],
+  popupAnchor: [0, -10]
+});
+
 // Add a marker
-L.marker(currentLocation.coords)
+L.marker(currentLocation.coords, { icon: orangeIcon })
   .addTo(map)
   .bindPopup(currentLocation.name)
   .openPopup();
