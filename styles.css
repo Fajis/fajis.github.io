@@ -1276,3 +1276,28 @@ footer {
 }
 
 /* END */
+
+.feature-item-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.feature-list li.expandable {
+  cursor: pointer;
+  position: relative;
+  padding: 0px 15px;
+}
+
+/* Remove extra arrow indicator */
+.feature-list li.expandable::after {
+  content: none;
+}
+
+.feature-list li.expandable.expanded .feature-item-detail {
+  max-height: 200px; /* adjust based on content */
+  padding: 4px ;
+}

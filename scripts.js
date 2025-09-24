@@ -293,3 +293,10 @@ L.marker(currentLocation.coords, { icon: orangeIcon })
   .addTo(map)
   .bindPopup(currentLocation.name)
   .openPopup();
+
+
+document.querySelectorAll('.feature-list li.expandable').forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('expanded');
+  });
+});

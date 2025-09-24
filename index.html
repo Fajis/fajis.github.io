@@ -153,70 +153,169 @@
         </div>
       </div>
 
-      <div class="feature-content">
-        <div class="content-panel active" id="web">
-          <h3>Responsive Web Development</h3>
-          <p>
-            Creating clean, optimized websites using HTML, CSS, and JavaScript
-            with modern UI/UX principles.
-          </p>
-          <ul class="feature-list">
-            <li>Responsive layouts</li>
-            <li>Cross-browser compatibility</li>
-            <li>SEO-friendly structures</li>
-            <li>Performance optimization</li>
-          </ul>
+  <div class="feature-content">
+
+  <!-- Web Development -->
+  <div class="content-panel active" id="web">
+    <h3>Responsive Web Development</h3>
+    <p>Creating clean, optimized websites using HTML, CSS, and JavaScript with modern UI/UX principles.</p>
+    <ul class="feature-list">
+      <li class="expandable">
+        Responsive layouts
+        <div class="feature-item-detail">
+          Flexible and adaptive layouts for all screen sizes using CSS Grid and Flexbox.
         </div>
-        <div class="content-panel" id="backend">
-          <h3>Secure Backend Development</h3>
-          <p>
-            Building scalable backend systems with PHP and MySQL, ensuring
-            data integrity and security.
-          </p>
-          <ul class="feature-list">
-            <li>RESTful APIs</li>
-            <li>Authentication & authorization</li>
-            <li>Database security practices</li>
-            <li>Clean MVC architecture</li>
-          </ul>
+      </li>
+      <li class="expandable">
+        Cross-browser compatibility
+        <div class="feature-item-detail">
+          Websites tested and working consistently across Chrome, Firefox, Safari, Edge, and mobile browsers.
         </div>
-        <div class="content-panel" id="mobile">
-          <h3>Cross-Platform Mobile Apps</h3>
-          <p>
-            Developing mobile apps using React Native, delivering smooth
-            performance across iOS and Android.
-          </p>
-          <ul class="feature-list">
-            <li>Native-like experience</li>
-            <li>Custom UI components</li>
-            <li>Camera, NFC & GPS integrations</li>
-            <li>App store deployment</li>
-          </ul>
+      </li>
+      <li class="expandable">
+        SEO-friendly structures
+        <div class="feature-item-detail">
+          Semantic HTML, proper headings, meta tags, and schema implementation to improve search visibility.
         </div>
-        <div class="content-panel" id="database">
-          <h3>Database Design & Management</h3>
-          <p>
-            Designing efficient MySQL databases with strong relational
-            structures and optimized queries.
-          </p>
-          <ul class="feature-list">
-            <li>Schema design</li>
-            <li>Stored procedures</li>
-            <li>Query optimization</li>
-            <li>Backup & recovery</li>
-          </ul>
+      </li>
+      <li class="expandable">
+        Performance optimization
+        <div class="feature-item-detail">
+          Minification, lazy loading, caching, and image optimization for faster loading websites.
         </div>
-        <div class="content-panel" id="api">
-          <h3>API Development & Integration</h3>
-          <p>Building and integrating APIs to connect systems seamlessly.</p>
-          <ul class="feature-list">
-            <li>RESTful architecture</li>
-            <li>Third-party integrations</li>
-            <li>Custom SDKs</li>
-            <li>WebSocket support</li>
-          </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Backend -->
+  <div class="content-panel" id="backend">
+    <h3>Secure Backend Development</h3>
+    <p>Building scalable backend systems with PHP and MySQL, ensuring data integrity and security.</p>
+    <ul class="feature-list">
+      <li class="expandable">
+        RESTful APIs
+        <div class="feature-item-detail">
+          Designing APIs following REST principles for modular and maintainable backend services.
         </div>
-      </div>
+      </li>
+      <li class="expandable">
+        Authentication & authorization
+        <div class="feature-item-detail">
+          Secure login, session management, and role-based access control implementation.
+        </div>
+      </li>
+      <li class="expandable">
+        Database security practices
+        <div class="feature-item-detail">
+          SQL injection prevention, encrypted passwords, and secure query handling.
+        </div>
+      </li>
+      <li class="expandable">
+        Clean MVC architecture
+        <div class="feature-item-detail">
+          Structuring code into Models, Views, and Controllers for maintainability and scalability.
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Mobile Apps -->
+  <div class="content-panel" id="mobile">
+    <h3>Cross-Platform Mobile Apps</h3>
+    <p>Developing mobile apps using React Native, delivering smooth performance across iOS and Android.</p>
+    <ul class="feature-list">
+      <li class="expandable">
+        Native-like experience
+        <div class="feature-item-detail">
+          Apps feel and perform like native apps with responsive UI components.
+        </div>
+      </li>
+      <li class="expandable">
+        Custom UI components
+        <div class="feature-item-detail">
+          Tailored interface elements to match app requirements and brand identity.
+        </div>
+      </li>
+      <li class="expandable">
+        Camera, NFC & GPS integrations
+        <div class="feature-item-detail">
+          Utilize device hardware for real-time scanning, geolocation, and smart features.
+        </div>
+      </li>
+      <li class="expandable">
+        App store deployment
+        <div class="feature-item-detail">
+          Managing iOS and Android app releases on App Store and Google Play.
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Database -->
+  <div class="content-panel" id="database">
+    <h3>Database Design & Management</h3>
+    <p>Designing efficient MySQL databases with strong relational structures and optimized queries.</p>
+    <ul class="feature-list">
+      <li class="expandable">
+        Schema design
+        <div class="feature-item-detail">
+          Creating structured relational databases with proper indexing and normalization.
+        </div>
+      </li>
+      <li class="expandable">
+        Stored procedures
+        <div class="feature-item-detail">
+          Encapsulating common database operations to reduce redundancy and improve performance.
+        </div>
+      </li>
+      <li class="expandable">
+        Query optimization
+        <div class="feature-item-detail">
+          Efficient queries, indexing, and query caching to speed up database access.
+        </div>
+      </li>
+      <li class="expandable">
+        Backup & recovery
+        <div class="feature-item-detail">
+          Ensuring data is safe through automated backups and recovery strategies.
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- API -->
+  <div class="content-panel" id="api">
+    <h3>API Development & Integration</h3>
+    <p>Building and integrating APIs to connect systems seamlessly.</p>
+    <ul class="feature-list">
+      <li class="expandable">
+        RESTful architecture
+        <div class="feature-item-detail">
+          Creating modular and maintainable APIs following REST best practices.
+        </div>
+      </li>
+      <li class="expandable">
+        Third-party integrations
+        <div class="feature-item-detail">
+          Connecting external services such as payment gateways, SMS/email providers, and analytics.
+        </div>
+      </li>
+      <li class="expandable">
+        Data serialization
+        <div class="feature-item-detail">
+          Ensuring proper data formatting with JSON or XML for smooth communication between systems.
+        </div>
+      </li>
+      <li class="expandable">
+        Real-time updates
+        <div class="feature-item-detail">
+          Using WebSockets or long-polling to provide live updates to the frontend.
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
     </div>
   </section>
 
