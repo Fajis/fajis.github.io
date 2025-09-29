@@ -1281,7 +1281,7 @@ footer {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease, padding 0.4s ease;
-  padding: 0 0;
+  padding: 10 5;
   font-size: 0.9em;
   color: #666;
 }
@@ -1289,7 +1289,6 @@ footer {
 .feature-list li.expandable {
   cursor: pointer;
   position: relative;
-  padding: 0px 15px;
 }
 
 /* Remove extra arrow indicator */
