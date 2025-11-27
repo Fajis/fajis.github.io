@@ -3,279 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fajis PM | Full-Stack Developer: Scalable Web & Mobile Solutions</title>
-    <meta name="description" content="Full-Stack Developer specializing in PHP, React Native, and clean, high-performance web and mobile solutions built for long-term scalability.">
+    <title>Fajis PM - Full-Stack Developer</title>
     <link rel="manifest" href="./manifest.json">
-    
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-    
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
-    <link rel="stylesheet" href="styles.css">
-    
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
-
-    <nav class="navbar">
+    <nav id="navbar">
         <div class="nav-container">
-            <a href="#home" class="logo">
-                <div class="logo-icon"><i class="fa-solid fa-code"></i></div>
-                <span>Fajis PM</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">What I Build</a></li>
-                <!-- <li><a href="#projects">Projects</a></li> -->
-                <li><a href="#about">About</a></li>
-                <!-- <li><a href="#testimonials">Testimonials</a></li> -->
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-menu">
+            <a href="#home" class="logo">FAJIS.PM</a>
+            <div class="menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link">HOME</a></li>
+                <li><a href="#about" class="nav-link">ABOUT ME</a></li>
+                <li><a href="#services" class="nav-link">SKILLS</a></li>
+                <li><a href="#contact" class="nav-link">CONTACT</a></li>
+            </ul>
         </div>
     </nav>
-    
-    <main id="main-content">
 
-        <section id="home" class="hero" aria-labelledby="hero-headline-title">
-            <div class="geometric-shapes">
-                <div class="geo-shape"></div>
-                <div class="geo-shape"></div>
-                <div class="geo-shape"></div>
-                <div class="geo-shape"></div>
-                <div class="geo-shape"></div>
-            </div>
-            <div class="hero-content">
-                <h1 id="hero-headline" class="hero-headline">Building Reliable,<br>High-Performance Systems</h1>
-                <p id="hero-paragraph">Full-Stack Developer focused on delivering clean, fast, and scalable web and mobile applications that grow with your business.</p>
-                <a href="#services" class="cta-button">What I Build</a>
-            </div>
-        </section>
+    <section id="home" class="hero">
+        <div class="floating-objects">
+            <div class="floating-circle"></div>
+            <div class="floating-circle"></div>
+            <div class="floating-square"></div>
+            <div class="floating-line"></div>
+        </div>
+        
+        <div class="hero-decoration"></div>
+        <div class="hero-content">
+            <h1>Building Scalable Systems</h1>
+            <p class="subtitle">Full-Stack & Cross-Platform Mobile Developer</p>
+            <a href="#about" class="cta-button">KNOW MORE</a>
+        </div>
+    </section>
 
-  <section id="services" class="services" aria-labelledby="services-title">
-    <div class="section services-container">
-        <h2 id="services-title" class="section-title fade-in">What I Build & How It Helps Your Business</h2>
-        <div class="services-layout">
-            <div class="services-content">
-                <div class="service-details active" data-service="backend" role="tabpanel" aria-hidden="false">
-                    <h3>Powerful Backend Engines</h3>
-                    <div class="service-subtitle">PHP, JavaScript, Secure Data, Fast Connections</div>
-                    <p>I design and build the <b>invisible engine</b> that powers your application. This includes creating fast, secure <b>APIs</b> (the connections) that ensure your website and apps can handle high traffic and manage data without crashing.</p>
-                    <p>I focus on solid architecture to ensure the system is <b>organized, reliable, and easy to maintain</b> over many years.</p>
-                    <ul class="service-features">
-                        <li><span class="feature-check"><i class="fa-solid fa-server" aria-hidden="true"></i></span> High-Performance Server Logic (PHP, Node.js)</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-lock" aria-hidden="true"></i></span> Secure, Reliable Data Connections (APIs)</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span> Robust Architecture for Easy Future Updates</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-database" aria-hidden="true"></i></span> Efficient Data Storage (MySQL)</li>
-                    </ul>
-                </div>
-                <div class="service-details" data-service="mobile" role="tabpanel" aria-hidden="true">
-                    <h3>Modern Mobile Applications</h3>
-                    <div class="service-subtitle">iOS and Android Apps, Seamless User Experience</div>
-                    <p>I develop custom apps for both <b>Apple (iOS)</b> and <b>Android</b> from a single codebase, saving development time and cost. The result is a smooth, fast app that feels native to the phone.</p>
-                    <p>I specialize in managing complex app data to ensure the app is <b>stable</b> and provides a <b>consistent experience</b>, even when handling things like device location or camera feeds.</p>
-                    <ul class="service-features">
-                        <li><span class="feature-check"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></span> Cost-Effective Cross-Platform Development</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-cubes" aria-hidden="true"></i></span> Stable and Predictable App Behavior</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i></span> Optimized Performance on All Devices</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i></span> App Store & Google Play readiness</li>
-                    </ul>
-                </div>
-                <div class="service-details" data-service="frontend" role="tabpanel" aria-hidden="true">
-                    <h3>Engaging Web Experiences</h3>
-                    <div class="service-subtitle">Interactive Websites, Clean Design, Speed</div>
-                    <p>I create the <b>user-facing part</b> of your website—what people see and interact with. My focus is on building modern, highly <b>responsive</b> websites that look great on any screen size and load almost instantly.</p>
-                    <p>I use current standards (JavaScript/React) to build <b>fast, engaging interfaces</b> that drive user retention and conversions.</p>
-                    <ul class="service-features">
-                        <li><span class="feature-check"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span> Fast-Loading, Modern User Interfaces</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-mobile-button" aria-hidden="true"></i></span> Highly Responsive Design (Mobile to Desktop)</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-fingerprint" aria-hidden="true"></i></span> Clean, Accessible, Standards-Compliant Code</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span> Optimized for Speed and SEO Performance</li>
-                    </ul>
-                </div>
-                <div class="service-details" data-service="database" role="tabpanel" aria-hidden="true">
-                    <h3>Secure Data Management</h3>
-                    <div class="service-subtitle">Efficient Storage, Data Integrity, Fast Retrieval</div>
-                    <p>I design the underlying data structures to be highly <b>efficient and secure</b>. This is the key to managing millions of user records or transactions quickly and without error.</p>
-                    <p>I write and optimize queries to ensure data retrieval is always fast, which directly translates to a <b>snappier application</b> experience for your users.</p>
-                    <ul class="service-features">
-                        <li><span class="feature-check"><i class="fa-solid fa-table" aria-hidden="true"></i></span> Efficient Database Structure (MySQL)</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span> Guaranteed Data Security and Integrity</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span> Optimized for High-Speed Data Retrieval</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-key" aria-hidden="true"></i></span> Secure Connection Methods</li>
-                    </ul>
-                </div>
-                <div class="service-details" data-service="devops" role="tabpanel" aria-hidden="true">
-                    <h3>Guaranteed Quality & Reliability</h3>
-                    <div class="service-subtitle">Version Control, Automated Testing, Clean Practices</div>
-                    <p>I use professional workflows and tools (Git) to manage code changes, ensuring the system is <b>always stable</b> and changes can be rolled back if needed. This process also includes rigorous testing and code reviews.</p>
-                    <p>My practices focus on delivering code that is <b>clean, well-documented, and easy for any future developer to understand</b>, protecting your investment.</p>
-                    <ul class="service-features">
-                        <li><span class="feature-check"><i class="fa-solid fa-code-commit" aria-hidden="true"></i></span> Safe and Controlled Code Updates (Git)</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-vial-circle-check" aria-hidden="true"></i></span> Comprehensive Quality Assurance</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-file-code" aria-hidden="true"></i></span> High Code Standards and Documentation</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-expand" aria-hidden="true"></i></span> Scalable, Extensible Architecture</li>
-                    </ul>
-                </div>
-                <div class="service-details" data-service="integration" role="tabpanel" aria-hidden="true">
-                    <h3>Future-Proofing Your Technology</h3>
-                    <div class="service-subtitle">Error Prevention, Robust Systems, Long-Term Value</div>
-                    <p>I actively adopt advanced systems (like TypeScript) that force the code to be <b>more robust and catch errors earlier</b>. This makes the application safer to scale and reduces the cost of finding bugs later.</p>
-                    <p>My goal is to use modern, resilient approaches to ensure your system provides <b>maximum long-term value</b> and avoids costly, messy fixes down the road.</p>
-                    <ul class="service-features">
-                        <li><span class="feature-check"><i class="fa-solid fa-bug-slash" aria-hidden="true"></i></span> Proactive Error Prevention (Type Safety)</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-sitemap" aria-hidden="true"></i></span> Building Highly Stable App Logic</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-award" aria-hidden="true"></i></span> Mature Testing and Quality Assurance</li>
-                        <li><span class="feature-check"><i class="fa-solid fa-cloud" aria-hidden="true"></i></span> Cloud Deployment Readiness (AWS/Azure)</li>
-                    </ul>
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-intro fade-in">
+                <div class="quote-block">
+                    <span class="quote-mark">"</span>
+                    <h3>The best code is no code at all. But for everything else, it should be clean, fast, and scalable.</h3>
+                    <div class="quote-author">
+                        <span class="author-line"></span>
+                        <p>Developer Philosophy</p>
+                    </div>
                 </div>
             </div>
-            <div class="services-tabs" role="tablist" aria-label="Development Focus Areas">
-                <button class="service-tab active" data-target="backend" role="tab" aria-controls="backend" aria-selected="true">
-                    <div class="tab-icon"><i class="fa-solid fa-gears" aria-hidden="true"></i></div>
-                    <div class="tab-content">
-                        <h4>Backend Engine</h4>
-                        <p>Fast, reliable server-side architecture.</p>
+
+            <div class="black-line"></div>
+
+            <div class="stats-grid fade-in">
+                <div class="stat-item">
+                    <div class="stat-number">PHP</div>
+                    <div class="stat-label">Backend Systems</div>
+                    <div class="stat-decoration"></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">RN</div>
+                    <div class="stat-label">Mobile Apps</div>
+                    <div class="stat-decoration"></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">ES6+</div>
+                    <div class="stat-label">Frontend & Logic</div>
+                    <div class="stat-decoration"></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">MySQL</div>
+                    <div class="stat-label">Database Interaction</div>
+                    <div class="stat-decoration"></div>
+                </div>
+            </div>
+
+            <div class="philosophy-section fade-in">
+                <div class="philosophy-header">
+                    <h2>Focus</h2>
+                    <div class="header-decoration"></div>
+                </div>
+                <div class="philosophy-content">
+                    <div class="philosophy-main">
+                        <p class="lead-text">Specializing in full-stack web development and cross-platform mobile apps. Driven by clean code, performance optimization, and scalable architecture.</p>
                     </div>
-                </button>
-                <button class="service-tab" data-target="mobile" role="tab" aria-controls="mobile" aria-selected="false" tabindex="-1">
-                    <div class="tab-icon"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i></div>
-                    <div class="tab-content">
-                        <h4>Mobile Apps</h4>
-                        <p>iOS/Android cross-platform solutions.</p>
+                    <div class="philosophy-points">
+                        <div class="point-item">
+                            <span class="point-number">01</span>
+                            <h4>Performance</h4>
+                            <p>Optimizing every part of the stack</p>
+                        </div>
+                        <div class="point-item">
+                            <span class="point-number">02</span>
+                            <h4>Scalability</h4>
+                            <p>Designing for future growth</p>
+                        </div>
+                        <div class="point-item">
+                            <span class="point-number">03</span>
+                            <h4>Maintainability</h4>
+                            <p>Writing clean, readable code</p>
+                        </div>
                     </div>
-                </button>
-                <button class="service-tab" data-target="frontend" role="tab" aria-controls="frontend" aria-selected="false" tabindex="-1">
-                    <div class="tab-icon"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></div>
-                    <div class="tab-content">
-                        <h4>Web Interfaces</h4>
-                        <p>Fast, modern, and interactive websites.</p>
+                </div>
+            </div>
+
+            <div class="process-timeline fade-in">
+                <h2 class="section-subtitle">Core Expertise</h2>
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>API Creation</h4>
+                            <p>Robust and efficient backend APIs</p>
+                        </div>
                     </div>
-                </button>
-                <button class="service-tab" data-target="database" role="tab" aria-controls="database" aria-selected="false" tabindex="-1">
-                    <div class="tab-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></div>
-                    <div class="tab-content">
-                        <h4>Data Security</h4>
-                        <p>Efficient and secure data storage.</p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>State Management</h4>
+                            <p>Complex React Native state logic</p>
+                        </div>
                     </div>
-                </button>
-                <button class="service-tab" data-target="devops" role="tab" aria-controls="devops" aria-selected="false" tabindex="-1">
-                    <div class="tab-icon"><i class="fa-solid fa-code-fork" aria-hidden="true"></i></div>
-                    <div class="tab-content">
-                        <h4>Quality Control</h4>
-                        <p>Reliable processes and clean code.</p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Database Design</h4>
+                            <p>Optimized SQL/NoSQL interaction</p>
+                        </div>
                     </div>
-                </button>
-                <button class="service-tab" data-target="integration" role="tab" aria-controls="integration" aria-selected="false" tabindex="-1">
-                    <div class="tab-icon"><i class="fa-solid fa-arrows-to-dot" aria-hidden="true"></i></div>
-                    <div class="tab-content">
-                        <h4>Future-Proofing</h4>
-                        <p>Building systems for long-term value.</p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Deployment</h4>
+                            <p>Bringing solutions to production</p>
+                        </div>
                     </div>
-                </button>
+                </div>
+            </div>
+
+            <div class="values-section fade-in">
+                <div class="values-header">
+                    <div class="black-square"></div>
+                    <h2>Learning</h2>
+                    <div class="black-square"></div>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">R</div>
+                        <h4>Redux</h4>
+                    </div>
+                    <div class="value-card black">
+                        <div class="value-icon">T</div>
+                        <h4>TypeScript</h4>
+                    </div>
+                    <div class="value-card black">
+                        <div class="value-icon">A</div>
+                        <h4>Adv. RN</h4>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">D</div>
+                        <h4>DevOps</h4>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-        <section id="about" class="about-section" aria-labelledby="about-title">
-            <div class="section about fade-in">
-                <div class="about-content">
-                    <div class="highlight">Clean Code. Performance. Scalability.</div>
-                    <h2 id="about-title">My Development Approach</h2>
-                    <p>I am a Full-Stack Developer dedicated to delivering high-quality, scalable web and mobile solutions. My core focus is on combining robust system function with seamless, fast user experiences.</p>
-                    
-                    <div class="about-features">
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fa-solid fa-file-code" aria-hidden="true"></i></div>
-                            <div class="feature-text">Organized, Clean Systems</div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
-                            <div class="feature-text">Speed and Optimization</div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
-                            <div class="feature-text">Built to Grow (Scalable)</div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
-                            <div class="feature-text">Data Safety & Trust</div>
-                        </div>
-                    </div>
-                    
-                    <p>With expertise in the key technologies that run the modern web and mobile world, I manage projects from the initial idea and data setup to the final launch on all platforms.</p>
-                    
-                    <p>Let's build reliable, efficient systems that drive value for your users.</p>
+    <section id="services" class="services">
+        <div class="container">
+            <div class="services-header fade-in">
+                <h2>Technology Stack</h2>
+            </div>
+            
+            <div class="asymmetric-grid fade-in">
+                <div class="service-large">
+                    <h3>Backend & APIs (PHP/MySQL)</h3>
+                    <p>Designing and implementing scalable, performant backend systems and RESTful APIs, with a strong focus on data integrity and clean architecture.</p>
+                    <a href="https://github.com/fajis" class="service-tag" target="_blank">GitHub</a>
                 </div>
-                <div class="about-visual">
-                    <div class="about-image">
-                        <div class="visual-shapes">
-                            <div class="visual-shape"></div>
-                            <div class="visual-shape"></div>
-                            <div class="visual-shape"></div>
-                        </div>
-                        <img src="images/about-image-01.jpg" alt="Development Approach illustration" loading="lazy"> 
-                    </div>
-                    
-                    <ul class="stats" role="list">
-                        <li class="stat">
-                            <span class="stat-number counter" data-count="5" data-unit="">0</span>
-                            <span class="stat-label">Years of Experience</span>
-                        </li>
-                        <li class="stat">
-                            <span class="stat-number counter" data-count="30" data-unit="">0</span>
-                            <span class="stat-label">Projects Completed</span>
-                        </li>
-                        <li class="stat">
-                            <span class="stat-number counter" data-count="99" data-unit="%">0</span>
-                            <span class="stat-label">Client Satisfaction Score (%)</span>
-                        </li>
-                    </ul>
+                <div class="service-small">
+                    <div class="service-number">01</div>
+                    <h4>PHP & Node</h4>
                 </div>
             </div>
-        </section>
-
-     <section id="contact" class="contact" aria-labelledby="contact-title">
-    <div class="section">
-        <h2 id="contact-title" class="section-title fade-in">Let's Connect & Build</h2>
-        <div class="contact-content">
-            <p>Ready to collaborate on a scalable full-stack or cross-platform mobile project? Get in touch.</p>
-            <form class="contact-form fade-in" aria-label="Contact Form" action="https://formspree.io/f/xpwrjorn" method="POST" id="contactForm">
-                <div class="form-group">
-                    <input type="text" id="full-name" name="fullName" placeholder="Full Name" required aria-required="true">
-                    <input type="text" id="organization" name="organization" placeholder="Organization">
+            
+            <div class="asymmetric-grid reverse fade-in">
+                <div class="service-small">
+                    <div class="service-number">02</div>
+                    <h4>React Native</h4>
                 </div>
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Email Address" required aria-required="true">
-                    <input type="tel" id="phone" name="phone" placeholder="Phone Number (Optional)">
+                <div class="service-large">
+                    <h3>Mobile Development (React Native)</h3>
+                    <p>Crafting seamless, cross-platform mobile applications for iOS and Android, ensuring native performance and a focus on state management best practices.</p>
+                    <a href="#contact" class="service-tag">Let's Build</a>
                 </div>
-                <input type="text" id="project-type" name="projectType" placeholder="Project Type (e.g., Mobile App, Web API, Dashboard)">
-                <textarea id="project-description" name="projectDescription" placeholder="Describe your project and business goals..." required aria-required="true"></textarea>
-                <button type="submit" class="submit-btn">Start Discussion</button>
-            </form>
-        </div>
-    </div>
-</section>
-    
-    </main>
-
-    <footer class="footer" role="contentinfo">
-        <div class="footer-content">
-            <div class="footer-links" role="navigation" aria-label="Secondary links">
-                <a href="https://github.com/fajis" target="_blank" rel="noopener noreferrer">GitHub (Technical)</a>
-                <a href="mailto:pmfajis@gmail.com">Email Me</a>
+            </div>
+            
+            <div class="asymmetric-grid fade-in">
+                <div class="service-large">
+                    <h3>Frontend (JavaScript/HTML/CSS)</h3>
+                    <p>Building responsive and accessible user interfaces using modern JavaScript (ES6+) and focusing on a minimal, high-utility user experience.</p>
+                    <a href="#contact" class="service-tag">Let's Build</a>
                 </div>
-            <div class="footer-copyright">
-                © 2025 Fajis PM. All rights reserved.
+                <div class="service-small">
+                    <div class="service-number">03</div>
+                    <h4>Web UIs</h4>
+                </div>
             </div>
         </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-grid fade-in">
+                <div class="contact-info">
+                    <h2>Connect</h2>
+                    <div class="info-item">
+                        <h4>GitHub</h4>
+                        <p>@Fajis</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Location</h4>
+                        <p>Bahrain (Remote Friendly)</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Language</h4>
+                        <p>English, Hindi, Malayalam</p>
+                    </div>
+                </div>
+                
+                <div class="contact-divider"></div>
+                
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/xpwrjorn" method="POST" autocomplete="off">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder=" " required>
+                            <label>Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="_replyto" placeholder=" " required>
+                            <label>Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="4" name="message" placeholder=" " required></textarea>
+                            <label>Project Details</label>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Fajis PM — Developer Portfolio.</p>
     </footer>
-
-<script src="main.js" defer></script>
+<script src="script.js"></script>
 </body>
 </html>
