@@ -170,23 +170,24 @@ document.querySelectorAll('.fade-in, .service-tab, .team-member, .testimonial, .
 
 // Enhanced Counter Animation
 function animateCounter(element) {
-   if (element.classList.contains('animated')) return;
-   element.classList.add('animated');
+    if (element.classList.contains('animated')) return;
+    element.classList.add('animated');
 
-   const target = parseInt(element.getAttribute('data-count'));
-   const increment = target / 80;
-   let current = 0;
+    const target = parseInt(element.getAttribute('data-count'));
+    const unit = element.getAttribute('data-unit') || '';
+    const increment = target / 80;
+    let current = 0;
 
-   const timer = setInterval(() => {
-      current += increment;
-      const value = Math.floor(current);
-      element.textContent = target > 100 ? value : value + '%';
+    const timer = setInterval(() => {
+        current += increment;
+        const value = Math.floor(current);
+        element.textContent = value + unit;
 
-      if (current >= target) {
-         element.textContent = target > 100 ? target : target + '%';
-         clearInterval(timer);
-      }
-   }, 25);
+        if (current >= target) {
+            element.textContent = target + unit;
+            clearInterval(timer);
+        }
+    }, 25);
 }
 
 // Enhanced Navbar scroll effect
