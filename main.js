@@ -68,19 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
    if (headline && paragraph) {
       // Define the 3 sets of text you want to rotate
       const textSets = [{
-            h1: "Strategic Excellence<br>Redefined",
-            p: "We architect transformative business strategies that transcend conventional thinking and deliver extraordinary results."
+            h1: "Scalable Backends<br>Engineered with PHP",
+            p: "I architect robust, high-performance APIs and full-stack web solutions with a focus on clean, secure architecture and massive throughput."
          },
          {
-            h1: "Innovation That<br>Drives Growth",
-            p: "Our team harnesses cutting-edge technology and creative insights to build market leaders and unlock new opportunities."
+            h1: "Cross-Platform<br>Excellence (React Native)",
+            p: "Delivering seamless, native-feeling mobile applications for both iOS and Android from a single, efficient codebase."
          },
          {
-            h1: "Your Vision<br>Engineered",
-            p: "We partner with you to turn ambitious goals into measurable, real-world results that create lasting competitive advantages."
+            h1: "Clean Code.<br>Built to Last.",
+            p: "My commitment to technical best practices ensures your software investment is future-proof, easy to maintain, and simple to expand."
          }
       ];
-
       let currentIndex = 0;
 
       // Function to change the text
