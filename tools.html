@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Tools - Fajis PM</title>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        /* Tool-specific internal styles */
+        .tools-hero {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tools-section {
+            padding: 0 20px 120px;
+            background: #fafafa;
+            min-height: 60vh;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: -50px auto 0;
+            /* Overlap hero slightly */
+            position: relative;
+            z-index: 10;
+        }
+
+        .tool-menu-card {
+            background: #fff;
+            padding: 40px;
+            border: 1px solid #000;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+        }
+
+        .tool-menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 15px 15px 0 #000;
+            background: #000;
+        }
+
+        .tool-menu-card:hover h3,
+        .tool-menu-card:hover p {
+            color: #fff;
+        }
+
+        .tool-menu-card:hover .tool-typo-icon {
+            color: #000;
+            background: #fff;
+            border-color: #fff;
+        }
+
+        .tool-menu-card h3 {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .tool-menu-card p {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+
+        /* Typographic Icons */
+        .tool-typo-icon {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            border: 2px solid #000;
+            padding: 10px 15px;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        /* Tool Views */
+        .tool-view {
+            display: none;
+            /* Hidden by default */
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 60px;
+            border: 1px solid #000;
+            position: relative;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            font-size: 14px;
+            text-decoration: none;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #000;
+        }
+
+        .tool-view-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .tool-view-header h2 {
+            font-size: 36px;
+            font-weight: 100;
+        }
+
+        /* Calculator Styles */
+        .calculator-form {
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        /* Specific Result Box */
+        .result-box-view {
+            background: #000;
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .result-box-view .value {
+            font-size: 48px;
+            font-weight: 100;
+            margin: 10px 0;
+        }
+
+        .result-box-view .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        /* Budget Planner Styles Fix */
+        .budget-grid-view {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .budget-list {
+            margin-bottom: 20px;
+        }
+
+        .budget-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Fixed Budget Inputs */
+        .budget-item input {
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            padding: 5px 0;
+            font-family: inherit;
+        }
+
+        .budget-item input[type="text"] {
+            width: 150px;
+            text-align: left;
+            color: #000;
+        }
+
+        .budget-item input[type="number"] {
+            width: 100px;
+            text-align: right;
+            border-bottom: 1px solid transparent;
+            /* Invisible border for sizing */
+            transition: border-color 0.3s;
+        }
+
+        .budget-item input:focus {
+            outline: none;
+            border-bottom: 1px solid #000;
+        }
+
+        .add-btn {
+            background: transparent;
+            border: 1px solid #000;
+            padding: 10px 25px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .add-btn:hover {
+            background: #000;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .remove-btn {
+            background: transparent;
+            border: none;
+            color: #999;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0 10px;
+        }
+
+        .remove-btn:hover {
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .budget-grid-view {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-view {
+                padding: 30px;
+                border: none;
+                margin-top: -50px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">FAJIS.PM</a>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">HOME</a></li>
+                <li><a href="index.html#about" class="nav-link">ABOUT ME</a></li>
+                <li><a href="tools.html" class="nav-link active">TOOLS</a></li>
+                <li><a href="index.html#contact" class="nav-link">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="tools-hero">
+        <div class="hero-content">
+            <h1>Financial Tools</h1>
+            <p class="subtitle">Select a tool to begin.</p>
+        </div>
+        <div class="floating-objects">
+            <div class="floating-circle"></div>
+            <div class="floating-line"></div>
+        </div>
+    </section>
+
+    <section class="tools-section">
+
+        <!-- DASHBOARD (Visible by default) -->
+        <div id="toolsDashboard" class="dashboard-grid fade-in">
+            <div class="tool-menu-card" onclick="openTool('emiTool')">
+                <div class="tool-typo-icon">EMI</div>
+                <h3>EMI Calculator</h3>
+                <p>Plan Loan Repayments</p>
+            </div>
+            <div class="tool-menu-card" onclick="openTool('sipTool')">
+                <div class="tool-typo-icon">SIP</div>
+                <h3>SIP Calculator</h3>
+                <p>Systematic Investment</p>
+            </div>
+            <div class="tool-menu-card" onclick="openTool('lumpsumTool')">
+                <div class="tool-typo-icon">LMP</div>
+                <h3>Lumpsum</h3>
+                <p>One-time Investment</p>
+            </div>
+            <div class="tool-menu-card" onclick="openTool('goalTool')">
+                <div class="tool-typo-icon">GOL</div>
+                <h3>Goal Planner</h3>
+                <p>Target Based Savings</p>
+            </div>
+            <div class="tool-menu-card" onclick="openTool('affordTool')">
+                <div class="tool-typo-icon">AFF</div>
+                <h3>Affordability</h3>
+                <p>Max Loan Amount</p>
+            </div>
+            <div class="tool-menu-card" onclick="openTool('budgetTool')">
+                <div class="tool-typo-icon">BGT</div>
+                <h3>Budget Planner</h3>
+                <p>Track Income & Expenses</p>
+            </div>
+        </div>
+
+        <!-- TOOL VIEWS (Hidden by default) -->
+
+        <!-- EMI Tool -->
+        <div id="emiTool" class="tool-view">
+            <div class="back-btn" onclick="closeTool()">← Back to Dashboard</div>
+            <div class="tool-view-header">
+                <h2>EMI Calculator</h2>
+            </div>
+            <div class="calculator-form">
+                <div class="form-group">
+                    <input type="number" id="loanAmount" placeholder=" " required step="1000">
+                    <label>Loan Amount ($)</label>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="interestRate" placeholder=" " required step="0.1">
+                    <label>Interest Rate (%)</label>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="loanTenure" placeholder=" " required step="1">
+                    <label>Tenure (Years)</label>
+                </div>
+                <button class="submit-btn" onclick="calculateEMI()" style="width: 100%;">Calculate EMI</button>
+                <p id="emiError" style="color: red; margin-top: 10px; font-size: 12px; display: none;"></p>
+            </div>
+            <div class="result-box-view">
+                <span class="label">Monthly Payment</span>
+                <div class="value" id="monthlyEMI">0.00</div>
+                <div
+                    style="border-top: 1px solid #333; padding-top: 20px; margin-top: 20px; display: flex; justify-content: space-around;">
+                    <div><span class="label" style="display:block;">Total Interest</span><span
+                            id="totalInterest">0.00</span></div>
+                    <div><span class="label" style="display:block;">Total Payment</span><span
+                            id="totalPayment">0.00</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIP Tool -->
+        <div id="sipTool" class="tool-view">
+            <div class="back-btn" onclick="closeTool()">← Back to Dashboard</div>
+            <div class="tool-view-header">
+                <h2>SIP Calculator</h2>
+            </div>
+            <div class="calculator-form">
+                <div class="form-group">
+                    <input type="number" id="sipAmount" placeholder=" " required step="500">
+                    <label>Monthly Investment ($)</label>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="sipRate" placeholder=" " required step="0.1">
+                    <label>Expected Return (% p.a)</label>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="sipTenure" placeholder=" " required step="1">
+                    <label>Time Period (Years)</label>
+                </div>
+                <button class="submit-btn" onclick="calculateSIP()" style="width: 100%;">Calculate SIP</button>
+            </div>
+            <div class="result-box-view">
+                <span class="label">Total Value</span>
+                <div class="value" id="sipTotal">0.00</div>
+                <div style="font-size: 14px; opacity: 0.7; margin-top: 10px;">Invested: <span
+                        id="sipInvested">0.00</span> | Returns: <span id="sipReturns">0.00</span></div>
+            </div>
+        </div>
+
+        <!-- Lumpsum Tool -->
+        <div id="lumpsumTool" class="tool-view">
+            <div class="back-btn" onclick="closeTool()">← Back to Dashboard</div>
+            <div class="tool-view-header">
+                <h2>Lumpsum Calculator</h2>
+            </div>
+            <div class="calculator-form">
+                <div class="form-group">
+                    <input type="number" id="lumpsumAmount" placeholder=" " required step="1000">
+                    <label>Total Investment ($)</label>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="lumpsumRate" placeholder=" " required step="0.1">
+                    <label>Expected Return (% p.a)</label>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="lumpsumTenure" placeholder=" " required step="1">
+                    <label>Time Period (Years)</label>
+                </div>
+                <button class="submit-btn" onclick="calculateLumpsum()" style="width: 100%;">Calculate Lumpsum</button>
+            </div>
+            <div class="result-box-view">
+                <span class="label">Total Value</span>
+                <div class="value" id="lumpsumTotal">0.00</div>
+                <div style="font-size: 14px; opacity: 0.7; margin-top: 10px;">Invested: <span
+                        id="lumpsumInvested">0.00</span> | Returns: <span id="lumpsumReturns">0.00</span></div>
+            </div>
+        </div>
+
+        <!-- Goal Tool -->
+        <div id="goalTool" class="tool-view">
+            <div class="back-btn" onclick="closeTool()">← Back to Dashboard</div>
+            <div class="tool-view-header">
+                <h2>Goal Planner</h2>
+            </div>
+            <div class="calculator-form">
+                <div class="form-group">
+                    <input type="number" id="goalTarget" placeholder=" " required step="1000">
+                    <label>Target Amount ($)</label>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="goalRate" placeholder=" " required step="0.1">
+                    <label>Expected Return (%)</label>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="goalTenure" placeholder=" " required step="1">
+                    <label>Time Period (Years)</label>
+                </div>
+                <button class="submit-btn" onclick="calculateGoal()" style="width: 100%;">Calculate Required
+                    SIP</button>
+            </div>
+            <div class="result-box-view">
+                <span class="label">Required Monthly Investment</span>
+                <div class="value" id="goalSIP">0.00</div>
+            </div>
+        </div>
+
+        <!-- Affordability Tool -->
+        <div id="affordTool" class="tool-view">
+            <div class="back-btn" onclick="closeTool()">← Back to Dashboard</div>
+            <div class="tool-view-header">
+                <h2>Loan Affordability</h2>
+            </div>
+            <div class="calculator-form">
+                <div class="form-group">
+                    <input type="number" id="affordEMI" placeholder=" " required step="500">
+                    <label>Max Affordable EMI ($)</label>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="affordRate" placeholder=" " required step="0.1">
+                    <label>Interest Rate (%)</label>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="affordTenure" placeholder=" " required step="1">
+                    <label>Tenure (Years)</label>
+                </div>
+                <button class="submit-btn" onclick="calculateAffordability()" style="width: 100%;">Calculate Max
+                    Loan</button>
+            </div>
+            <div class="result-box-view">
+                <span class="label">Maximum Loan Amount</span>
+                <div class="value" id="affordLoan">0.00</div>
+            </div>
+        </div>
+
+        <!-- Budget Tool -->
+        <div id="budgetTool" class="tool-view">
+            <div class="back-btn" onclick="closeTool()">← Back to Dashboard</div>
+            <div class="tool-view-header">
+                <h2>Budget Planner</h2>
+            </div>
+
+            <div class="budget-grid-view">
+                <!-- Income -->
+                <div class="budget-col">
+                    <h4 style="margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px;">Income Source
+                    </h4>
+                    <div id="incomeList" class="budget-list">
+                        <div class="budget-item">
+                            <input type="text" value="Salary" placeholder="Source">
+                            <input type="number" value="0" class="amount-input" oninput="calculateBudget()">
+                            <button class="remove-btn invisible">×</button>
+                        </div>
+                    </div>
+                    <button class="add-btn" onclick="addBudgetRow('incomeList')">+ Add Income</button>
+                </div>
+                <!-- Expense -->
+                <div class="budget-col">
+                    <h4 style="margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px;">Expenses</h4>
+                    <div id="expenseList" class="budget-list">
+                        <div class="budget-item">
+                            <input type="text" value="Rent" placeholder="Expense">
+                            <input type="number" value="0" class="amount-input" oninput="calculateBudget()">
+                            <button class="remove-btn invisible">×</button>
+                        </div>
+                    </div>
+                    <button class="add-btn" onclick="addBudgetRow('expenseList')">+ Add Expense</button>
+                </div>
+            </div>
+
+            <div class="result-box-view" style="margin-top: 60px;">
+                <span class="label">Estimated Monthly Savings</span>
+                <div class="value" id="totalSavings">0.00</div>
+                <div
+                    style="border-top: 1px solid #333; padding-top: 20px; margin-top: 20px; display: flex; justify-content: space-around;">
+                    <div><span class="label" style="display:block;">Total Income</span><span
+                            id="totalIncome">0.00</span></div>
+                    <div><span class="label" style="display:block;">Total Expenses</span><span
+                            id="totalExpenses">0.00</span></div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>© 2025 Fajis PM — Developer Portfolio.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="tools.js"></script>
+</body>
+
+</html>

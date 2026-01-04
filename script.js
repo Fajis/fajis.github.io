@@ -93,46 +93,60 @@ document.querySelectorAll('.fade-in').forEach(el => {
 });
 
 // Form submission (prevent default for demo)
+// Form submission (prevent default for demo)
 const contactForm = document.getElementById('contactForm');
-const submitBtn = contactForm.querySelector('.submit-btn');
-const originalText = submitBtn.textContent;
-const originalBackground = submitBtn.style.background || '#475569';
+if (contactForm) {
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    const originalBackground = submitBtn.style.background || '#475569';
 
-contactForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
+    contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-    // 1. Start loading state and disable button
-    submitBtn.textContent = 'Sending...';
-    submitBtn.style.background = '#059669'; // Success color during loading
-    submitBtn.disabled = true;
-    submitBtn.classList.add('loading');
+        // 1. Start loading state and disable button
+        submitBtn.textContent = 'Sending...';
+        submitBtn.style.background = '#059669'; // Success color during loading
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
 
-    const data = new FormData(e.target);
+        const data = new FormData(e.target);
 
-    try {
-        // 2. Send data using the fetch API
-        const response = await fetch(e.target.action, {
-            method: e.target.method,
-            body: data,
-            headers: {
-                'Accept': 'application/json'
+        try {
+            // 2. Send data using the fetch API
+            const response = await fetch(e.target.action, {
+                method: e.target.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            // 3. Handle success or failure response
+            if (response.ok) {
+                submitBtn.textContent = 'Message Sent!';
+                // Delay for user to see the success message
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = originalBackground;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                    e.target.reset(); // Reset the form fields on success
+                }, 3000);
+            } else {
+                // Handle non-200 responses (e.g., Formspree error)
+                submitBtn.textContent = 'Error!';
+                submitBtn.style.background = '#b91c1c'; // Error color
+
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = originalBackground;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                }, 3000);
             }
-        });
-
-        // 3. Handle success or failure response
-        if (response.ok) {
-            submitBtn.textContent = 'Message Sent!';
-            // Delay for user to see the success message
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.style.background = originalBackground;
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('loading');
-                e.target.reset(); // Reset the form fields on success
-            }, 3000);
-        } else {
-            // Handle non-200 responses (e.g., Formspree error)
-            submitBtn.textContent = 'Error!';
+        } catch (error) {
+            // 4. Handle network errors
+            submitBtn.textContent = 'Network Error!';
             submitBtn.style.background = '#b91c1c'; // Error color
 
             setTimeout(() => {
@@ -142,16 +156,5 @@ contactForm.addEventListener('submit', async function (e) {
                 submitBtn.classList.remove('loading');
             }, 3000);
         }
-    } catch (error) {
-        // 4. Handle network errors
-        submitBtn.textContent = 'Network Error!';
-        submitBtn.style.background = '#b91c1c'; // Error color
-
-        setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.style.background = originalBackground;
-            submitBtn.disabled = false;
-            submitBtn.classList.remove('loading');
-        }, 3000);
-    }
-});
+    });
+}
