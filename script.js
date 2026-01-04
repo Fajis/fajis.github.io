@@ -11,7 +11,7 @@ https://www.tooplate.com/view/2141-minimal-white
 // Mobile menu toggle
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
-
+document.querySelector('footer p').innerHTML = `© ${new Date().getFullYear()} Fajis PM — Developer Portfolio.`;
 menuToggle.addEventListener('click', function () {
     menuToggle.classList.toggle('active');
     navLinks.classList.toggle('active');
