@@ -215,6 +215,6 @@ function calculateBudget() {
     if (savings < 0) {
         savingsElement.style.color = '#ff4d4d'; // Red-ish for negative
     } else {
-        savingsElement.style.color = '#000'; // Default black
+        savingsElement.style.color = '#fff'; // Default white
     }
 }
