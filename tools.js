@@ -145,16 +145,26 @@ function calculateAffordability() {
     const rate = parseFloat(document.getElementById('affordRate').value);
     const years = parseFloat(document.getElementById('affordTenure').value);
 
-    if (isNaN(emi) || isNaN(rate) || isNaN(years) || emi <= 0) return;
+    if (isNaN(emi) || isNaN(rate) || isNaN(years) || emi <= 0 || years <= 0) return;
 
     const r = rate / 12 / 100;
     const n = years * 12;
 
-    // Rearranging EMI formula: P = E / ( r * (1+r)^n / ((1+r)^n - 1) )
-    // P = E * ( (1+r)^n - 1 ) / ( r * (1+r)^n )
-    const principal = emi * (Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n));
+    let principal = 0;
+
+    if (rate === 0) {
+        principal = emi * n;
+    } else {
+        // Rearranging EMI formula: P = E / ( r * (1+r)^n / ((1+r)^n - 1) )
+        // P = E * ( (1+r)^n - 1 ) / ( r * (1+r)^n )
+        principal = emi * (Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n));
+    }
+    const totalPayment = emi * n;
+    const totalInterest = totalPayment - principal;
 
     animateValue('affordLoan', principal);
+    animateValue('affordTotal', totalPayment);
+    animateValue('affordInterest', totalInterest);
 }
 
 

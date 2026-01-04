@@ -147,7 +147,7 @@
         /* Specific Result Box */
         .result-box-view {
             background: #000;
-            color: #fff !important;
+            color: #fff;
             padding: 40px;
             text-align: center;
         }
@@ -273,7 +273,7 @@
 <body>
     <nav id="navbar">
         <div class="nav-container">
-            <a href="index" class="logo">FAJIS.PM</a>
+            <a href="index.html" class="logo">FAJIS.PM</a>
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
@@ -482,8 +482,15 @@
                     Loan</button>
             </div>
             <div class="result-box-view">
-                <span class="label">Maximum Loan Amount</span>
+                <span class="label">Received Amount</span>
                 <div class="value" id="affordLoan">0.00</div>
+                <div
+                    style="border-top: 1px solid #333; padding-top: 20px; margin-top: 20px; display: flex; justify-content: space-around;">
+                    <div><span class="label" style="display:block;">Total Interest</span><span
+                            id="affordInterest">0.00</span></div>
+                    <div><span class="label" style="display:block;">Total Payment</span><span
+                            id="affordTotal">0.00</span></div>
+                </div>
             </div>
         </div>
 
