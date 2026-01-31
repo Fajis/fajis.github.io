@@ -223,7 +223,7 @@ function addBudgetRow(listId) {
     div.innerHTML = `
         <input type="text" placeholder="${placeholder}" class="source-input">
         <input type="number" value="0" class="amount-input" oninput="calculateBudget()" placeholder="Amount">
-        <select class="currency-input" style="width: 70px; text-align: center; border: none; background: transparent; border-bottom: 1px solid #eee;" onchange="calculateBudget()">
+        <select class="currency-input" onchange="calculateBudget()">
             <option value="${base}" selected>${base}</option>
             <option value="${foreign}">${foreign}</option>
         </select>
