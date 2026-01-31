@@ -500,15 +500,18 @@
             <div class="tool-view-header">
                 <h2>Budget Planner</h2>
             </div>
-
             <!-- Currency Settings -->
             <div class="calculator-form" style="margin-bottom: 20px; text-align: center;">
                 <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
                     <div class="form-group" style="width: auto;">
-                        <select id="budgetCurrencyName"
-                            style="width: 150px; padding: 10px; border: 1px solid #000; background: transparent;">
-                            <option value="INR" selected>INR</option>
-                            <option value="USD">USD</option>
+                        <input type="text" id="budgetCurrencyName" placeholder="" style="width: 150px;" value="INR">
+                        <label>Base Currency</label>
+                    </div>
+                    <div class="form-group" style="width: auto;">
+                        <select id="foreignCurrencyName"
+                            style="padding: 10px; border: 1px solid #000; background: transparent; width: 150px;">
+                            <option value="INR">INR</option>
+                            <option value="USD" selected>USD</option>
                             <option value="EUR">EUR</option>
                             <option value="GBP">GBP</option>
                             <option value="AED">AED</option>
@@ -518,7 +521,12 @@
                             <option value="OMR">OMR</option>
                             <option value="QAR">QAR</option>
                         </select>
-                        <label style="top: -20px; font-size: 12px; color: #666;">Base Currency</label>
+                        <label style="top: -20px; font-size: 12px; color: #666;">Secondary Currency</label>
+                    </div>
+                    <div class="form-group" style="width: auto;">
+                        <input type="number" id="budgetExchangeRate" placeholder="" step="0.01" value="85"
+                            style="width: 100px;">
+                        <label>Rate (1 Foreign = ? Base)</label>
                     </div>
                 </div>
             </div>
@@ -547,8 +555,6 @@
                                 <option value="OMR">OMR</option>
                                 <option value="QAR">QAR</option>
                             </select>
-                            <input type="number" value="1" placeholder="Rate" class="rate-input"
-                                style="width: 60px; text-align: center;" step="0.01" oninput="calculateBudget()">
                             <button class="remove-btn invisible">×</button>
                         </div>
                     </div>
@@ -576,8 +582,6 @@
                                 <option value="OMR">OMR</option>
                                 <option value="QAR">QAR</option>
                             </select>
-                            <input type="number" value="1" placeholder="Rate" class="rate-input"
-                                style="width: 60px; text-align: center;" step="0.01" oninput="calculateBudget()">
                             <button class="remove-btn invisible">×</button>
                         </div>
                     </div>
@@ -590,14 +594,10 @@
                 <div class="value" id="totalSavings">0.00</div>
                 <div
                     style="border-top: 1px solid #333; padding-top: 20px; margin-top: 20px; display: flex; justify-content: space-around;">
-                    <div>
-                        <span class="label" style="display:block;">Total Income</span>
-                        <span id="totalIncome">0.00</span>
-                    </div>
-                    <div>
-                        <span class="label" style="display:block;">Total Expenses</span>
-                        <span id="totalExpenses">0.00</span>
-                    </div>
+                    <div><span class="label" style="display:block;">Total Income</span><span
+                            id="totalIncome">0.00</span></div>
+                    <div><span class="label" style="display:block;">Total Expenses</span><span
+                            id="totalExpenses">0.00</span></div>
                 </div>
             </div>
         </div>

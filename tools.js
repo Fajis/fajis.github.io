@@ -1,12 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Initial Budget Calculation to set 0 values
-    if (document.getElementById('totalSavings')) {
-        calculateBudget();
-
-        // Add listeners for currency inputs
-        document.getElementById('budgetCurrencyName').addEventListener('input', calculateBudget);
-        // document.getElementById('budgetExchangeRate').addEventListener('input', calculateBudget); // Removed
-    }
+// Add listeners for currency inputs
+if (document.getElementById('budgetCurrencyName')) {
+    document.getElementById('budgetCurrencyName').addEventListener('input', calculateBudget);
+    document.getElementById('foreignCurrencyName').addEventListener('change', calculateBudget);
+    document.getElementById('budgetExchangeRate').addEventListener('input', calculateBudget);
+}
 });
 
 // --- View Navigation ---
@@ -197,7 +194,6 @@ function addBudgetRow(listId) {
             <option value="OMR">OMR</option>
             <option value="QAR">QAR</option>
         </select>
-        <input type="number" value="1" placeholder="Rate" class="rate-input" style="width: 60px; text-align: center;" step="0.01" oninput="calculateBudget()">
         <button class="remove-btn" onclick="removeBudgetRow(this)">×</button>
     `;
 
@@ -214,18 +210,25 @@ function removeBudgetRow(button) {
 }
 
 function calculateBudget() {
-    // --- Budget Logic with Row-Level Currency ---
+    // --- Budget Logic with Global Exchange Rate ---
     const incomeItems = document.querySelectorAll('#incomeList .budget-item');
     const expenseItems = document.querySelectorAll('#expenseList .budget-item');
 
     let totalIncome = 0;
     let totalExpenses = 0;
 
+    const foreignCurrency = document.getElementById('foreignCurrencyName').value;
+    const exchangeRate = parseFloat(document.getElementById('budgetExchangeRate').value) || 1;
+
     // Helper to calculate row total
     const getRowTotal = (item) => {
         const amount = parseFloat(item.querySelector('.amount-input').value) || 0;
-        const rate = parseFloat(item.querySelector('.rate-input').value) || 1;
-        return amount * rate;
+        const rowCurrency = item.querySelector('.currency-input').value;
+
+        if (rowCurrency === foreignCurrency) {
+            return amount * exchangeRate;
+        }
+        return amount; // Assume base currency or 1:1 for others
     };
 
     incomeItems.forEach(item => {
@@ -253,5 +256,3 @@ function calculateBudget() {
         savingsElement.style.color = '#fff'; // Default white
     }
 }
-
-
