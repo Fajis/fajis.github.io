@@ -1,10 +1,19 @@
 // Add listeners for currency inputs
 if (document.getElementById('budgetCurrencyName')) {
-    document.getElementById('budgetCurrencyName').addEventListener('input', calculateBudget);
-    document.getElementById('foreignCurrencyName').addEventListener('change', calculateBudget);
+    document.getElementById('budgetCurrencyName').addEventListener('input', () => {
+        updateBudgetCurrencyOptions();
+        calculateBudget();
+    });
+    document.getElementById('foreignCurrencyName').addEventListener('input', () => {
+        updateBudgetCurrencyOptions();
+        calculateBudget();
+    });
     document.getElementById('budgetExchangeRate').addEventListener('input', calculateBudget);
+
+    // Initial setup
+    updateBudgetCurrencyOptions();
 }
-});
+
 
 // --- View Navigation ---
 
@@ -171,10 +180,42 @@ function calculateAffordability() {
 
 // --- Budget Planner Functions ---
 
+function updateBudgetCurrencyOptions() {
+    const base = document.getElementById('budgetCurrencyName').value.trim() || 'Base';
+    const foreign = document.getElementById('foreignCurrencyName').value.trim() || 'Foreign';
+
+    const selects = document.querySelectorAll('.currency-input');
+    selects.forEach(select => {
+        const currentVal = select.value;
+        select.innerHTML = ''; // Clear existing
+
+        const opt1 = document.createElement('option');
+        opt1.value = base;
+        opt1.text = base;
+
+        const opt2 = document.createElement('option');
+        opt2.value = foreign;
+        opt2.text = foreign;
+
+        select.add(opt1);
+        select.add(opt2);
+
+        // Restore value if it matches one of the new options, otherwise default to base
+        if (currentVal === base || currentVal === foreign) {
+            select.value = currentVal;
+        } else {
+            select.value = base;
+        }
+    });
+}
+
 function addBudgetRow(listId) {
     const list = document.getElementById(listId);
+    const base = document.getElementById('budgetCurrencyName').value.trim() || 'Base';
+    const foreign = document.getElementById('foreignCurrencyName').value.trim() || 'Foreign';
+
     const div = document.createElement('div');
-    div.className = 'budget-item animate-new-row'; // custom animation class defined later or reusing fade-in approach
+    div.className = 'budget-item animate-new-row';
 
     // Determine placeholder based on list
     const placeholder = listId === 'incomeList' ? 'Source' : 'Expense';
@@ -183,23 +224,14 @@ function addBudgetRow(listId) {
         <input type="text" placeholder="${placeholder}" class="source-input">
         <input type="number" value="0" class="amount-input" oninput="calculateBudget()" placeholder="Amount">
         <select class="currency-input" style="width: 70px; text-align: center; border: none; background: transparent; border-bottom: 1px solid #eee;" onchange="calculateBudget()">
-            <option value="INR" selected>INR</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="AED">AED</option>
-            <option value="SAR">SAR</option>
-            <option value="BHD">BHD</option>
-            <option value="KWD">KWD</option>
-            <option value="OMR">OMR</option>
-            <option value="QAR">QAR</option>
+            <option value="${base}" selected>${base}</option>
+            <option value="${foreign}">${foreign}</option>
         </select>
         <button class="remove-btn" onclick="removeBudgetRow(this)">×</button>
     `;
 
     list.appendChild(div);
 
-    // Focus on the new text input
     div.querySelector('.source-input').focus();
 }
 
@@ -217,7 +249,7 @@ function calculateBudget() {
     let totalIncome = 0;
     let totalExpenses = 0;
 
-    const foreignCurrency = document.getElementById('foreignCurrencyName').value;
+    const foreignCurrency = document.getElementById('foreignCurrencyName').value.trim();
     const exchangeRate = parseFloat(document.getElementById('budgetExchangeRate').value) || 1;
 
     // Helper to calculate row total
