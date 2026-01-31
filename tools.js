@@ -184,9 +184,20 @@ function addBudgetRow(listId) {
 
     div.innerHTML = `
         <input type="text" placeholder="${placeholder}" class="source-input">
-        <input type="text" value="BHD" placeholder="Curr" class="currency-input" style="width: 50px; text-align: center;" oninput="calculateBudget()">
+        <input type="number" value="0" class="amount-input" oninput="calculateBudget()" placeholder="Amount">
+        <select class="currency-input" style="width: 70px; text-align: center; border: none; background: transparent; border-bottom: 1px solid #eee;" onchange="calculateBudget()">
+            <option value="INR" selected>INR</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="AED">AED</option>
+            <option value="SAR">SAR</option>
+            <option value="BHD">BHD</option>
+            <option value="KWD">KWD</option>
+            <option value="OMR">OMR</option>
+            <option value="QAR">QAR</option>
+        </select>
         <input type="number" value="1" placeholder="Rate" class="rate-input" style="width: 60px; text-align: center;" step="0.01" oninput="calculateBudget()">
-        <input type="number" value="0" class="amount-input" oninput="calculateBudget()">
         <button class="remove-btn" onclick="removeBudgetRow(this)">×</button>
     `;
 
@@ -203,29 +214,37 @@ function removeBudgetRow(button) {
 }
 
 function calculateBudget() {
-    const incomeInputs = document.querySelectorAll('#incomeList .amount-input');
-    const expenseInputs = document.querySelectorAll('#expenseList .amount-input');
+    // --- Budget Logic with Row-Level Currency ---
+    const incomeItems = document.querySelectorAll('#incomeList .budget-item');
+    const expenseItems = document.querySelectorAll('#expenseList .budget-item');
 
     let totalIncome = 0;
     let totalExpenses = 0;
 
-    incomeInputs.forEach(input => {
-        const val = parseFloat(input.value);
-        if (!isNaN(val)) totalIncome += val;
+    // Helper to calculate row total
+    const getRowTotal = (item) => {
+        const amount = parseFloat(item.querySelector('.amount-input').value) || 0;
+        const rate = parseFloat(item.querySelector('.rate-input').value) || 1;
+        return amount * rate;
+    };
+
+    incomeItems.forEach(item => {
+        totalIncome += getRowTotal(item);
     });
 
-    expenseInputs.forEach(input => {
-        const val = parseFloat(input.value);
-        if (!isNaN(val)) totalExpenses += val;
+    expenseItems.forEach(item => {
+        totalExpenses += getRowTotal(item);
     });
 
     const savings = totalIncome - totalExpenses;
+    const baseCurrency = document.getElementById('budgetCurrencyName').value.trim() || ' ';
 
-    document.getElementById('totalIncome').textContent = totalIncome.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    document.getElementById('totalExpenses').textContent = totalExpenses.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    // Update Totals Display
+    document.getElementById('totalIncome').textContent = `${totalIncome.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${baseCurrency}`;
+    document.getElementById('totalExpenses').textContent = `${totalExpenses.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${baseCurrency}`;
 
     const savingsElement = document.getElementById('totalSavings');
-    savingsElement.textContent = savings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    savingsElement.textContent = `${savings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${baseCurrency}`;
 
     // Visual feedback for negative savings
     if (savings < 0) {
@@ -233,37 +252,6 @@ function calculateBudget() {
     } else {
         savingsElement.style.color = '#fff'; // Default white
     }
-
-    // --- Currency Conversion ---
-    const currencyName = document.getElementById('budgetCurrencyName').value.trim();
-    const exchangeRate = parseFloat(document.getElementById('budgetExchangeRate').value);
-
-    // Elements for converted values
-    const totalIncomeConverted = document.getElementById('totalIncomeConverted');
-    const totalExpensesConverted = document.getElementById('totalExpensesConverted');
-    const totalSavingsConverted = document.getElementById('totalSavingsConverted');
-
-    if (currencyName && !isNaN(exchangeRate) && exchangeRate > 0) {
-        const incomeConv = totalIncome * exchangeRate;
-        const expensesConv = totalExpenses * exchangeRate;
-        const savingsConv = savings * exchangeRate;
-
-        totalIncomeConverted.textContent = `(${incomeConv.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currencyName})`;
-        totalExpensesConverted.textContent = `(${expensesConv.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currencyName})`;
-
-        totalSavingsConverted.textContent = `≈ ${savingsConv.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currencyName}`;
-
-        // Match color of savings
-        if (savingsConv < 0) {
-            totalSavingsConverted.style.color = '#ff4d4d';
-        } else {
-            totalSavingsConverted.style.color = '#aaa';
-        }
-
-    } else {
-        // Clear if invalid or empty
-        totalIncomeConverted.textContent = '';
-        totalExpensesConverted.textContent = '';
-        totalSavingsConverted.textContent = '';
-    }
 }
+
+

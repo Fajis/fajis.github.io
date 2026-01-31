@@ -505,8 +505,20 @@
             <div class="calculator-form" style="margin-bottom: 20px; text-align: center;">
                 <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
                     <div class="form-group" style="width: auto;">
-                        <input type="text" id="budgetCurrencyName" placeholder="" style="width: 150px;" value="BHD">
-                        <label>Base Currency</label>
+                        <select id="budgetCurrencyName"
+                            style="width: 150px; padding: 10px; border: 1px solid #000; background: transparent;">
+                            <option value="INR" selected>INR</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="AED">AED</option>
+                            <option value="SAR">SAR</option>
+                            <option value="BHD">BHD</option>
+                            <option value="KWD">KWD</option>
+                            <option value="OMR">OMR</option>
+                            <option value="QAR">QAR</option>
+                        </select>
+                        <label style="top: -20px; font-size: 12px; color: #666;">Base Currency</label>
                     </div>
                 </div>
             </div>
@@ -519,11 +531,24 @@
                     <div id="incomeList" class="budget-list">
                         <div class="budget-item">
                             <input type="text" value="Salary" placeholder="Source" class="source-input">
-                            <input type="text" value="BHD" placeholder="Curr" class="currency-input"
-                                style="width: 50px; text-align: center;" oninput="calculateBudget()">
+                            <input type="number" value="0" class="amount-input" oninput="calculateBudget()"
+                                placeholder="Amount">
+                            <select class="currency-input"
+                                style="width: 70px; text-align: center; border: none; background: transparent; border-bottom: 1px solid #eee;"
+                                onchange="calculateBudget()">
+                                <option value="INR" selected>INR</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="GBP">GBP</option>
+                                <option value="AED">AED</option>
+                                <option value="SAR">SAR</option>
+                                <option value="BHD">BHD</option>
+                                <option value="KWD">KWD</option>
+                                <option value="OMR">OMR</option>
+                                <option value="QAR">QAR</option>
+                            </select>
                             <input type="number" value="1" placeholder="Rate" class="rate-input"
                                 style="width: 60px; text-align: center;" step="0.01" oninput="calculateBudget()">
-                            <input type="number" value="0" class="amount-input" oninput="calculateBudget()">
                             <button class="remove-btn invisible">×</button>
                         </div>
                     </div>
@@ -535,11 +560,24 @@
                     <div id="expenseList" class="budget-list">
                         <div class="budget-item">
                             <input type="text" value="Rent" placeholder="Expense" class="source-input">
-                            <input type="text" value="BHD" placeholder="Curr" class="currency-input"
-                                style="width: 50px; text-align: center;" oninput="calculateBudget()">
+                            <input type="number" value="0" class="amount-input" oninput="calculateBudget()"
+                                placeholder="Amount">
+                            <select class="currency-input"
+                                style="width: 70px; text-align: center; border: none; background: transparent; border-bottom: 1px solid #eee;"
+                                onchange="calculateBudget()">
+                                <option value="INR" selected>INR</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="GBP">GBP</option>
+                                <option value="AED">AED</option>
+                                <option value="SAR">SAR</option>
+                                <option value="BHD">BHD</option>
+                                <option value="KWD">KWD</option>
+                                <option value="OMR">OMR</option>
+                                <option value="QAR">QAR</option>
+                            </select>
                             <input type="number" value="1" placeholder="Rate" class="rate-input"
                                 style="width: 60px; text-align: center;" step="0.01" oninput="calculateBudget()">
-                            <input type="number" value="0" class="amount-input" oninput="calculateBudget()">
                             <button class="remove-btn invisible">×</button>
                         </div>
                     </div>
