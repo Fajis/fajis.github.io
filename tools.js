@@ -114,11 +114,15 @@ function calculateSIP() {
 
     if (isNaN(monthlyInvest) || isNaN(rate) || isNaN(years) || monthlyInvest <= 0) return;
 
-    const r = rate / 12 / 100;
     const n = years * 12;
-
-    // FV = P * [ (1+i)^n - 1 ] * (1+i)/i
-    const fv = monthlyInvest * (Math.pow(1 + r, n) - 1) * (1 + r) / r;
+    let fv = 0;
+    if (rate === 0) {
+        fv = monthlyInvest * n;
+    } else {
+        // FV = P * [ (1+i)^n - 1 ] * (1+i)/i
+        const r = rate / 12 / 100;
+        fv = monthlyInvest * (Math.pow(1 + r, n) - 1) * (1 + r) / r;
+    }
     const invested = monthlyInvest * n;
     const returns = fv - invested;
 
@@ -151,11 +155,15 @@ function calculateGoal() {
 
     if (isNaN(target) || isNaN(rate) || isNaN(years) || target <= 0) return;
 
-    const r = rate / 12 / 100;
     const n = years * 12;
-
-    // Rearranging SIP formula: P = FV / ( [ (1+i)^n - 1 ] * (1+i)/i )
-    const sip = target / ((Math.pow(1 + r, n) - 1) * (1 + r) / r);
+    let sip = 0;
+    if (rate === 0) {
+        sip = target / n;
+    } else {
+        const r = rate / 12 / 100;
+        // Rearranging SIP formula: P = FV / ( [ (1+i)^n - 1 ] * (1+i)/i )
+        sip = target / ((Math.pow(1 + r, n) - 1) * (1 + r) / r);
+    }
 
     animateValue('goalSIP', sip);
 }
