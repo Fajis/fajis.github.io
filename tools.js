@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Add listeners for currency inputs
         document.getElementById('budgetCurrencyName').addEventListener('input', calculateBudget);
-        document.getElementById('budgetExchangeRate').addEventListener('input', calculateBudget);
+        // document.getElementById('budgetExchangeRate').addEventListener('input', calculateBudget); // Removed
     }
 });
 
@@ -183,7 +183,9 @@ function addBudgetRow(listId) {
     const placeholder = listId === 'incomeList' ? 'Source' : 'Expense';
 
     div.innerHTML = `
-        <input type="text" placeholder="${placeholder}">
+        <input type="text" placeholder="${placeholder}" class="source-input">
+        <input type="text" value="BHD" placeholder="Curr" class="currency-input" style="width: 50px; text-align: center;" oninput="calculateBudget()">
+        <input type="number" value="1" placeholder="Rate" class="rate-input" style="width: 60px; text-align: center;" step="0.01" oninput="calculateBudget()">
         <input type="number" value="0" class="amount-input" oninput="calculateBudget()">
         <button class="remove-btn" onclick="removeBudgetRow(this)">×</button>
     `;
@@ -191,7 +193,7 @@ function addBudgetRow(listId) {
     list.appendChild(div);
 
     // Focus on the new text input
-    div.querySelector('input[type="text"]').focus();
+    div.querySelector('.source-input').focus();
 }
 
 function removeBudgetRow(button) {
