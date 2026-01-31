@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial Budget Calculation to set 0 values
     if (document.getElementById('totalSavings')) {
         calculateBudget();
+
+        // Add listeners for currency inputs
+        document.getElementById('budgetCurrencyName').addEventListener('input', calculateBudget);
+        document.getElementById('budgetExchangeRate').addEventListener('input', calculateBudget);
     }
 });
 
@@ -226,5 +230,38 @@ function calculateBudget() {
         savingsElement.style.color = '#ff4d4d'; // Red-ish for negative
     } else {
         savingsElement.style.color = '#fff'; // Default white
+    }
+
+    // --- Currency Conversion ---
+    const currencyName = document.getElementById('budgetCurrencyName').value.trim();
+    const exchangeRate = parseFloat(document.getElementById('budgetExchangeRate').value);
+
+    // Elements for converted values
+    const totalIncomeConverted = document.getElementById('totalIncomeConverted');
+    const totalExpensesConverted = document.getElementById('totalExpensesConverted');
+    const totalSavingsConverted = document.getElementById('totalSavingsConverted');
+
+    if (currencyName && !isNaN(exchangeRate) && exchangeRate > 0) {
+        const incomeConv = totalIncome * exchangeRate;
+        const expensesConv = totalExpenses * exchangeRate;
+        const savingsConv = savings * exchangeRate;
+
+        totalIncomeConverted.textContent = `(${incomeConv.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currencyName})`;
+        totalExpensesConverted.textContent = `(${expensesConv.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currencyName})`;
+
+        totalSavingsConverted.textContent = `≈ ${savingsConv.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${currencyName}`;
+
+        // Match color of savings
+        if (savingsConv < 0) {
+            totalSavingsConverted.style.color = '#ff4d4d';
+        } else {
+            totalSavingsConverted.style.color = '#aaa';
+        }
+
+    } else {
+        // Clear if invalid or empty
+        totalIncomeConverted.textContent = '';
+        totalExpensesConverted.textContent = '';
+        totalSavingsConverted.textContent = '';
     }
 }
