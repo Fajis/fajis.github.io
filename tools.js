@@ -14,6 +14,16 @@ if (document.getElementById('budgetCurrencyName')) {
     updateBudgetCurrencyOptions();
 }
 
+// --- Helper Functions ---
+function formatCurrency(value) {
+    // If integer, no decimals. If float, 2 decimals.
+    if (Number.isInteger(value)) {
+        return value.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    } else {
+        return value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+}
+
 
 // --- View Navigation ---
 
@@ -84,7 +94,7 @@ function calculateEMI() {
 
 function animateValue(id, value) {
     const element = document.getElementById(id);
-    const formatted = value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const formatted = formatCurrency(value);
     element.textContent = formatted;
     // Simple fade in effect
     element.style.opacity = 0;
@@ -275,11 +285,11 @@ function calculateBudget() {
     const baseCurrency = document.getElementById('budgetCurrencyName').value.trim() || ' ';
 
     // Update Totals Display
-    document.getElementById('totalIncome').textContent = `${totalIncome.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${baseCurrency}`;
-    document.getElementById('totalExpenses').textContent = `${totalExpenses.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${baseCurrency}`;
+    document.getElementById('totalIncome').textContent = `${formatCurrency(totalIncome)} ${baseCurrency}`;
+    document.getElementById('totalExpenses').textContent = `${formatCurrency(totalExpenses)} ${baseCurrency}`;
 
     const savingsElement = document.getElementById('totalSavings');
-    savingsElement.textContent = `${savings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${baseCurrency}`;
+    savingsElement.textContent = `${formatCurrency(savings)} ${baseCurrency}`;
 
     // Visual feedback for negative savings
     if (savings < 0) {
