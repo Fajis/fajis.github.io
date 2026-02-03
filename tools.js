@@ -1,102 +1,148 @@
-// Add listeners for currency inputs
-if (document.getElementById('budgetCurrencyName')) {
-    document.getElementById('budgetCurrencyName').addEventListener('input', () => {
-        updateBudgetCurrencyOptions();
-        calculateBudget();
-    });
-    document.getElementById('foreignCurrencyName').addEventListener('input', () => {
-        updateBudgetCurrencyOptions();
-        calculateBudget();
-    });
-    document.getElementById('budgetExchangeRate').addEventListener('input', calculateBudget);
+// --- Initial Setup & Listeners ---
+document.addEventListener('DOMContentLoaded', () => {
+    const baseInput = document.getElementById('budgetCurrencyName');
+    const foreignInput = document.getElementById('foreignCurrencyName');
+    const rateInput = document.getElementById('budgetExchangeRate');
 
-    // Initial setup
-    updateBudgetCurrencyOptions();
-}
-
-// --- Helper Functions ---
-function formatCurrency(value) {
-    // If integer, no decimals. If float, 2 decimals.
-    if (Number.isInteger(value)) {
-        return value.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-    } else {
-        return value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    if (baseInput) {
+        baseInput.addEventListener('change', updateExchangeRate);
+        foreignInput.addEventListener('change', updateExchangeRate);
+        rateInput.addEventListener('input', calculateBudget);
+        
+        // Initial setup
+        updateBudgetCurrencyOptions();
+        updateExchangeRate();
     }
-}
+    
+    // Set Footer Year
+    const yearEl = document.getElementById('currentYear');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+});
 
-
-// --- View Navigation ---
-
-function openTool(toolId) {
-    // Hide Dashboard
-    document.getElementById('toolsDashboard').style.display = 'none';
-
-    // Hide all tools (safety)
-    document.querySelectorAll('.tool-view').forEach(view => {
-        view.style.display = 'none';
+// --- Formatting Helper ---
+function formatCurrency(value) {
+    return value.toLocaleString('en-US', { 
+        minimumFractionDigits: 3, 
+        maximumFractionDigits: 3 
     });
-
-    // Show selected tool
-    document.getElementById(toolId).style.display = 'block';
-
-    // Scroll to top of tool view
-    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function closeTool() {
-    // Hide all tools
-    document.querySelectorAll('.tool-view').forEach(view => {
-        view.style.display = 'none';
-    });
+// --- Currency Fetching ---
+async function updateExchangeRate() {
+    const base = document.getElementById('budgetCurrencyName').value.trim().toLowerCase();
+    const target = document.getElementById('foreignCurrencyName').value.trim().toLowerCase();
+    const rateInput = document.getElementById('budgetExchangeRate');
 
-    // Show Dashboard
-    document.getElementById('toolsDashboard').style.display = 'grid'; // Grid layout
-
-    // Scroll back to top
-    // window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// --- EMI Calculator Functions ---
-
-function calculateEMI() {
-    const loanAmount = parseFloat(document.getElementById('loanAmount').value);
-    const interestRate = parseFloat(document.getElementById('interestRate').value);
-    const loanTenure = parseFloat(document.getElementById('loanTenure').value);
-    const errorElement = document.getElementById('emiError');
-
-    // Reset output
-    errorElement.style.display = 'none';
-
-    if (isNaN(loanAmount) || isNaN(interestRate) || isNaN(loanTenure) || loanAmount <= 0 || loanTenure <= 0) {
-        errorElement.textContent = "Please enter valid positive numbers for all fields.";
-        errorElement.style.display = 'block';
+    if (base === target) {
+        rateInput.value = 1;
+        calculateBudget();
         return;
     }
 
-    const r = interestRate / 12 / 100; // Monthly interest rate
-    const n = loanTenure * 12; // Total months
+    try {
+        const response = await fetch(`https://www.floatrates.com/daily/${base}.json`);
+        const data = await response.json();
 
-    let emi = 0;
-    if (interestRate === 0) {
-        emi = loanAmount / n;
-    } else {
-        emi = loanAmount * r * (Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        if (data[target]) {
+            rateInput.value = data[target].inverseRate.toFixed(6);
+            updateBudgetCurrencyOptions();
+            calculateBudget();
+        }
+    } catch (error) {
+        console.error("API Error:", error);
     }
+}
 
-    const totalPayment = emi * n;
-    const totalInterest = totalPayment - loanAmount;
+// --- Budget Planner Logic ---
+function calculateBudget() {
+    const incomeItems = document.querySelectorAll('#incomeList .budget-item');
+    const expenseItems = document.querySelectorAll('#expenseList .budget-item');
+    
+    const baseCurrency = document.getElementById('budgetCurrencyName').value.trim();
+    const foreignCurrency = document.getElementById('foreignCurrencyName').value.trim();
+    const exchangeRate = parseFloat(document.getElementById('budgetExchangeRate').value) || 1;
 
-    // Format and Display
-    animateValue('monthlyEMI', emi);
-    animateValue('totalPayment', totalPayment);
-    animateValue('totalInterest', totalInterest);
+    let totalIncome = 0;
+    let totalExpenses = 0;
+
+    const convertToBase = (item) => {
+        const amount = parseFloat(item.querySelector('.amount-input').value) || 0;
+        const rowCurrency = item.querySelector('.currency-input').value;
+
+        // CORRECT LOGIC: Divide foreign by rate to get Base (BHD)
+        if (rowCurrency === foreignCurrency && exchangeRate !== 0) {
+            return amount / exchangeRate;
+        }
+        return amount;
+    };
+
+    incomeItems.forEach(item => totalIncome += convertToBase(item));
+    expenseItems.forEach(item => totalExpenses += convertToBase(item));
+
+    const savings = totalIncome - totalExpenses;
+
+    document.getElementById('totalIncome').textContent = `${formatCurrency(totalIncome)} ${baseCurrency}`;
+    document.getElementById('totalExpenses').textContent = `${formatCurrency(totalExpenses)} ${baseCurrency}`;
+    
+    const savingsEl = document.getElementById('totalSavings');
+    savingsEl.textContent = `${formatCurrency(savings)} ${baseCurrency}`;
+    savingsEl.style.color = savings < 0 ? "#ff4d4d" : "#fff";
+}
+
+// --- Row Management ---
+function updateBudgetCurrencyOptions() {
+    const base = document.getElementById('budgetCurrencyName').value.trim();
+    const foreign = document.getElementById('foreignCurrencyName').value.trim();
+
+    document.querySelectorAll('.currency-input').forEach(select => {
+        const currentVal = select.value;
+        select.innerHTML = `<option value="${base}">${base}</option>
+                            <option value="${foreign}">${foreign}</option>`;
+        select.value = (currentVal === foreign) ? foreign : base;
+    });
+}
+
+function addBudgetRow(listId) {
+    const list = document.getElementById(listId);
+    const base = document.getElementById('budgetCurrencyName').value.trim();
+    const foreign = document.getElementById('foreignCurrencyName').value.trim();
+    const div = document.createElement('div');
+    div.className = 'budget-item';
+    const placeholder = listId === 'incomeList' ? 'Source' : 'Expense';
+
+    div.innerHTML = `
+        <input type="text" placeholder="${placeholder}" class="source-input">
+        <input type="number" value="0" class="amount-input" oninput="calculateBudget()">
+        <select class="currency-input" onchange="calculateBudget()">
+            <option value="${base}">${base}</option>
+            <option value="${foreign}">${foreign}</option>
+        </select>
+        <button class="remove-btn" onclick="removeBudgetRow(this)">×</button>
+    `;
+    list.appendChild(div);
+}
+
+function removeBudgetRow(button) {
+    button.parentElement.remove();
+    calculateBudget();
+}
+
+// --- Global UI Helpers ---
+function openTool(toolId) {
+    document.getElementById('toolsDashboard').style.display = 'none';
+    document.querySelectorAll('.tool-view').forEach(v => v.style.display = 'none');
+    document.getElementById(toolId).style.display = 'block';
+    window.scrollTo(0, 0);
+}
+
+function closeTool() {
+    document.querySelectorAll('.tool-view').forEach(v => v.style.display = 'none');
+    document.getElementById('toolsDashboard').style.display = 'grid';
 }
 
 function animateValue(id, value) {
     const element = document.getElementById(id);
-    const formatted = formatCurrency(value);
-    element.textContent = formatted;
-    // Simple fade in effect
+    element.textContent = formatCurrency(value);
     element.style.opacity = 0;
     setTimeout(() => {
         element.style.transition = 'opacity 0.5s';
@@ -104,33 +150,48 @@ function animateValue(id, value) {
     }, 50);
 }
 
+// --- Other Calculators ---
+function calculateEMI() {
+    const loan = parseFloat(document.getElementById('loanAmount').value);
+    const interestInput = parseFloat(document.getElementById('interestRate').value);
+    const months = parseFloat(document.getElementById('loanTenure').value) * 12;
 
-// --- Investment & Planning Functions ---
+    if (isNaN(loan) || isNaN(months) || months <= 0) return;
 
-function calculateSIP() {
-    const monthlyInvest = parseFloat(document.getElementById('sipAmount').value);
-    const rate = parseFloat(document.getElementById('sipRate').value);
-    const years = parseFloat(document.getElementById('sipTenure').value);
-
-    if (isNaN(monthlyInvest) || isNaN(rate) || isNaN(years) || monthlyInvest <= 0) return;
-
-    const n = years * 12;
-    let fv = 0;
-    if (rate === 0) {
-        fv = monthlyInvest * n;
+    let emi;
+    if (interestInput === 0) {
+        // Simple linear division for 0% interest
+        emi = loan / months;
     } else {
-        // FV = P * [ (1+i)^n - 1 ] * (1+i)/i
-        const r = rate / 12 / 100;
-        fv = monthlyInvest * (Math.pow(1 + r, n) - 1) * (1 + r) / r;
+        const rate = interestInput / 12 / 100;
+        emi = (loan * rate * Math.pow(1 + rate, months)) / (Math.pow(1 + rate, months) - 1);
     }
-    const invested = monthlyInvest * n;
-    const returns = fv - invested;
 
-    animateValue('sipInvested', invested);
-    animateValue('sipReturns', returns);
-    animateValue('sipTotal', fv);
+    animateValue('monthlyEMI', emi);
+    animateValue('totalPayment', emi * months);
+    animateValue('totalInterest', (emi * months) - loan);
 }
 
+function calculateSIP() {
+    const p = parseFloat(document.getElementById('sipAmount').value);
+    const rateInput = parseFloat(document.getElementById('sipRate').value);
+    const n = parseFloat(document.getElementById('sipTenure').value) * 12;
+
+    if (isNaN(p) || isNaN(n) || n <= 0) return;
+
+    let fv;
+    if (rateInput === 0) {
+        // Total savings with no growth
+        fv = p * n;
+    } else {
+        const r = rateInput / 12 / 100;
+        fv = p * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+    }
+
+    animateValue('sipTotal', fv);
+    animateValue('sipInvested', p * n);
+    animateValue('sipReturns', fv - (p * n));
+}
 function calculateLumpsum() {
     const investment = parseFloat(document.getElementById('lumpsumAmount').value);
     const rate = parseFloat(document.getElementById('lumpsumRate').value);
@@ -167,7 +228,6 @@ function calculateGoal() {
 
     animateValue('goalSIP', sip);
 }
-
 function calculateAffordability() {
     const emi = parseFloat(document.getElementById('affordEMI').value);
     const rate = parseFloat(document.getElementById('affordRate').value);
@@ -193,116 +253,4 @@ function calculateAffordability() {
     animateValue('affordLoan', principal);
     animateValue('affordTotal', totalPayment);
     animateValue('affordInterest', totalInterest);
-}
-
-
-// --- Budget Planner Functions ---
-
-function updateBudgetCurrencyOptions() {
-    const base = document.getElementById('budgetCurrencyName').value.trim() || 'Base';
-    const foreign = document.getElementById('foreignCurrencyName').value.trim() || 'Foreign';
-
-    const selects = document.querySelectorAll('.currency-input');
-    selects.forEach(select => {
-        const currentVal = select.value;
-        select.innerHTML = ''; // Clear existing
-
-        const opt1 = document.createElement('option');
-        opt1.value = base;
-        opt1.text = base;
-
-        const opt2 = document.createElement('option');
-        opt2.value = foreign;
-        opt2.text = foreign;
-
-        select.add(opt1);
-        select.add(opt2);
-
-        // Restore value if it matches one of the new options, otherwise default to base
-        if (currentVal === base || currentVal === foreign) {
-            select.value = currentVal;
-        } else {
-            select.value = base;
-        }
-    });
-}
-
-function addBudgetRow(listId) {
-    const list = document.getElementById(listId);
-    const base = document.getElementById('budgetCurrencyName').value.trim() || 'Base';
-    const foreign = document.getElementById('foreignCurrencyName').value.trim() || 'Foreign';
-
-    const div = document.createElement('div');
-    div.className = 'budget-item animate-new-row';
-
-    // Determine placeholder based on list
-    const placeholder = listId === 'incomeList' ? 'Source' : 'Expense';
-
-    div.innerHTML = `
-        <input type="text" placeholder="${placeholder}" class="source-input">
-        <input type="number" value="0" class="amount-input" oninput="calculateBudget()" placeholder="Amount">
-        <select class="currency-input" onchange="calculateBudget()">
-            <option value="${base}" selected>${base}</option>
-            <option value="${foreign}">${foreign}</option>
-        </select>
-        <button class="remove-btn" onclick="removeBudgetRow(this)">×</button>
-    `;
-
-    list.appendChild(div);
-
-    div.querySelector('.source-input').focus();
-}
-
-function removeBudgetRow(button) {
-    const row = button.parentElement;
-    row.remove();
-    calculateBudget();
-}
-
-function calculateBudget() {
-    // --- Budget Logic with Global Exchange Rate ---
-    const incomeItems = document.querySelectorAll('#incomeList .budget-item');
-    const expenseItems = document.querySelectorAll('#expenseList .budget-item');
-
-    let totalIncome = 0;
-    let totalExpenses = 0;
-
-    const foreignCurrency = document.getElementById('foreignCurrencyName').value.trim();
-    const exchangeRate = parseFloat(document.getElementById('budgetExchangeRate').value) || 1;
-
-    // Helper to calculate row total
-    const getRowTotal = (item) => {
-        const amount = parseFloat(item.querySelector('.amount-input').value) || 0;
-        const rowCurrency = item.querySelector('.currency-input').value;
-
-        if (rowCurrency === foreignCurrency) {
-            return amount * exchangeRate;
-        }
-        return amount; // Assume base currency or 1:1 for others
-    };
-
-    incomeItems.forEach(item => {
-        totalIncome += getRowTotal(item);
-    });
-
-    expenseItems.forEach(item => {
-        totalExpenses += getRowTotal(item);
-    });
-
-    const savings = totalIncome - totalExpenses;
-    const baseCurrency = document.getElementById('budgetCurrencyName').value.trim() || ' ';
-
-    // Update Totals Display
-    document.getElementById('totalIncome').textContent = `${formatCurrency(totalIncome)} ${baseCurrency}`;
-    document.getElementById('totalExpenses').textContent = `${formatCurrency(totalExpenses)} ${baseCurrency}`;
-
-    const savingsElement = document.getElementById('totalSavings');
-    savingsElement.textContent = `${formatCurrency(savings)} ${baseCurrency}`;
-
-    // Visual feedback for negative savings
-    if (savings < 0) {
-        savingsElement.style.color = '#ff4d4d'; // Red-ish for negative
-    } else {
-        savingsElement.style.color = '#fff'; // Default white
-    }
 }
