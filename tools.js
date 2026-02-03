@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseInput = document.getElementById('budgetCurrencyName');
     const foreignInput = document.getElementById('foreignCurrencyName');
     const rateInput = document.getElementById('budgetExchangeRate');
-
+    loadBudgetData();
     if (baseInput) {
         baseInput.addEventListener('change', updateExchangeRate);
         foreignInput.addEventListener('change', updateExchangeRate);
@@ -87,8 +87,75 @@ function calculateBudget() {
     const savingsEl = document.getElementById('totalSavings');
     savingsEl.textContent = `${formatCurrency(savings)} ${baseCurrency}`;
     savingsEl.style.color = savings < 0 ? "#ff4d4d" : "#fff";
+    saveBudgetData();
+}
+// --- LocalStorage Logic ---
+
+function saveBudgetData() {
+    const data = {
+        baseCurrency: document.getElementById('budgetCurrencyName').value,
+        foreignCurrency: document.getElementById('foreignCurrencyName').value,
+        exchangeRate: document.getElementById('budgetExchangeRate').value,
+        income: [],
+        expenses: []
+    };
+
+    document.querySelectorAll('#incomeList .budget-item').forEach(row => {
+        data.income.push({
+            source: row.querySelector('.source-input').value,
+            amount: row.querySelector('.amount-input').value,
+            currency: row.querySelector('.currency-input').value
+        });
+    });
+
+    document.querySelectorAll('#expenseList .budget-item').forEach(row => {
+        data.expenses.push({
+            source: row.querySelector('.source-input').value,
+            amount: row.querySelector('.amount-input').value,
+            currency: row.querySelector('.currency-input').value
+        });
+    });
+
+    localStorage.setItem('pishukkan_budget', JSON.stringify(data));
 }
 
+function loadBudgetData() {
+    const saved = localStorage.getItem('pishukkan_budget');
+    if (!saved) return;
+
+    const data = JSON.parse(saved);
+    
+    document.getElementById('budgetCurrencyName').value = data.baseCurrency;
+    document.getElementById('foreignCurrencyName').value = data.foreignCurrency;
+    document.getElementById('budgetExchangeRate').value = data.exchangeRate;
+
+    // Clear defaults
+    document.getElementById('incomeList').innerHTML = '';
+    document.getElementById('expenseList').innerHTML = '';
+
+    data.income.forEach(item => addLoadedRow('incomeList', item));
+    data.expenses.forEach(item => addLoadedRow('expenseList', item));
+
+    calculateBudget();
+}
+
+function addLoadedRow(listId, item) {
+    const list = document.getElementById(listId);
+    const div = document.createElement('div');
+    div.className = 'budget-item';
+    
+    div.innerHTML = `
+        <input type="text" value="${item.source}" class="source-input">
+        <input type="number" value="${item.amount}" class="amount-input" oninput="calculateBudget()">
+        <select class="currency-input" onchange="calculateBudget()">
+            <option value="${document.getElementById('budgetCurrencyName').value}">${document.getElementById('budgetCurrencyName').value}</option>
+            <option value="${document.getElementById('foreignCurrencyName').value}">${document.getElementById('foreignCurrencyName').value}</option>
+        </select>
+        <button class="remove-btn" onclick="removeBudgetRow(this)">×</button>
+    `;
+    list.appendChild(div);
+    div.querySelector('.currency-input').value = item.currency;
+}
 // --- Row Management ---
 function updateBudgetCurrencyOptions() {
     const base = document.getElementById('budgetCurrencyName').value.trim();
@@ -101,6 +168,7 @@ function updateBudgetCurrencyOptions() {
         select.value = (currentVal === foreign) ? foreign : base;
     });
 }
+
 
 function addBudgetRow(listId) {
     const list = document.getElementById(listId);
