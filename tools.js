@@ -60,7 +60,7 @@ function calculateBudget() {
     
     const baseCurrency = document.getElementById('budgetCurrencyName').value.trim();
     const foreignCurrency = document.getElementById('foreignCurrencyName').value.trim();
-    const exchangeRate = parseFloat(document.getElementById('budgetExchangeRate').value) || 1;
+    const exchangeRate = parseFloat(document.getElementById('budgetExchangeRate').value) || 0;
 
     let totalIncome = 0;
     let totalExpenses = 0;
@@ -69,9 +69,9 @@ function calculateBudget() {
         const amount = parseFloat(item.querySelector('.amount-input').value) || 0;
         const rowCurrency = item.querySelector('.currency-input').value;
 
-        // CORRECT LOGIC: Divide foreign by rate to get Base (BHD)
-        if (rowCurrency === foreignCurrency && exchangeRate !== 0) {
-            return amount / exchangeRate;
+        // LOGIC FIX: Use multiplication because exchangeRate is a ratio (e.g., 0.0042)
+        if (rowCurrency === foreignCurrency) {
+            return amount * exchangeRate;
         }
         return amount;
     };
