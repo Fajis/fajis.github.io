@@ -1,29 +1,119 @@
 // --- Initial Setup & Listeners ---
+const currencies = [
+    { code: "USD", name: "United States Dollar" },
+    { code: "EUR", name: "Euro" },
+    { code: "GBP", name: "British Pound Sterling" },
+    { code: "JPY", name: "Japanese Yen" },
+    { code: "INR", name: "Indian Rupee" },
+    { code: "BHD", name: "Bahraini Dinar" },
+    { code: "AED", name: "United Arab Emirates Dirham" },
+    { code: "SAR", name: "Saudi Riyal" },
+    { code: "KWD", name: "Kuwaiti Dinar" },
+    { code: "OMR", name: "Omani Rial" },
+    { code: "QAR", name: "Qatari Rial" },
+    { code: "AUD", name: "Australian Dollar" },
+    { code: "CAD", name: "Canadian Dollar" },
+    { code: "CHF", name: "Swiss Franc" },
+    { code: "CNY", name: "Chinese Yuan" },
+    { code: "SGD", name: "Singapore Dollar" },
+    { code: "NZD", name: "New Zealand Dollar" },
+    { code: "HKD", name: "Hong Kong Dollar" },
+    { code: "MYR", name: "Malaysian Ringgit" },
+    { code: "THB", name: "Thai Baht" },
+    { code: "IDR", name: "Indonesian Rupiah" },
+    { code: "PHP", name: "Philippine Peso" },
+    { code: "PKR", name: "Pakistani Rupee" },
+    { code: "BDT", name: "Bangladeshi Taka" },
+    { code: "LKR", name: "Sri Lankan Rupee" }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     const baseInput = document.getElementById('budgetCurrencyName');
     const foreignInput = document.getElementById('foreignCurrencyName');
     const rateInput = document.getElementById('budgetExchangeRate');
+
+    initSearchableSelect('baseCurrencySelect', (code) => {
+        updateExchangeRate();
+    });
+
+    initSearchableSelect('secondaryCurrencySelect', (code) => {
+        updateExchangeRate();
+    });
+
     loadBudgetData();
     if (baseInput) {
-        baseInput.addEventListener('change', updateExchangeRate);
-        foreignInput.addEventListener('change', updateExchangeRate);
         rateInput.addEventListener('input', calculateBudget);
-        
+
         // Initial setup
         updateBudgetCurrencyOptions();
         updateExchangeRate();
     }
-    
+
     // Set Footer Year
     const yearEl = document.getElementById('currentYear');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
+function initSearchableSelect(containerId, onSelect) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const trigger = container.querySelector('.searchable-select-trigger');
+    const dropdown = container.querySelector('.searchable-select-dropdown');
+    const searchInput = container.querySelector('.search-input-wrapper input');
+    const optionsList = container.querySelector('.select-options-list');
+
+    // Populate list
+    function renderOptions(filter = "") {
+        optionsList.innerHTML = "";
+        const filtered = currencies.filter(c =>
+            c.code.toLowerCase().includes(filter.toLowerCase()) ||
+            c.name.toLowerCase().includes(filter.toLowerCase())
+        );
+
+        filtered.forEach(c => {
+            const li = document.createElement('li');
+            li.className = 'select-option';
+            if (trigger.value === c.code) li.classList.add('selected');
+            li.innerHTML = `
+                <span class="currency-code">${c.code}</span>
+                <span class="currency-name">${c.name}</span>
+            `;
+            li.onclick = () => {
+                trigger.value = c.code;
+                dropdown.classList.remove('active');
+                if (onSelect) onSelect(c.code);
+            };
+            optionsList.appendChild(li);
+        });
+    }
+
+    trigger.onclick = (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+        if (dropdown.classList.contains('active')) {
+            searchInput.value = "";
+            renderOptions();
+            searchInput.focus();
+        }
+    };
+
+    searchInput.oninput = (e) => {
+        renderOptions(e.target.value);
+    };
+
+    searchInput.onclick = (e) => e.stopPropagation();
+
+    document.addEventListener('click', () => {
+        dropdown.classList.remove('active');
+    });
+}
+
 // --- Formatting Helper ---
 function formatCurrency(value) {
-    return value.toLocaleString('en-US', { 
-        minimumFractionDigits: 3, 
-        maximumFractionDigits: 3 
+    return value.toLocaleString('en-US', {
+        minimumFractionDigits: 3,
+        maximumFractionDigits: 3
     });
 }
 
@@ -57,7 +147,7 @@ async function updateExchangeRate() {
 function calculateBudget() {
     const incomeItems = document.querySelectorAll('#incomeList .budget-item');
     const expenseItems = document.querySelectorAll('#expenseList .budget-item');
-    
+
     const baseCurrency = document.getElementById('budgetCurrencyName').value.trim();
     const foreignCurrency = document.getElementById('foreignCurrencyName').value.trim();
     const exchangeRate = parseFloat(document.getElementById('budgetExchangeRate').value) || 0;
@@ -83,7 +173,7 @@ function calculateBudget() {
 
     document.getElementById('totalIncome').textContent = `${formatCurrency(totalIncome)} ${baseCurrency}`;
     document.getElementById('totalExpenses').textContent = `${formatCurrency(totalExpenses)} ${baseCurrency}`;
-    
+
     const savingsEl = document.getElementById('totalSavings');
     savingsEl.textContent = `${formatCurrency(savings)} ${baseCurrency}`;
     savingsEl.style.color = savings < 0 ? "#ff4d4d" : "#fff";
@@ -124,7 +214,7 @@ function loadBudgetData() {
     if (!saved) return;
 
     const data = JSON.parse(saved);
-    
+
     document.getElementById('budgetCurrencyName').value = data.baseCurrency;
     document.getElementById('foreignCurrencyName').value = data.foreignCurrency;
     document.getElementById('budgetExchangeRate').value = data.exchangeRate;
@@ -143,7 +233,7 @@ function addLoadedRow(listId, item) {
     const list = document.getElementById(listId);
     const div = document.createElement('div');
     div.className = 'budget-item';
-    
+
     div.innerHTML = `
         <input type="text" value="${item.source}" class="source-input">
         <input type="number" value="${item.amount}" class="amount-input" oninput="calculateBudget()">

@@ -298,6 +298,142 @@
             outline: none;
             border-bottom: 1px solid #000;
         }
+
+        /* Searchable Select Styles */
+        .searchable-select-container {
+            position: relative;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .searchable-select-trigger {
+            width: 100%;
+            cursor: pointer;
+            padding-right: 25px !important;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 5px center !important;
+            background-size: 12px !important;
+        }
+
+        .searchable-select-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            width: 250px;
+            background: #fff;
+            border: 1px solid #000;
+            box-shadow: 15px 15px 0 rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+            max-height: 300px;
+            overflow-y: auto;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .searchable-select-dropdown.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .search-input-wrapper {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 10;
+        }
+
+        .search-input-wrapper input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #eee;
+            font-family: inherit;
+            font-size: 13px;
+            border-radius: 0;
+            background: #fafafa;
+        }
+
+        .search-input-wrapper input:focus {
+            outline: none;
+            border-color: #000;
+            background: #fff;
+        }
+
+        .select-options-list {
+            list-style: none;
+            padding: 5px 0;
+            margin: 0;
+        }
+
+        .select-option {
+            padding: 12px 15px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .select-option:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .select-option:hover .currency-name {
+            color: #ccc;
+        }
+
+        .select-option.selected {
+            background: #f0f0f0;
+            font-weight: 600;
+        }
+
+        .select-option.selected::after {
+            content: '✓';
+            font-size: 12px;
+        }
+
+        .currency-code {
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .currency-name {
+            font-size: 11px;
+            color: #888;
+            margin-left: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Fix for floating labels with custom select */
+        .searchable-select-container label {
+            position: absolute;
+            left: 0;
+            top: 15px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            color: #666;
+            z-index: 5;
+        }
+
+        .searchable-select-trigger:focus+label,
+        .searchable-select-trigger:not(:placeholder-shown)+label {
+            top: -20px;
+            font-size: 11px;
+            font-weight: 500;
+            color: #000;
+        }
     </style>
 </head>
 
@@ -535,13 +671,30 @@
             <div class="calculator-form" style="margin-bottom: 20px; text-align: center;">
                 <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
                     <div class="form-group" style="width: auto;">
-                        <input type="text" id="budgetCurrencyName" placeholder="" style="width: 150px;" value="INR">
-                        <label>Base Currency</label>
+                        <div class="searchable-select-container" id="baseCurrencySelect">
+                            <input type="text" id="budgetCurrencyName" class="searchable-select-trigger" readonly
+                                style="width: 150px;" value="INR" placeholder=" ">
+                            <label>Base Currency</label>
+                            <div class="searchable-select-dropdown">
+                                <div class="search-input-wrapper">
+                                    <input type="text" placeholder="Search currency...">
+                                </div>
+                                <ul class="select-options-list"></ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group" style="width: auto;">
-                        <input type="text" id="foreignCurrencyName" placeholder="e.g. USD" style="width: 200px;"
-                            value="BHD">
-                        <label align="left">Secondary Currency</label>
+                        <div class="searchable-select-container" id="secondaryCurrencySelect">
+                            <input type="text" id="foreignCurrencyName" class="searchable-select-trigger" readonly
+                                style="width: 200px;" value="BHD" placeholder=" ">
+                            <label>Secondary Currency</label>
+                            <div class="searchable-select-dropdown">
+                                <div class="search-input-wrapper">
+                                    <input type="text" placeholder="Search currency...">
+                                </div>
+                                <ul class="select-options-list"></ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group" style="width: auto;">
                         <input type="number" id="budgetExchangeRate" placeholder="" step="0.0001" value="243"
