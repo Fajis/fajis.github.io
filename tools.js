@@ -111,10 +111,21 @@ function initSearchableSelect(containerId, onSelect) {
 
 // --- Formatting Helper ---
 function formatCurrency(value) {
+    if (isNaN(value)) return "0.000";
     return value.toLocaleString('en-US', {
         minimumFractionDigits: 3,
         maximumFractionDigits: 3
     });
+}
+
+function getSafeValue(id, defaultValue = 0) {
+    const el = document.getElementById(id);
+    if (!el) {
+        console.warn(`Element with ID "${id}" not found.`);
+        return defaultValue;
+    }
+    const val = parseFloat(el.value);
+    return isNaN(val) ? defaultValue : val;
 }
 
 // --- Currency Fetching ---
@@ -310,10 +321,10 @@ function animateValue(id, value) {
 
 // --- Other Calculators ---
 function calculateEMI() {
-    const loan = parseFloat(document.getElementById('loanAmount').value);
-    const interestInput = parseFloat(document.getElementById('interestRate').value);
-    const years = parseFloat(document.getElementById('loanTenureYears').value) || 0;
-    const extraMonths = parseFloat(document.getElementById('loanTenureMonths').value) || 0;
+    const loan = getSafeValue('loanAmount');
+    const interestInput = getSafeValue('interestRate');
+    const years = getSafeValue('loanTenureYears');
+    const extraMonths = getSafeValue('loanTenureMonths');
     const months = (years * 12) + extraMonths;
 
     if (isNaN(loan) || isNaN(months) || months <= 0) return;
@@ -333,10 +344,10 @@ function calculateEMI() {
 }
 
 function calculateSIP() {
-    const p = parseFloat(document.getElementById('sipAmount').value);
-    const rateInput = parseFloat(document.getElementById('sipRate').value);
-    const years = parseFloat(document.getElementById('sipTenureYears').value) || 0;
-    const extraMonths = parseFloat(document.getElementById('sipTenureMonths').value) || 0;
+    const p = getSafeValue('sipAmount');
+    const rateInput = getSafeValue('sipRate');
+    const years = getSafeValue('sipTenureYears');
+    const extraMonths = getSafeValue('sipTenureMonths');
     const n = (years * 12) + extraMonths;
 
     if (isNaN(p) || isNaN(n) || n <= 0) return;
@@ -355,10 +366,10 @@ function calculateSIP() {
     animateValue('sipReturns', fv - (p * n));
 }
 function calculateLumpsum() {
-    const investment = parseFloat(document.getElementById('lumpsumAmount').value);
-    const rate = parseFloat(document.getElementById('lumpsumRate').value);
-    const yearsInput = parseFloat(document.getElementById('lumpsumTenureYears').value) || 0;
-    const monthsInput = parseFloat(document.getElementById('lumpsumTenureMonths').value) || 0;
+    const investment = getSafeValue('lumpsumAmount');
+    const rate = getSafeValue('lumpsumRate');
+    const yearsInput = getSafeValue('lumpsumTenureYears');
+    const monthsInput = getSafeValue('lumpsumTenureMonths');
     const years = yearsInput + (monthsInput / 12);
 
     if (isNaN(investment) || isNaN(rate) || isNaN(years) || investment <= 0) return;
@@ -374,10 +385,10 @@ function calculateLumpsum() {
 }
 
 function calculateGoal() {
-    const target = parseFloat(document.getElementById('goalTarget').value);
-    const rate = parseFloat(document.getElementById('goalRate').value);
-    const yearsInput = parseFloat(document.getElementById('goalTenureYears').value) || 0;
-    const monthsInput = parseFloat(document.getElementById('goalTenureMonths').value) || 0;
+    const target = getSafeValue('goalTarget');
+    const rate = getSafeValue('goalRate');
+    const yearsInput = getSafeValue('goalTenureYears');
+    const monthsInput = getSafeValue('goalTenureMonths');
     const n = (yearsInput * 12) + monthsInput;
 
     if (isNaN(target) || isNaN(n) || n <= 0 || target <= 0) return;
@@ -394,10 +405,10 @@ function calculateGoal() {
     animateValue('goalSIP', sip);
 }
 function calculateAffordability() {
-    const emi = parseFloat(document.getElementById('affordEMI').value);
-    const rate = parseFloat(document.getElementById('affordRate').value);
-    const yearsInput = parseFloat(document.getElementById('affordTenureYears').value) || 0;
-    const monthsInput = parseFloat(document.getElementById('affordTenureMonths').value) || 0;
+    const emi = getSafeValue('affordEMI');
+    const rate = getSafeValue('affordRate');
+    const yearsInput = getSafeValue('affordTenureYears');
+    const monthsInput = getSafeValue('affordTenureMonths');
     const n = (yearsInput * 12) + monthsInput;
 
     if (isNaN(emi) || isNaN(n) || n <= 0 || emi <= 0) return;
