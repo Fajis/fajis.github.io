@@ -145,7 +145,7 @@ async function updateExchangeRate() {
         const data = await response.json();
 
         if (data[target]) {
-            rateInput.value = data[target].inverseRate.toFixed(6);
+            rateInput.value = data[target].rate.toFixed(6);
             updateBudgetCurrencyOptions();
             calculateBudget();
         }
@@ -170,9 +170,9 @@ function calculateBudget() {
         const amount = parseFloat(item.querySelector('.amount-input').value) || 0;
         const rowCurrency = item.querySelector('.currency-input').value;
 
-        // LOGIC FIX: Use multiplication because exchangeRate is a ratio (e.g., 0.0042)
+        // Use division because exchangeRate is now 1 base = X target
         if (rowCurrency === foreignCurrency) {
-            return amount * exchangeRate;
+            return exchangeRate !== 0 ? amount / exchangeRate : 0;
         }
         return amount;
     };
