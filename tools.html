@@ -434,6 +434,21 @@
             font-weight: 500;
             color: #000;
         }
+
+        .dual-inputs {
+            display: flex;
+            gap: 20px;
+        }
+
+        .dual-inputs .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .calculator-form .form-group:has(+ .dual-inputs),
+        .calculator-form .dual-inputs {
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 
@@ -520,9 +535,15 @@
                     <input type="number" id="interestRate" placeholder=" " required step="0.1">
                     <label>Interest Rate (%)</label>
                 </div>
-                <div class="form-group">
-                    <input type="number" id="loanTenure" placeholder=" " required step="1">
-                    <label>Tenure (Years)</label>
+                <div class="dual-inputs">
+                    <div class="form-group">
+                        <input type="number" id="loanTenureYears" placeholder=" " required step="1">
+                        <label>Years</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="loanTenureMonths" placeholder=" " required step="1">
+                        <label>Months</label>
+                    </div>
                 </div>
                 <button class="submit-btn" onclick="calculateEMI()" style="width: 100%;">Calculate EMI</button>
                 <p id="emiError" style="color: red; margin-top: 10px; font-size: 12px; display: none;"></p>
@@ -555,9 +576,15 @@
                     <input type="number" id="sipRate" placeholder=" " required step="0.1">
                     <label>Expected Return (% p.a)</label>
                 </div>
-                <div class="form-group">
-                    <input type="number" id="sipTenure" placeholder=" " required step="1">
-                    <label>Time Period (Years)</label>
+                <div class="dual-inputs">
+                    <div class="form-group">
+                        <input type="number" id="sipTenureYears" placeholder=" " required step="1">
+                        <label>Years</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="sipTenureMonths" placeholder=" " required step="1">
+                        <label>Months</label>
+                    </div>
                 </div>
                 <button class="submit-btn" onclick="calculateSIP()" style="width: 100%;">Calculate SIP</button>
             </div>
@@ -584,9 +611,15 @@
                     <input type="number" id="lumpsumRate" placeholder=" " required step="0.1">
                     <label>Expected Return (% p.a)</label>
                 </div>
-                <div class="form-group">
-                    <input type="number" id="lumpsumTenure" placeholder=" " required step="1">
-                    <label>Time Period (Years)</label>
+                <div class="dual-inputs">
+                    <div class="form-group">
+                        <input type="number" id="lumpsumTenureYears" placeholder=" " required step="1">
+                        <label>Years</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="lumpsumTenureMonths" placeholder=" " required step="1">
+                        <label>Months</label>
+                    </div>
                 </div>
                 <button class="submit-btn" onclick="calculateLumpsum()" style="width: 100%;">Calculate Lumpsum</button>
             </div>
@@ -613,9 +646,15 @@
                     <input type="number" id="goalRate" placeholder=" " required step="0.1">
                     <label>Expected Return (%)</label>
                 </div>
-                <div class="form-group">
-                    <input type="number" id="goalTenure" placeholder=" " required step="1">
-                    <label>Time Period (Years)</label>
+                <div class="dual-inputs">
+                    <div class="form-group">
+                        <input type="number" id="goalTenureYears" placeholder=" " required step="1">
+                        <label>Years</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="goalTenureMonths" placeholder=" " required step="1">
+                        <label>Months</label>
+                    </div>
                 </div>
                 <button class="submit-btn" onclick="calculateGoal()" style="width: 100%;">Calculate Required
                     SIP</button>
@@ -641,9 +680,15 @@
                     <input type="number" id="affordRate" placeholder=" " required step="0.1">
                     <label>Interest Rate (%)</label>
                 </div>
-                <div class="form-group">
-                    <input type="number" id="affordTenure" placeholder=" " required step="1">
-                    <label>Tenure (Years)</label>
+                <div class="dual-inputs">
+                    <div class="form-group">
+                        <input type="number" id="affordTenureYears" placeholder=" " required step="1">
+                        <label>Years</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="affordTenureMonths" placeholder=" " required step="1">
+                        <label>Months</label>
+                    </div>
                 </div>
                 <button class="submit-btn" onclick="calculateAffordability()" style="width: 100%;">Calculate Max
                     Loan</button>
