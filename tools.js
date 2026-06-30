@@ -130,24 +130,34 @@ function getSafeValue(id, defaultValue = 0) {
 
 // --- Currency Fetching ---
 async function updateExchangeRate() {
-    const base = document.getElementById('budgetCurrencyName').value.trim().toLowerCase();
-    const target = document.getElementById('foreignCurrencyName').value.trim().toLowerCase();
+    const baseInput = document.getElementById('budgetCurrencyName');
+    const targetInput = document.getElementById('foreignCurrencyName');
     const rateInput = document.getElementById('budgetExchangeRate');
 
+    if (!baseInput || !targetInput || !rateInput) return;
+
+    const base = baseInput.value.trim().toLowerCase();
+    const target = targetInput.value.trim().toLowerCase();
+
     if (base === target) {
-        rateInput.value = 1;
+        rateInput.value = (1).toFixed(6);
         calculateBudget();
         return;
     }
 
     try {
         const response = await fetch(`https://www.floatrates.com/daily/${base}.json`);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
         const data = await response.json();
 
-        if (data[target]) {
-            rateInput.value = data[target].rate.toFixed(6);
-            updateBudgetCurrencyOptions();
-            calculateBudget();
+        if (data[target] && data[target].rate) {
+            const parsedRate = parseFloat(data[target].rate);
+            if (!isNaN(parsedRate)) {
+                rateInput.value = parsedRate.toFixed(6);
+                updateBudgetCurrencyOptions();
+                calculateBudget();
+            }
         }
     } catch (error) {
         console.error("API Error:", error);
