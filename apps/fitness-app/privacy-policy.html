@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stay Fit — Privacy Policy</title>
+<style>
+  :root{
+    --bg:#F6F7F5;
+    --surface:#FFFFFF;
+    --ink:#16211C;
+    --ink-muted:#56635C;
+    --ink-faint:#8B968F;
+    --accent:#1F6F5C;
+    --accent-soft:#E4EEEA;
+    --accent-soft-strong:#D3E4DD;
+    --border:#DCE2DE;
+    --shadow: 0 1px 2px rgba(22,33,28,0.04), 0 8px 24px rgba(22,33,28,0.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#101512;
+      --surface:#171E1A;
+      --ink:#E9EDE9;
+      --ink-muted:#9AA69E;
+      --ink-faint:#647069;
+      --accent:#59CBA9;
+      --accent-soft:rgba(89,203,169,0.14);
+      --accent-soft-strong:rgba(89,203,169,0.22);
+      --border:#2A332E;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    padding-inline: 20px;
+    padding-block: 28px 48px;
+  }
+  h1,h2,h3{
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  a { color: var(--accent); text-decoration-thickness: 1.5px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  img { max-width: 100%; }
+
+  .page { max-width: 700px; margin-inline: auto; }
+
+  .masthead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-block-end: 22px;
+    margin-block-end: 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .masthead-id { display: flex; align-items: center; gap: 10px; }
+  .mark {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .mark svg { width: 18px; height: 18px; }
+  .app-name { font-weight: 600; font-size: 15px; color: var(--ink); }
+  .app-tag { font-size: 12px; color: var(--ink-muted); margin-top: 1px; }
+  .meta {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--ink-faint);
+    text-align: right;
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-block-end: 10px;
+  }
+  h1.title { font-size: clamp(26px, 5vw, 34px); font-weight: 650; margin: 0 0 12px; }
+  .dek { color: var(--ink-muted); font-size: 15.5px; max-width: 56ch; margin: 0 0 30px; }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-block-end: 34px;
+  }
+  @media (max-width: 620px) { .summary-grid { grid-template-columns: 1fr; } }
+  .summary-card {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-soft-strong);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .summary-card .ic { color: var(--accent); margin-block-end: 8px; }
+  .summary-card .ic svg { width: 18px; height: 18px; display: block; }
+  .summary-card h3 { font-size: 13.5px; font-weight: 650; margin: 0 0 4px; font-family: "IBM Plex Sans", sans-serif; }
+  .summary-card p { font-size: 12.5px; color: var(--ink-muted); margin: 0; line-height: 1.5; }
+
+  nav.toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-block-end: 40px;
+    box-shadow: var(--shadow);
+  }
+  nav.toc h2 {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 10px;
+  }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 20px; }
+  @media (max-width: 480px) { nav.toc ol { columns: 1; } }
+  nav.toc li { break-inside: avoid; margin-block-end: 7px; }
+  nav.toc a { display: flex; gap: 8px; font-size: 13px; color: var(--ink); text-decoration: none; }
+  nav.toc a:hover { color: var(--accent); }
+  nav.toc .num { color: var(--ink-faint); font-family: "IBM Plex Mono", monospace; font-size: 12px; flex-shrink: 0; }
+
+  section { margin-block-end: 40px; scroll-margin-top: 20px; }
+  section h2 {
+    font-size: 20px;
+    font-weight: 650;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 0 0 14px;
+    padding-block-end: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  section h2 .num { font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500; color: var(--accent); }
+  section p { margin: 0 0 12px; color: var(--ink); max-width: 62ch; }
+  section p.muted { color: var(--ink-muted); font-size: 13.5px; }
+  section ul { margin: 0 0 12px; padding-left: 20px; max-width: 60ch; }
+  section li { margin-block-end: 8px; }
+  section li::marker { color: var(--accent); }
+  strong { font-weight: 650; }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: 14px 18px;
+    font-size: 13.5px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .data-table th, .data-table td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .data-table th {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    background: var(--bg);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table td.where { color: var(--accent); font-weight: 600; white-space: nowrap; }
+
+  .callout {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-soft-strong);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13.5px;
+    color: var(--ink);
+    margin-block: 4px 16px;
+  }
+  .callout strong { color: var(--accent); }
+
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .contact-card .label { font-size: 12px; color: var(--ink-muted); margin-bottom: 3px; }
+  .contact-card .value { font-size: 15px; font-weight: 600; font-family: "IBM Plex Mono", monospace; }
+
+  footer {
+    margin-block-start: 48px;
+    padding-block-start: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    section { animation: rise .5s ease both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;650;700&family=IBM+Plex+Sans:wght@400;500;600;650&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <div class="masthead-id">
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5 17.5 17.5"/><path d="M14 4 20 10"/><path d="M4 14 10 20"/><path d="m18.5 4 1.5 1.5"/><path d="m4 18.5 1.5 1.5"/></svg>
+      </div>
+      <div>
+        <div class="app-name">Stay Fit</div>
+        <div class="app-tag">com.fajis.fitnessapp</div>
+      </div>
+    </div>
+    <div class="meta">EFFECTIVE 18 SEP 2026<br>VERSION 1.0</div>
+  </div>
+
+  <div class="eyebrow">Legal · Data handling</div>
+  <h1 class="title">Privacy Policy</h1>
+  <p class="dek">A plain account of what Stay Fit stores, what it reads from Apple Health or Health Connect, and — the short version — what it never does: send your data anywhere we control, sell it, or hand it to advertisers.</p>
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/></svg></div>
+      <h3>Stored on your device</h3>
+      <p>Every workout, meal, water and sleep entry lives in a local database on your phone. Nothing is uploaded to a server we run — because we don't run one.</p>
+    </div>
+    <div class="summary-card">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9Z"/></svg></div>
+      <h3>Health sync is optional</h3>
+      <p>Apple Health / Health Connect only exchange data if you turn sync on, and only for the metrics you approve in your device's own permission screen.</p>
+    </div>
+    <div class="summary-card">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+      <h3>No ads, no data sale</h3>
+      <p>There is no advertising SDK or analytics tracker in this app, and no third party is ever paid for or given your personal information.</p>
+    </div>
+  </div>
+
+  <nav class="toc" aria-label="Table of contents">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#collect"><span class="num">01</span> Information we collect</a></li>
+      <li><a href="#health"><span class="num">02</span> Apple Health &amp; Health Connect</a></li>
+      <li><a href="#food"><span class="num">03</span> Food lookup (USDA)</a></li>
+      <li><a href="#use"><span class="num">04</span> How your information is used</a></li>
+      <li><a href="#storage"><span class="num">05</span> Storage &amp; security</a></li>
+      <li><a href="#sharing"><span class="num">06</span> Sharing &amp; sale of data</a></li>
+      <li><a href="#choices"><span class="num">07</span> Your choices</a></li>
+      <li><a href="#retention"><span class="num">08</span> Deleting your data</a></li>
+      <li><a href="#children"><span class="num">09</span> Children's privacy</a></li>
+      <li><a href="#changes"><span class="num">10</span> Changes to this policy</a></li>
+      <li><a href="#contact"><span class="num">11</span> Contact</a></li>
+    </ol>
+  </nav>
+
+  <section id="collect">
+    <h2><span class="num">01</span> Information we collect</h2>
+    <p>Stay Fit asks you for a few details when you set up your profile, and records what you log as you use the app. All of it is described here plainly — there's no hidden collection beyond what's listed.</p>
+    <table class="data-table">
+      <thead>
+        <tr><th>Category</th><th>Examples</th><th>Where it's stored</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Profile</td><td>Name, age, gender, height, weight, target weight, bio</td><td class="where">On device</td></tr>
+        <tr><td>Workout activity</td><td>Routines, exercises, sets, reps, weights, session history</td><td class="where">On device</td></tr>
+        <tr><td>Nutrition</td><td>Logged meals, calories, macros, saved foods</td><td class="where">On device</td></tr>
+        <tr><td>Recovery</td><td>Water intake, sleep duration, bedtime / wake time</td><td class="where">On device</td></tr>
+        <tr><td>Health metrics (optional)</td><td>Steps, active energy, sleep, workouts from Apple Health / Health Connect</td><td class="where">On device</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">All of the above is stored in a local database on your phone using standard on-device storage. We do not operate a server that this data is sent to, and Stay Fit does not require you to create an account.</p>
+  </section>
+
+  <section id="health">
+    <h2><span class="num">02</span> Apple Health &amp; Health Connect</h2>
+    <p>If you turn on health sync in Settings, Stay Fit asks the operating system for permission to read specific metrics — steps, active energy, sleep, and workouts. You approve exactly what's shared in Apple's or Google's own permission screen, not ours, and you can revoke it at any time from your device's Health app or Health Connect settings.</p>
+    <div class="callout"><strong>We only read.</strong> Stay Fit does not write data back into Apple Health or Health Connect, and the data it reads is used to fill in your in-app totals — it is never uploaded anywhere else.</div>
+  </section>
+
+  <section id="food">
+    <h2><span class="num">03</span> Food lookup (USDA FoodData Central)</h2>
+    <p>The food search feature sends the text you type (e.g. "chicken breast") to the United States Department of Agriculture's public FoodData Central API to look up calories and macros. This request contains only the search text — no name, profile information, or device identifier is included or ever sent.</p>
+  </section>
+
+  <section id="use">
+    <h2><span class="num">04</span> How your information is used</h2>
+    <ul>
+      <li>Calculating your BMI, macro targets, and progress trends</li>
+      <li>Showing your logged history back to you across the app</li>
+      <li>Filling in daily totals automatically when health sync is enabled</li>
+      <li>Generating the CSV file when you use the in-app data export feature</li>
+    </ul>
+    <p class="muted">Your information is never used to build an advertising profile, and we do not have an analytics or advertising SDK integrated into Stay Fit to do so.</p>
+  </section>
+
+  <section id="storage">
+    <h2><span class="num">05</span> Storage &amp; security</h2>
+    <p>Your data is stored in an encrypted-at-rest, sandboxed local database, protected the same way the rest of your phone's app data is protected by iOS or Android. Because nothing leaves your device under normal use, there is no separate server-side breach surface for this information — the security of your data is tied to the security of your device.</p>
+  </section>
+
+  <section id="sharing">
+    <h2><span class="num">06</span> Sharing &amp; sale of data</h2>
+    <p>We do not sell, rent, or trade your personal information. We do not share it with third parties for their own marketing purposes. The only outside systems Stay Fit talks to are:</p>
+    <ul>
+      <li><strong>Apple HealthKit / Google Health Connect</strong> — only if you opt in, and only to read the metrics you approve</li>
+      <li><strong>USDA FoodData Central</strong> — only your typed search text, for food lookup</li>
+    </ul>
+    <p class="muted">Neither is paid for your data, and neither receives anything beyond what's described above.</p>
+  </section>
+
+  <section id="choices">
+    <h2><span class="num">07</span> Your choices</h2>
+    <ul>
+      <li><strong>Health sync</strong> — turn it on or off anytime from Profile → Health Sync, or revoke access entirely from your device's system settings</li>
+      <li><strong>Units</strong> — switch between metric and imperial without affecting what's stored</li>
+      <li><strong>Export</strong> — download a CSV of everything you've logged from Profile → Export / Backup Data</li>
+    </ul>
+  </section>
+
+  <section id="retention">
+    <h2><span class="num">08</span> Deleting your data</h2>
+    <p>Uninstalling Stay Fit permanently deletes its local database along with it — there is no copy stored anywhere else to separately request the deletion of. If you'd like to keep using the app but clear specific data first, the delete controls throughout the app (routines, logged sets, meals) remove that entry immediately and permanently.</p>
+  </section>
+
+  <section id="children">
+    <h2><span class="num">09</span> Children's privacy</h2>
+    <p>Stay Fit is not directed at children under 13, and we do not knowingly collect personal information from anyone in that age group.</p>
+  </section>
+
+  <section id="changes">
+    <h2><span class="num">10</span> Changes to this policy</h2>
+    <p>If this policy changes, we'll update the effective date above. Meaningful changes — anything that changes what we collect or how it's used — will also be called out in the app's release notes.</p>
+  </section>
+
+  <section id="contact">
+    <h2><span class="num">11</span> Contact</h2>
+    <p>Questions about this policy or your data can be sent to:</p>
+    <div class="contact-card">
+      <div>
+        <div class="label">Email</div>
+        <div class="value">pmfajis@gmail.com</div>
+      </div>
+      <div>
+        <div class="label">App</div>
+        <div class="value" style="font-family: 'IBM Plex Sans', sans-serif;">Stay Fit</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Stay Fit. All data described above stays on your device unless you choose to share it.</span>
+    <span>Effective 18 Sep 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
