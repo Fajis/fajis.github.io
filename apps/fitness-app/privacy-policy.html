@@ -321,7 +321,7 @@
       <li><strong>Never sent:</strong> individual meals, water, sleep, or any Apple Health / Health Connect data.</li>
     </ul>
     <p>Requests pass through a small server Stay Fit runs on <strong>Cloudflare</strong>, which holds the AI provider's key so it isn't stored in the app. That server forwards your request to Groq and returns the answer; it does not store your questions or data, and keeps only an anonymous count of requests per day to enforce a usage limit. As the host, Cloudflare handles basic connection data such as your IP address under its own <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">privacy policy</a>. Groq processes the request to generate the answer under its own <a href="https://groq.com/privacy-policy" target="_blank" rel="noopener">privacy policy</a>. Chats are not saved — closing Ask AI clears the conversation.</p>
-    <p class="muted">You can turn personalised answers on or off at any time in Profile → Data &amp; Legal → Share my data with Ask AI. Ask AI is a general assistant, not medical advice.</p>
+    <p class="muted">You can turn personalised answers on or off at any time with the “Personalised” setting at the top of the Ask AI screen. Ask AI is a general assistant, not medical advice.</p>
   </section>
 
   <section id="food">
@@ -350,7 +350,8 @@
 
   <section id="storage">
     <h2><span class="num">07</span> Storage &amp; security</h2>
-    <p>Your data is stored in an encrypted-at-rest, sandboxed local database, protected the same way the rest of your phone's app data is protected by iOS or Android. Stay Fit has no server that stores your logs or health data, so there is no separate server-side copy to breach — the security of your data is tied to the security of your device. Data sent for Ask AI, food search or purchases travels over encrypted (HTTPS) connections.</p>
+    <p>Your data is stored in an encrypted-at-rest, sandboxed local database, protected the same way the rest of your phone's app data is protected by iOS or Android. Stay Fit has no server that stores your logs or health data, so there is no server-side copy of ours to breach — the security of your data is tied to the security of your device and your own device backups. Data sent for Ask AI, food search or purchases travels over encrypted (HTTPS) connections.</p>
+    <div class="callout"><strong>Device backups.</strong> On Android, your phone's built-in backup may include Stay Fit's data in your device backup to your own Google account, so your history comes back when you reinstall the app or move to a new phone. This backup is encrypted and managed by Google as part of your account — Stay Fit can't access it. You can turn it off in your phone's backup settings.</div>
   </section>
 
   <section id="sharing">
@@ -369,7 +370,7 @@
     <h2><span class="num">09</span> Your choices</h2>
     <ul>
       <li><strong>Health sync</strong> — turn it on or off anytime from Profile → Health Sync, or revoke access entirely from your device's system settings</li>
-      <li><strong>Ask AI data sharing</strong> — turn personalised answers on or off in Profile → Data &amp; Legal. With it off, only your questions are sent</li>
+      <li><strong>Ask AI data sharing</strong> — turn personalised answers on or off with the “Personalised” setting at the top of Ask AI. With it off, only your questions are sent</li>
       <li><strong>Units</strong> — switch between metric and imperial without affecting what's stored</li>
       <li><strong>Export</strong> — download a CSV of everything you've logged from Profile → Export / Backup Data</li>
     </ul>
@@ -377,7 +378,7 @@
 
   <section id="retention">
     <h2><span class="num">10</span> Deleting your data</h2>
-    <p>Uninstalling Stay Fit permanently deletes its local database along with it — there is no copy of your logs stored anywhere else to separately request the deletion of. If you'd like to keep using the app but clear specific data first, the delete controls throughout the app (routines, logged sets, meals) remove that entry immediately and permanently, and Profile → Health Sync → Delete imported health data removes everything copied from Apple Health or Health Connect (the originals there aren't touched).</p>
+    <p>Uninstalling Stay Fit deletes its local database along with it, and Stay Fit keeps no copy of your logs anywhere else. If your phone's device backup is on (see section 07), a copy may remain in your own Google account's backup until you delete it there or turn backup off. If you'd like to keep using the app but clear specific data first, the delete controls throughout the app (routines, logged sets, meals) remove that entry immediately and permanently, and Profile → Health Sync → Delete imported health data removes everything copied from Apple Health or Health Connect (the originals there aren't touched).</p>
     <p>Ask AI conversations aren't stored by Stay Fit. Purchase records are kept by Google Play or the App Store and by RevenueCat as needed for billing; to ask about removing the RevenueCat record linked to your anonymous ID, contact us below.</p>
   </section>
 
@@ -389,7 +390,7 @@
   <section id="changes">
     <h2><span class="num">12</span> Changes to this policy</h2>
     <p>If this policy changes, we'll update the effective date above. Meaningful changes — anything that changes what we collect or how it's used — will also be called out in the app's release notes.</p>
-    <p class="muted">Version 1.1 (23 Sep 2026): added Ask AI, Premium purchases, and the heart rate, HRV, VO2 max and workout detail read from Apple Health / Health Connect.</p>
+    <p class="muted">Version 1.1 (23 Sep 2026): added Ask AI, Premium purchases, device backups, and the heart rate, HRV, VO2 max and workout detail read from Apple Health / Health Connect.</p>
   </section>
 
   <section id="contact">
@@ -408,7 +409,7 @@
   </section>
 
   <footer>
-    <span>© 2026 Stay Fit. Your logs and health data stay on your device; data leaves it only as described above.</span>
+    <span>© 2026 Stay Fit. Your logs and health data stay on your device and in your own device backups; data leaves it only as described above.</span>
     <span>Effective 23 Sep 2026</span>
   </footer>
 
