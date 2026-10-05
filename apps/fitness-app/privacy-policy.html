@@ -7,48 +7,50 @@
 <link rel="icon" type="image/png" href="logo.png">
 <title>Stay Fit — Privacy Policy</title>
 <style>
-  /* Matches the Stay Fit app's neo-brutalist theme: true-black flat surfaces,
-     hard white borders, offset solid "sticker" shadows, Archivo type, and the
-     Profile screen's teal as the accent (the app opens this page from Profile).
-     The app renders this page in a WebView, so keep it in step with
-     src/shared/theme/colors.ts in the fitness-app repo. */
+  /* Matches the Stay Fit app's current look: black backdrop, cards with a
+     thin border tinted in the accent sitting on an offset solid "sticker"
+     shadow, the Outfit typeface, and the Profile screen's indigo as the accent
+     (the app opens this page from Profile). Keep it in step with
+     src/shared/theme/colors.ts and src/shared/components/Card.tsx. */
   :root{
     --bg:#000000;
-    --surface:#0A0A0A;
+    --backdrop-top:#0B0B0D;
+    --card:#0A0A0A;
     --elevated:#141414;
     --ink:#FFFFFF;
     --ink-muted:#909090;
-    --ink-faint:#707070;
-    --accent:#2DD4BF;
-    --accent-soft:rgba(45,212,191,0.08);
-    --border-hard:rgba(255,255,255,0.9);
-    --border:rgba(255,255,255,0.16);
+    --accent:#818CF8;
+    --accent-soft:rgba(129,140,248,0.12);
+    --accent-line:rgba(129,140,248,0.4);
+    --hairline:rgba(255,255,255,0.14);
+    --radius:6px;
     --shadow: 4px 4px 0 var(--accent);
     color-scheme: dark;
   }
-
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body{
-    background: var(--bg);
+    background: linear-gradient(180deg, var(--backdrop-top) 0, var(--bg) 480px) var(--bg);
     color: var(--ink);
-    font-family: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 15px;
+    font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15.5px;
     line-height: 1.65;
-    padding-inline: 20px;
+    padding-inline: 16px;
     padding-block: 28px 48px;
   }
-  h1,h2,h3{
-    font-family: "Archivo", -apple-system, sans-serif;
-    font-weight: 800;
-    color: var(--ink);
-    line-height: 1.2;
-  }
+  h1,h2,h3{ font-weight: 800; color: var(--ink); line-height: 1.2; }
   a { color: var(--accent); text-decoration-thickness: 1.5px; text-underline-offset: 2px; }
-  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
   img { max-width: 100%; }
-
   .page { max-width: 700px; margin-inline: auto; }
+
+  /* Cards: thin accent-tinted border on an offset solid shadow, like the app. */
+  .summary-card, nav.toc, .data-table, .callout, .contact-card{
+    background: var(--card);
+    border: 1.5px solid var(--accent-line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
 
   .masthead {
     display: flex;
@@ -56,188 +58,124 @@
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
-    padding-block-end: 22px;
+    padding-block-end: 20px;
     margin-block-end: 28px;
-    border-bottom: 2px solid var(--border-hard);
+    border-bottom: 1px solid var(--hairline);
   }
-  .masthead-id { display: flex; align-items: center; gap: 10px; }
-  .mark {
-    width: 44px; height: 44px; border-radius: 10px;
-    border: 2px solid var(--border-hard);
-    display: block;
-    flex-shrink: 0;
-  }
-  .app-name { font-weight: 800; font-size: 15px; color: var(--ink); text-transform: uppercase; letter-spacing: 0.04em; }
+  .masthead-id { display: flex; align-items: center; gap: 12px; }
+  .mark { width: 44px; height: 44px; display: block; flex-shrink: 0; border: none; border-radius: 0; }
+  .app-name { font-weight: 800; font-size: 17px; color: var(--ink); letter-spacing: 0.01em; }
   .app-tag { font-size: 12px; color: var(--ink-muted); margin-top: 1px; }
-  .meta {
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    color: var(--ink-muted);
-    text-align: right;
-  }
-
+  .meta { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-muted); text-align: right; }
   .eyebrow {
+    display: inline-block;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-block-end: 10px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: 999px;
+    padding: 4px 10px;
+    margin-block-end: 14px;
   }
-  h1.title {
-    font-family: "Archivo Black", "Archivo", sans-serif;
-    font-weight: 400;
-    font-size: clamp(28px, 6vw, 36px);
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
-    margin: 0 0 12px;
-  }
-  .dek { color: var(--ink-muted); font-size: 15.5px; max-width: 56ch; margin: 0 0 30px; }
+  h1.title { font-weight: 900; font-size: clamp(30px, 7vw, 40px); letter-spacing: -0.01em; margin: 0 0 12px; }
+  .dek { color: var(--ink-muted); font-size: 16px; max-width: 56ch; margin: 0 0 30px; }
 
-  .summary-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin-block-end: 34px;
-  }
+  .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-block-end: 36px; }
   @media (max-width: 620px) { .summary-grid { grid-template-columns: 1fr; } }
-  .summary-card {
-    background: var(--surface);
-    border: 2px solid var(--border-hard);
-    border-radius: 12px;
-    padding: 16px;
-  }
+  .summary-card { padding: 16px; margin: 0 4px 4px 0; }
   .summary-card .ic {
-    width: 32px; height: 32px; border-radius: 8px;
+    width: 36px; height: 36px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
     color: var(--accent);
-    margin-block-end: 10px;
+    margin-block-end: 12px;
   }
   .summary-card .ic svg { width: 17px; height: 17px; display: block; }
-  .summary-card h3 { font-size: 14px; margin: 0 0 4px; }
-  .summary-card p { font-size: 12.5px; color: var(--ink-muted); margin: 0; line-height: 1.5; }
+  .summary-card h3 { font-size: 15px; margin: 0 0 4px; }
+  .summary-card p { font-size: 13px; color: var(--ink-muted); margin: 0; line-height: 1.5; }
 
-  nav.toc {
-    background: var(--surface);
-    border: 2px solid var(--border-hard);
-    border-radius: 12px;
-    padding: 16px 18px;
-    margin-block-end: 40px;
-    margin-inline-end: 4px;
-    box-shadow: var(--shadow);
-  }
-  nav.toc h2 {
-    font-size: 10.5px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    margin: 0 0 10px;
-  }
+  nav.toc { padding: 16px 18px; margin: 0 4px 40px 0; }
+  nav.toc h2 { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 12px; }
   nav.toc ol { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 20px; }
   @media (max-width: 480px) { nav.toc ol { columns: 1; } }
-  nav.toc li { break-inside: avoid; margin-block-end: 7px; }
-  nav.toc a { display: flex; gap: 8px; font-size: 13px; font-weight: 600; color: var(--ink); text-decoration: none; }
+  nav.toc li { break-inside: avoid; margin-block-end: 8px; }
+  nav.toc a { display: flex; gap: 8px; font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; }
   nav.toc a:hover { color: var(--accent); }
-  nav.toc .num { color: var(--accent); font-weight: 800; font-size: 12px; flex-shrink: 0; }
+  nav.toc .num { color: var(--accent); font-weight: 800; font-size: 12.5px; flex-shrink: 0; }
 
   section { margin-block-end: 40px; scroll-margin-top: 20px; }
   section h2 {
-    font-size: 19px;
+    font-size: 20px;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 10px;
     margin: 0 0 14px;
     padding-block-end: 10px;
-    border-bottom: 2px solid var(--border);
+    border-bottom: 1px solid var(--hairline);
   }
-  section h2 .num { font-size: 13px; font-weight: 800; color: var(--accent); }
+  section h2 .num {
+    font-size: 12px; font-weight: 800; color: var(--accent);
+    background: var(--accent-soft); border: 1px solid var(--accent-line);
+    border-radius: 999px; padding: 2px 8px; line-height: 1.4;
+  }
   section p { margin: 0 0 12px; color: var(--ink); max-width: 62ch; }
-  section p.muted { color: var(--ink-muted); font-size: 13.5px; }
+  section p.muted { color: var(--ink-muted); font-size: 14px; }
   section ul { margin: 0 0 12px; padding-left: 20px; max-width: 60ch; }
   section li { margin-block-end: 8px; }
   section li::marker { color: var(--accent); }
   strong { font-weight: 700; }
 
-  /* border-collapse: separate so the rounded hard border actually renders. */
+  /* border-collapse: separate so the rounded border actually renders. */
   .data-table {
-    width: 100%;
+    width: calc(100% - 4px);
     border-collapse: separate;
     border-spacing: 0;
-    margin-block: 14px 18px;
-    font-size: 13.5px;
-    background: var(--surface);
-    border: 2px solid var(--border-hard);
-    border-radius: 12px;
+    margin-block: 14px 20px;
+    font-size: 14px;
     overflow: hidden;
   }
-  .data-table th, .data-table td {
-    text-align: left;
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
-  }
-  .data-table th {
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    background: var(--elevated);
-    border-bottom: 2px solid var(--border-hard);
-  }
+  .data-table th, .data-table td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+  .data-table th { font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); background: var(--elevated); }
   .data-table tr:last-child td { border-bottom: none; }
   .data-table td.where { color: var(--accent); font-weight: 700; white-space: nowrap; }
 
-  .callout {
-    background: var(--surface);
-    border: 2px solid var(--border-hard);
-    border-left: 6px solid var(--accent);
-    border-radius: 12px;
-    padding: 14px 16px;
-    font-size: 13.5px;
-    color: var(--ink);
-    margin-block: 4px 16px;
-  }
+  .callout { border-left: 5px solid var(--accent); padding: 14px 16px; font-size: 14px; color: var(--ink); margin: 4px 4px 16px 0; }
   .callout strong { color: var(--accent); }
 
   .contact-card {
-    background: var(--surface);
-    border: 2px solid var(--border-hard);
-    border-radius: 12px;
     padding: 20px;
     margin-inline-end: 4px;
-    box-shadow: var(--shadow);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
   }
-  .contact-card .label { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 3px; }
-  .contact-card .value { font-size: 15px; font-weight: 700; }
+  .contact-card .label { font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 3px; }
+  .contact-card .value { font-size: 16px; font-weight: 700; }
 
   footer {
     margin-block-start: 48px;
     padding-block-start: 20px;
-    border-top: 2px solid var(--border-hard);
+    border-top: 1px solid var(--hairline);
     display: flex;
     justify-content: space-between;
     gap: 12px;
     flex-wrap: wrap;
-    font-size: 12px;
+    font-size: 12.5px;
     color: var(--ink-muted);
   }
-
   @media (prefers-reduced-motion: no-preference) {
     section { animation: rise .5s ease both; }
     @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
   }
 </style>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Archivo+Black&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap">
 </head>
 <body>
 <div class="page">
@@ -255,7 +193,7 @@
 
   <div class="eyebrow">Legal · Data handling</div>
   <h1 class="title">Privacy Policy</h1>
-  <p class="dek">A plain account of what Stay Fit stores, what it reads from Apple Health or Health Connect, and exactly when anything leaves your phone — only when you use Ask AI or the weekly review, search for or scan a food, or buy Premium. We never sell your data or hand it to advertisers.</p>
+  <p class="dek">A plain account of what Stay Fit stores, what it reads from Apple Health or Health Connect, and exactly when anything leaves your phone — only when you use Ask AI or the weekly review, search for or scan a food, or buy Premium, plus an anonymous report if the app crashes. We never sell your data or hand it to advertisers.</p>
 
   <div class="summary-grid">
     <div class="summary-card">
@@ -271,7 +209,7 @@
     <div class="summary-card">
       <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
       <h3>No ads, no data sale</h3>
-      <p>There is no advertising SDK or analytics tracker in this app, and your personal information is never sold or used for advertising.</p>
+      <p>There is no advertising SDK or analytics tracker in this app, only an anonymous crash reporter, and your personal information is never sold or used for advertising.</p>
     </div>
   </div>
 
@@ -284,14 +222,15 @@
       <li><a href="#ai"><span class="num">04</span> Ask AI &amp; weekly review</a></li>
       <li><a href="#food"><span class="num">05</span> Food search &amp; barcodes</a></li>
       <li><a href="#purchases"><span class="num">06</span> Premium purchases</a></li>
-      <li><a href="#use"><span class="num">07</span> How your information is used</a></li>
-      <li><a href="#storage"><span class="num">08</span> Storage &amp; security</a></li>
-      <li><a href="#sharing"><span class="num">09</span> Sharing &amp; sale of data</a></li>
-      <li><a href="#choices"><span class="num">10</span> Your choices</a></li>
-      <li><a href="#retention"><span class="num">11</span> Deleting your data</a></li>
-      <li><a href="#children"><span class="num">12</span> Children's privacy</a></li>
-      <li><a href="#changes"><span class="num">13</span> Changes to this policy</a></li>
-      <li><a href="#contact"><span class="num">14</span> Contact</a></li>
+      <li><a href="#crashes"><span class="num">07</span> Crash reports</a></li>
+      <li><a href="#use"><span class="num">08</span> How your information is used</a></li>
+      <li><a href="#storage"><span class="num">09</span> Storage &amp; security</a></li>
+      <li><a href="#sharing"><span class="num">10</span> Sharing &amp; sale of data</a></li>
+      <li><a href="#choices"><span class="num">11</span> Your choices</a></li>
+      <li><a href="#retention"><span class="num">12</span> Deleting your data</a></li>
+      <li><a href="#children"><span class="num">13</span> Children's privacy</a></li>
+      <li><a href="#changes"><span class="num">14</span> Changes to this policy</a></li>
+      <li><a href="#contact"><span class="num">15</span> Contact</a></li>
     </ol>
   </nav>
 
@@ -342,7 +281,7 @@
       <li><strong>Weekly review (Premium), only if you allow personalised answers:</strong> for each of the last 7 days, your total calories and protein, your workouts (name, duration and volume), water and hours of sleep; plus your goals (calories, protein, water, sleep, target weight and date), your weight change that week and your workout streak. The finished review is saved on your phone.</li>
       <li><strong>Never sent:</strong> individual meals or food names, progress photos, body measurements, exercise notes, or any Apple Health / Health Connect data.</li>
     </ul>
-    <p>Requests pass through a small server Stay Fit runs on <strong>Cloudflare</strong>, which holds the AI provider's key so it isn't stored in the app. That server forwards your request to Groq and returns the answer; it does not store your questions or data, and keeps only an anonymous count of requests per day to enforce a usage limit. As the host, Cloudflare handles basic connection data such as your IP address under its own <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">privacy policy</a>. Groq processes the request to generate the answer under its own <a href="https://groq.com/privacy-policy" target="_blank" rel="noopener">privacy policy</a>. Chats are not saved — closing Ask AI clears the conversation.</p>
+    <p>Requests pass through a small server Stay Fit runs on <strong>Cloudflare</strong>, which holds the AI provider's key so it isn't stored in the app. That server forwards your request to Groq and returns the answer; it does not store your questions or data, and keeps only a count of requests per day, overall and per IP address, to enforce usage limits. These counts hold no questions or other data and are deleted automatically after two days. As the host, Cloudflare handles basic connection data such as your IP address under its own <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">privacy policy</a>. Groq processes the request to generate the answer under its own <a href="https://groq.com/privacy-policy" target="_blank" rel="noopener">privacy policy</a>. Chats are not saved — closing Ask AI clears the conversation.</p>
     <p class="muted">You can turn personalised answers on or off at any time with the “Personalised” setting at the top of the Ask AI screen. Ask AI is a general assistant, not medical advice.</p>
   </section>
 
@@ -358,8 +297,14 @@
     <p>RevenueCat receives a random, anonymous app user ID (not your name or email), your purchase and subscription status from the store, and basic device information such as platform and app version. It does not receive any of your workout, nutrition or health data. RevenueCat handles this under its own <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
   </section>
 
+  <section id="crashes">
+    <h2><span class="num">07</span> Crash reports</h2>
+    <p>If Stay Fit crashes or hits a serious error, it sends a crash report to <strong>Sentry</strong>, a service that helps us find and fix bugs. A report contains the error itself, where in the app's code it happened, and basic device information: phone model, operating system and app version.</p>
+    <p>Crash reports do <strong>not</strong> include your name, email, workouts, meals, weight, health or heart data, or photos. The app doesn't attach any user ID, doesn't record what you tap or type, and Sentry is set not to store IP addresses. Sentry handles reports under its own <a href="https://sentry.io/privacy/" target="_blank" rel="noopener">privacy policy</a>.</p>
+  </section>
+
   <section id="use">
-    <h2><span class="num">07</span> How your information is used</h2>
+    <h2><span class="num">08</span> How your information is used</h2>
     <ul>
       <li>Calculating your BMI, macro targets, readiness score and progress trends</li>
       <li>Showing your logged history — and imported health workouts and trends — back to you across the app</li>
@@ -369,18 +314,19 @@
       <li>Showing your progress photos, body measurements and fasting history back to you</li>
       <li>Reminders and the "fast complete" alert, which are scheduled on your phone</li>
       <li>Generating the CSV file when you use the in-app data export feature</li>
+      <li>Finding and fixing bugs, using anonymous crash reports</li>
     </ul>
-    <p class="muted">Your information is never used to build an advertising profile, and we do not have an analytics or advertising SDK integrated into Stay Fit to do so.</p>
+    <p class="muted">Your information is never used to build an advertising profile, and we do not have an analytics or advertising SDK integrated into Stay Fit to do so. Sentry, described in section 07, only receives anonymous crash reports.</p>
   </section>
 
   <section id="storage">
-    <h2><span class="num">08</span> Storage &amp; security</h2>
-    <p>Your data is stored in an encrypted-at-rest, sandboxed local database, protected the same way the rest of your phone's app data is protected by iOS or Android. Stay Fit has no server that stores your logs or health data, so there is no server-side copy of ours to breach — the security of your data is tied to the security of your device and your own device backups. Data sent for Ask AI, the weekly review, food search, barcode lookup or purchases travels over encrypted (HTTPS) connections.</p>
+    <h2><span class="num">09</span> Storage &amp; security</h2>
+    <p>Your data is stored in an encrypted-at-rest, sandboxed local database, protected the same way the rest of your phone's app data is protected by iOS or Android. Stay Fit has no server that stores your logs or health data, so there is no server-side copy of ours to breach — the security of your data is tied to the security of your device and your own device backups. Data sent for Ask AI, the weekly review, food search, barcode lookup, purchases or crash reports travels over encrypted (HTTPS) connections.</p>
     <div class="callout"><strong>Device backups.</strong> On Android, your phone's built-in backup may include Stay Fit's data, including progress photos, in your device backup to your own Google account, so your history comes back when you reinstall the app or move to a new phone. This backup is encrypted and managed by Google as part of your account — Stay Fit can't access it. You can turn it off in your phone's backup settings.</div>
   </section>
 
   <section id="sharing">
-    <h2><span class="num">09</span> Sharing &amp; sale of data</h2>
+    <h2><span class="num">10</span> Sharing &amp; sale of data</h2>
     <p>We do not sell, rent, or trade your personal information, and we do not share it with third parties for their own marketing purposes. The only outside services Stay Fit talks to are:</p>
     <ul>
       <li><strong>Apple HealthKit / Google Health Connect</strong> — only if you opt in, and only to read the data you approve</li>
@@ -388,12 +334,13 @@
       <li><strong>USDA FoodData Central</strong> — only your typed search text, for food lookup</li>
       <li><strong>Open Food Facts</strong> — only a scanned barcode number, for barcode lookup</li>
       <li><strong>Google Play / App Store and RevenueCat</strong> — to process and verify Premium purchases, as described in section 06. The app may also ask Google Play or the App Store to show its rating window; anything you submit there goes to them, not to us</li>
+      <li><strong>Sentry</strong> — anonymous crash reports only, as described in section 07</li>
     </ul>
     <p class="muted">None of these is paid for your data, and none receives anything beyond what's described above.</p>
   </section>
 
   <section id="choices">
-    <h2><span class="num">10</span> Your choices</h2>
+    <h2><span class="num">11</span> Your choices</h2>
     <ul>
       <li><strong>Health sync</strong> — turn it on or off anytime from Profile → Health Sync, or revoke access entirely from your device's system settings</li>
       <li><strong>Ask AI data sharing</strong> — turn personalised answers on or off with the “Personalised” setting at the top of Ask AI. With it off, only your questions are sent</li>
@@ -404,25 +351,26 @@
   </section>
 
   <section id="retention">
-    <h2><span class="num">11</span> Deleting your data</h2>
-    <p>Uninstalling Stay Fit deletes its local database along with it, and Stay Fit keeps no copy of your logs anywhere else. If your phone's device backup is on (see section 08), a copy may remain in your own Google account's backup until you delete it there or turn backup off. If you'd like to keep using the app but clear specific data first, the delete controls throughout the app (routines, logged sets, meals, progress photos, measurements, fasts) remove that entry immediately and permanently, and Profile → Health Sync → Delete imported health data removes everything copied from Apple Health or Health Connect (the originals there aren't touched).</p>
+    <h2><span class="num">12</span> Deleting your data</h2>
+    <p>Uninstalling Stay Fit deletes its local database along with it, and Stay Fit keeps no copy of your logs anywhere else. If your phone's device backup is on (see section 09), a copy may remain in your own Google account's backup until you delete it there or turn backup off. If you'd like to keep using the app but clear specific data first, the delete controls throughout the app (routines, logged sets, meals, progress photos, measurements, fasts) remove that entry immediately and permanently, and Profile → Health Sync → Delete imported health data removes everything copied from Apple Health or Health Connect (the originals there aren't touched).</p>
     <p>Ask AI conversations aren't stored by Stay Fit. Purchase records are kept by Google Play or the App Store and by RevenueCat as needed for billing; to ask about removing the RevenueCat record linked to your anonymous ID, contact us below.</p>
   </section>
 
   <section id="children">
-    <h2><span class="num">12</span> Children's privacy</h2>
+    <h2><span class="num">13</span> Children's privacy</h2>
     <p>Stay Fit is not directed at children under 13, and we do not knowingly collect personal information from anyone in that age group.</p>
   </section>
 
   <section id="changes">
-    <h2><span class="num">13</span> Changes to this policy</h2>
+    <h2><span class="num">14</span> Changes to this policy</h2>
     <p>If this policy changes, we'll update the effective date above. Meaningful changes — anything that changes what we collect or how it's used — will also be called out in the app's release notes.</p>
+    <p class="muted">Version 1.3 (5 Oct 2026): added anonymous crash reports through Sentry, and per-IP request counts for the Ask AI usage limit.</p>
     <p class="muted">Version 1.2 (3 Oct 2026): added camera use (barcode scanning and progress photos), progress photos, body measurements, fasting, share cards, barcode lookup through Open Food Facts, and the data the weekly review uses.</p>
     <p class="muted">Version 1.1 (23 Sep 2026): added Ask AI, Premium purchases, device backups, and the heart rate, HRV, VO2 max and workout detail read from Apple Health / Health Connect.</p>
   </section>
 
   <section id="contact">
-    <h2><span class="num">14</span> Contact</h2>
+    <h2><span class="num">15</span> Contact</h2>
     <p>Questions about this policy or your data can be sent to:</p>
     <div class="contact-card">
       <div>
@@ -438,7 +386,7 @@
 
   <footer>
     <span>© 2026 Stay Fit. Your logs and health data stay on your device and in your own device backups; data leaves it only as described above.</span>
-    <span>Effective 3 Oct 2026</span>
+    <span>Effective 5 Oct 2026</span>
   </footer>
 
 </div>
