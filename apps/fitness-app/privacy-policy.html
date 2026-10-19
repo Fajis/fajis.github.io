@@ -3,54 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#F4F5F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D0F12" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/png" href="logo.png">
 <title>Stay Fit — Privacy Policy</title>
+<script>
+  // The app opens this page with ?theme=light or ?theme=dark so it matches the
+  // app's Appearance setting; in a normal browser it follows the device.
+  (function () {
+    var t = new URLSearchParams(location.search).get('theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
 <style>
-  /* Matches the Stay Fit app's current look: black backdrop, cards with a
-     thin border tinted in the accent sitting on an offset solid "sticker"
-     shadow, the Outfit typeface, and the Profile screen's indigo as the accent
-     (the app opens this page from Profile). Keep it in step with
-     src/shared/theme/colors.ts and src/shared/components/Card.tsx. */
+  /* Matches the Stay Fit app's "Athletic" look: soft borderless cards, rounded
+     corners, Barlow Condensed for titles and numbers, DM Sans for text, and the
+     Profile screen's indigo as the accent (the app opens this page from Profile).
+     Light or dark follows the reader's device. Keep it in step with
+     src/shared/theme/colors.ts in the fitness-app repo. */
   :root{
-    --bg:#000000;
-    --backdrop-top:#0B0B0D;
-    --card:#0A0A0A;
-    --elevated:#141414;
-    --ink:#FFFFFF;
-    --ink-muted:#909090;
-    --accent:#818CF8;
-    --accent-soft:rgba(129,140,248,0.12);
-    --accent-line:rgba(129,140,248,0.4);
-    --hairline:rgba(255,255,255,0.14);
-    --radius:6px;
-    --shadow: 4px 4px 0 var(--accent);
-    color-scheme: dark;
+    --bg:#F4F5F7;
+    --surface:#FFFFFF;
+    --elevated:#EEF0F3;
+    --ink:#0D0F12;
+    --ink-muted:#5B6470;
+    --accent:#4F46E5;
+    --accent-soft:rgba(79,70,229,0.1);
+    --divider:#E6E8EC;
+    color-scheme: light dark;
   }
+  /* Dark follows the device, unless the app passed ?theme=light|dark (set as data-theme below). */
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0D0F12;
+      --surface:#161A1F;
+      --elevated:#1C2128;
+      --ink:#F2F4F7;
+      --ink-muted:#9AA3AF;
+      --accent:#818CF8;
+      --accent-soft:rgba(129,140,248,0.14);
+      --divider:#1F242B;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0D0F12;
+    --surface:#161A1F;
+    --elevated:#1C2128;
+    --ink:#F2F4F7;
+    --ink-muted:#9AA3AF;
+    --accent:#818CF8;
+    --accent-soft:rgba(129,140,248,0.14);
+    --divider:#1F242B;
+  }
+
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body{
-    background: linear-gradient(180deg, var(--backdrop-top) 0, var(--bg) 480px) var(--bg);
+    background: var(--bg);
     color: var(--ink);
-    font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 15.5px;
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
     line-height: 1.65;
-    padding-inline: 16px;
+    padding-inline: 20px;
     padding-block: 28px 48px;
   }
-  h1,h2,h3{ font-weight: 800; color: var(--ink); line-height: 1.2; }
-  a { color: var(--accent); text-decoration-thickness: 1.5px; text-underline-offset: 2px; }
-  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
-  img { max-width: 100%; }
-  .page { max-width: 700px; margin-inline: auto; }
-
-  /* Cards: thin accent-tinted border on an offset solid shadow, like the app. */
-  .summary-card, nav.toc, .data-table, .callout, .contact-card{
-    background: var(--card);
-    border: 1.5px solid var(--accent-line);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+  h1,h2,h3{
+    font-family: "DM Sans", -apple-system, sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
   }
+  a { color: var(--accent); text-decoration-thickness: 1.5px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  img { max-width: 100%; }
+
+  .page { max-width: 700px; margin-inline: auto; }
 
   .masthead {
     display: flex;
@@ -58,124 +85,173 @@
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
-    padding-block-end: 20px;
+    padding-block-end: 22px;
     margin-block-end: 28px;
-    border-bottom: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--divider);
   }
-  .masthead-id { display: flex; align-items: center; gap: 12px; }
-  .mark { width: 44px; height: 44px; display: block; flex-shrink: 0; border: none; border-radius: 0; }
-  .app-name { font-weight: 800; font-size: 17px; color: var(--ink); letter-spacing: 0.01em; }
+  .masthead-id { display: flex; align-items: center; gap: 10px; }
+  .mark { width: 44px; height: 44px; border-radius: 12px; display: block; flex-shrink: 0; }
+  .app-name { font-weight: 700; font-size: 15px; color: var(--ink); }
   .app-tag { font-size: 12px; color: var(--ink-muted); margin-top: 1px; }
-  .meta { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-muted); text-align: right; }
-  .eyebrow {
-    display: inline-block;
+  .meta {
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+    text-align: right;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--accent);
-    background: var(--accent-soft);
-    border: 1px solid var(--accent-line);
-    border-radius: 999px;
-    padding: 4px 10px;
-    margin-block-end: 14px;
+    margin-block-end: 8px;
   }
-  h1.title { font-weight: 900; font-size: clamp(30px, 7vw, 40px); letter-spacing: -0.01em; margin: 0 0 12px; }
-  .dek { color: var(--ink-muted); font-size: 16px; max-width: 56ch; margin: 0 0 30px; }
+  h1.title {
+    font-family: "Barlow Condensed", "DM Sans", sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 8vw, 46px);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    margin: 0 0 14px;
+  }
+  .dek { color: var(--ink-muted); font-size: 15.5px; max-width: 56ch; margin: 0 0 30px; }
 
-  .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-block-end: 36px; }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-block-end: 34px;
+  }
   @media (max-width: 620px) { .summary-grid { grid-template-columns: 1fr; } }
-  .summary-card { padding: 16px; margin: 0 4px 4px 0; }
+  .summary-card {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 16px;
+  }
   .summary-card .ic {
-    width: 36px; height: 36px; border-radius: 50%;
+    width: 34px; height: 34px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     background: var(--accent-soft);
-    border: 1px solid var(--accent-line);
     color: var(--accent);
-    margin-block-end: 12px;
+    margin-block-end: 10px;
   }
   .summary-card .ic svg { width: 17px; height: 17px; display: block; }
-  .summary-card h3 { font-size: 15px; margin: 0 0 4px; }
-  .summary-card p { font-size: 13px; color: var(--ink-muted); margin: 0; line-height: 1.5; }
+  .summary-card h3 { font-size: 14px; margin: 0 0 4px; }
+  .summary-card p { font-size: 12.5px; color: var(--ink-muted); margin: 0; line-height: 1.5; }
 
-  nav.toc { padding: 16px 18px; margin: 0 4px 40px 0; }
-  nav.toc h2 { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 12px; }
+  nav.toc {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 16px 18px;
+    margin-block-end: 40px;
+  }
+  nav.toc h2 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 0 0 10px;
+  }
   nav.toc ol { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 20px; }
   @media (max-width: 480px) { nav.toc ol { columns: 1; } }
-  nav.toc li { break-inside: avoid; margin-block-end: 8px; }
-  nav.toc a { display: flex; gap: 8px; font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; }
+  nav.toc li { break-inside: avoid; margin-block-end: 7px; }
+  nav.toc a { display: flex; gap: 8px; font-size: 13.5px; font-weight: 500; color: var(--ink); text-decoration: none; }
   nav.toc a:hover { color: var(--accent); }
-  nav.toc .num { color: var(--accent); font-weight: 800; font-size: 12.5px; flex-shrink: 0; }
+  nav.toc .num { color: var(--accent); font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 15px; flex-shrink: 0; min-width: 16px; }
 
   section { margin-block-end: 40px; scroll-margin-top: 20px; }
   section h2 {
-    font-size: 20px;
+    font-size: 19px;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 10px;
     margin: 0 0 14px;
     padding-block-end: 10px;
-    border-bottom: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--divider);
   }
-  section h2 .num {
-    font-size: 12px; font-weight: 800; color: var(--accent);
-    background: var(--accent-soft); border: 1px solid var(--accent-line);
-    border-radius: 999px; padding: 2px 8px; line-height: 1.4;
-  }
+  section h2 .num { font-family: "Barlow Condensed", sans-serif; font-size: 20px; font-weight: 800; color: var(--accent); }
   section p { margin: 0 0 12px; color: var(--ink); max-width: 62ch; }
-  section p.muted { color: var(--ink-muted); font-size: 14px; }
+  section p.muted { color: var(--ink-muted); font-size: 13.5px; }
   section ul { margin: 0 0 12px; padding-left: 20px; max-width: 60ch; }
   section li { margin-block-end: 8px; }
   section li::marker { color: var(--accent); }
   strong { font-weight: 700; }
 
-  /* border-collapse: separate so the rounded border actually renders. */
+  /* border-collapse: separate so the rounded corners actually render. */
   .data-table {
-    width: calc(100% - 4px);
+    width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    margin-block: 14px 20px;
-    font-size: 14px;
+    margin-block: 14px 18px;
+    font-size: 13.5px;
+    background: var(--surface);
+    border-radius: 16px;
     overflow: hidden;
   }
-  .data-table th, .data-table td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--hairline); vertical-align: top; }
-  .data-table th { font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); background: var(--elevated); }
+  .data-table th, .data-table td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--divider);
+    vertical-align: top;
+  }
+  .data-table th {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    background: var(--elevated);
+  }
   .data-table tr:last-child td { border-bottom: none; }
   .data-table td.where { color: var(--accent); font-weight: 700; white-space: nowrap; }
 
-  .callout { border-left: 5px solid var(--accent); padding: 14px 16px; font-size: 14px; color: var(--ink); margin: 4px 4px 16px 0; }
+  .callout {
+    background: var(--accent-soft);
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 13.5px;
+    color: var(--ink);
+    margin-block: 4px 16px;
+  }
   .callout strong { color: var(--accent); }
 
   .contact-card {
+    background: var(--surface);
+    border-radius: 16px;
     padding: 20px;
-    margin-inline-end: 4px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
   }
-  .contact-card .label { font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 3px; }
-  .contact-card .value { font-size: 16px; font-weight: 700; }
+  .contact-card .label { font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 3px; }
+  .contact-card .value { font-size: 15px; font-weight: 700; }
 
   footer {
     margin-block-start: 48px;
     padding-block-start: 20px;
-    border-top: 1px solid var(--hairline);
+    border-top: 1px solid var(--divider);
     display: flex;
     justify-content: space-between;
     gap: 12px;
     flex-wrap: wrap;
-    font-size: 12.5px;
+    font-size: 12px;
     color: var(--ink-muted);
   }
+
   @media (prefers-reduced-motion: no-preference) {
     section { animation: rise .5s ease both; }
     @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
   }
 </style>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&family=DM+Sans:wght@400;500;700&display=swap">
 </head>
 <body>
 <div class="page">
