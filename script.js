@@ -1,4 +1,4 @@
-// Shared site behaviour: navigation, scroll state, reveal animations, contact form.
+// Shared site behaviour: navigation, app showcase, local time, contact form.
 
 const header = document.getElementById('siteHeader');
 const navToggle = document.getElementById('navToggle');
@@ -11,12 +11,12 @@ document.querySelectorAll('[data-year]').forEach(el => {
 
 // Mobile menu
 function setMenuOpen(open) {
-    if (!header || !navToggle) return;
     header.classList.toggle('is-open', open);
     navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.firstElementChild.textContent = open ? 'Close' : 'Menu';
 }
 
-if (navToggle) {
+if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
         setMenuOpen(navToggle.getAttribute('aria-expanded') !== 'true');
     });
@@ -29,13 +29,6 @@ if (navToggle) {
         if (e.key === 'Escape') setMenuOpen(false);
     });
 }
-
-// Header background once the page has scrolled
-function updateHeader() {
-    if (header) header.classList.toggle('is-scrolled', window.scrollY > 12);
-}
-window.addEventListener('scroll', updateHeader, { passive: true });
-updateHeader();
 
 // Highlight the nav link of the section currently in view
 const sectionLinks = new Map();
@@ -56,28 +49,38 @@ if (sectionLinks.size && 'IntersectionObserver' in window) {
     sectionLinks.forEach((_, section) => sectionObserver.observe(section));
 }
 
-// Reveal elements as they scroll into view
-const revealEls = document.querySelectorAll('.reveal');
-if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-        });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    revealEls.forEach(el => revealObserver.observe(el));
-} else {
-    revealEls.forEach(el => el.classList.add('is-visible'));
+// Local time in Bahrain (UTC+3)
+const localTime = document.getElementById('localTime');
+if (localTime) {
+    const formatter = new Intl.DateTimeFormat('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'Asia/Bahrain'
+    });
+    const tick = () => {
+        localTime.textContent = `${formatter.format(new Date())} local`;
+    };
+    tick();
+    setInterval(tick, 30000);
 }
 
-// Border light that follows the pointer on interactive cards
-document.querySelectorAll('.card--interactive').forEach(card => {
-    card.addEventListener('pointermove', e => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-        card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+// App showcase: selecting a table row shows its README in the terminal
+const appRows = document.querySelectorAll('.app-row');
+
+function selectApp(row) {
+    appRows.forEach(r => {
+        const selected = r === row;
+        r.classList.toggle('is-selected', selected);
+        r.querySelector('.row-select').setAttribute('aria-pressed', String(selected));
+        document.getElementById(r.dataset.target).hidden = !selected;
+    });
+}
+
+appRows.forEach(row => {
+    row.addEventListener('click', e => {
+        // Let real links (Play Store, tools) navigate normally
+        if (e.target.closest('a')) return;
+        selectApp(row);
     });
 });
 
@@ -85,13 +88,13 @@ document.querySelectorAll('.card--interactive').forEach(card => {
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
+    const originalHTML = submitBtn.innerHTML;
 
     function showStatus(text, state, reset) {
         submitBtn.textContent = text;
         submitBtn.classList.add(state);
         setTimeout(() => {
-            submitBtn.textContent = originalText;
+            submitBtn.innerHTML = originalHTML;
             submitBtn.classList.remove(state);
             submitBtn.disabled = false;
             if (reset) contactForm.reset();
@@ -111,12 +114,12 @@ if (contactForm) {
             });
 
             if (response.ok) {
-                showStatus('Message sent!', 'is-success', true);
+                showStatus('Message sent. Thank you!', 'is-success', true);
             } else {
-                showStatus('Something went wrong', 'is-error', false);
+                showStatus('Something went wrong. Try again.', 'is-error', false);
             }
         } catch (error) {
-            showStatus('Network error', 'is-error', false);
+            showStatus('No connection. Try again.', 'is-error', false);
         }
     });
 }

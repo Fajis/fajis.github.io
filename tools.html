@@ -5,103 +5,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Tools — Fajis PM</title>
-    <meta name="description"
-        content="Free EMI, SIP, lumpsum, goal and loan-affordability calculators, plus a multi-currency budget planner.">
-    <meta name="theme-color" content="#09090b">
+    <meta name="description" content="Free calculators for loans, savings and your monthly budget. They run in your browser.">
+    <meta name="theme-color" content="#0a0a0a">
     <link rel="canonical" href="https://fajis.is-a.dev/tools">
     <link rel="manifest" href="./manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <header class="site-header" id="siteHeader">
-        <nav class="container nav" aria-label="Primary">
-            <a href="./" class="brand" aria-label="Fajis PM — home">
-                <span class="brand-mark" aria-hidden="true">F</span>
-                Fajis PM
-            </a>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu"
-                aria-label="Toggle menu">
-                <span class="nav-toggle-bars"></span>
+    <header class="site-header" id="siteHeader">
+        <nav class="wrap nav" aria-label="Primary">
+            <a href="./" class="brand">fajis<span class="accent">.</span>pm</a>
+
+            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu">
+                <span class="nav-toggle-label">Menu</span>
             </button>
 
             <ul class="nav-menu" id="navMenu">
-                <li><a href="./#about" class="nav-link">About</a></li>
-                <li><a href="./#stack" class="nav-link">Stack</a></li>
-                <li><a href="./#work" class="nav-link">Work</a></li>
-                <li><a href="./#process" class="nav-link">Process</a></li>
-                <li><a href="tools" class="nav-link is-active" aria-current="page">Tools</a></li>
-                <li class="nav-cta"><a href="./#contact" class="btn btn--primary btn--sm">Let's talk</a></li>
+                <li><a href="./#about" class="nav-link"><span class="nav-index">01</span>About</a></li>
+                <li><a href="./#stack" class="nav-link"><span class="nav-index">02</span>Stack</a></li>
+                <li><a href="./#work" class="nav-link"><span class="nav-index">03</span>Work</a></li>
+                <li><a href="./#contact" class="nav-link"><span class="nav-index">04</span>Contact</a></li>
+                <li><a href="./tools" class="nav-link is-active" aria-current="page"><span class="nav-index">↗</span>Tools</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <main id="main">
         <section class="page-hero">
-            <div class="container">
-                <p class="eyebrow">Free utilities</p>
-                <h1 class="hero-title">Financial <span class="text-gradient">tools</span></h1>
-                <p class="hero-lead">Plan loans, investments and your monthly budget. Everything runs in your browser
-                    — pick a tool to begin.</p>
+            <div class="wrap grid">
+                <p class="hero-meta mono"><span>~/fajis/tools</span><span>Free · No sign-up</span></p>
+                <h1 class="page-title">Financial tools<span class="cursor" aria-hidden="true"></span></h1>
+                <p class="hero-lead">Simple calculators for loans, savings and your monthly budget. Everything runs in your browser. Pick a tool to start.</p>
             </div>
         </section>
 
-        <section class="container">
-            <!-- Dashboard -->
-            <ul id="toolsDashboard" class="grid grid--3">
-                <li class="reveal">
-                    <button type="button" class="card card--interactive tool-card" onclick="openTool('emiTool')">
-                        <span class="card-icon">EMI</span>
-                        <span class="card-title">EMI Calculator</span>
-                        <span class="card-text">Plan loan repayments</span>
+        <section class="wrap page-content">
+            <!-- Tool list -->
+            <ul id="toolsDashboard" class="index-list">
+                <li>
+                    <button type="button" class="index-row" onclick="openTool('emiTool')">
+                        <span class="index-code">EMI</span>
+                        <span class="index-name">EMI Calculator</span>
+                        <span class="index-desc">Find your monthly loan payment</span>
+                        <span class="index-go" aria-hidden="true">→</span>
                     </button>
                 </li>
-                <li class="reveal">
-                    <button type="button" class="card card--interactive tool-card" onclick="openTool('sipTool')">
-                        <span class="card-icon card-icon--emerald">SIP</span>
-                        <span class="card-title">SIP Calculator</span>
-                        <span class="card-text">Systematic monthly investment</span>
+                <li>
+                    <button type="button" class="index-row" onclick="openTool('sipTool')">
+                        <span class="index-code">SIP</span>
+                        <span class="index-name">SIP Calculator</span>
+                        <span class="index-desc">See how a monthly investment grows</span>
+                        <span class="index-go" aria-hidden="true">→</span>
                     </button>
                 </li>
-                <li class="reveal">
-                    <button type="button" class="card card--interactive tool-card" onclick="openTool('lumpsumTool')">
-                        <span class="card-icon card-icon--sky">LMP</span>
-                        <span class="card-title">Lumpsum</span>
-                        <span class="card-text">One-time investment growth</span>
+                <li>
+                    <button type="button" class="index-row" onclick="openTool('lumpsumTool')">
+                        <span class="index-code">LMP</span>
+                        <span class="index-name">Lumpsum</span>
+                        <span class="index-desc">See how a one-time investment grows</span>
+                        <span class="index-go" aria-hidden="true">→</span>
                     </button>
                 </li>
-                <li class="reveal">
-                    <button type="button" class="card card--interactive tool-card" onclick="openTool('goalTool')">
-                        <span class="card-icon">GOL</span>
-                        <span class="card-title">Goal Planner</span>
-                        <span class="card-text">Target-based savings</span>
+                <li>
+                    <button type="button" class="index-row" onclick="openTool('goalTool')">
+                        <span class="index-code">GOL</span>
+                        <span class="index-name">Goal Planner</span>
+                        <span class="index-desc">Find how much to save each month for a goal</span>
+                        <span class="index-go" aria-hidden="true">→</span>
                     </button>
                 </li>
-                <li class="reveal">
-                    <button type="button" class="card card--interactive tool-card" onclick="openTool('affordTool')">
-                        <span class="card-icon card-icon--emerald">AFF</span>
-                        <span class="card-title">Affordability</span>
-                        <span class="card-text">Maximum loan you can take</span>
+                <li>
+                    <button type="button" class="index-row" onclick="openTool('affordTool')">
+                        <span class="index-code">AFF</span>
+                        <span class="index-name">Affordability</span>
+                        <span class="index-desc">Find the biggest loan you can afford</span>
+                        <span class="index-go" aria-hidden="true">→</span>
                     </button>
                 </li>
-                <li class="reveal">
-                    <button type="button" class="card card--interactive tool-card" onclick="openTool('budgetTool')">
-                        <span class="card-icon card-icon--sky">BGT</span>
-                        <span class="card-title">Budget Planner</span>
-                        <span class="card-text">Multi-currency income &amp; expenses</span>
+                <li>
+                    <button type="button" class="index-row" onclick="openTool('budgetTool')">
+                        <span class="index-code">BGT</span>
+                        <span class="index-name">Budget Planner</span>
+                        <span class="index-desc">Track income and spending in two currencies</span>
+                        <span class="index-go" aria-hidden="true">→</span>
                     </button>
                 </li>
             </ul>
 
             <!-- EMI Calculator -->
-            <div id="emiTool" class="card tool-view">
-                <button type="button" class="back-btn" onclick="closeTool()">← Back to tools</button>
+            <div id="emiTool" class="tool-view">
+                <button type="button" class="back-btn" onclick="closeTool()">← All tools</button>
                 <h2 class="tool-view-title">EMI Calculator</h2>
                 <div class="form calculator-form">
                     <div class="field">
@@ -109,7 +111,7 @@
                         <input class="input" type="number" id="loanAmount" step="1000" inputmode="decimal" required>
                     </div>
                     <div class="field">
-                        <label class="field-label" for="interestRate">Interest rate (%)</label>
+                        <label class="field-label" for="interestRate">Interest rate (% per year)</label>
                         <input class="input" type="number" id="interestRate" step="0.1" inputmode="decimal" required>
                     </div>
                     <div class="form-row">
@@ -122,29 +124,29 @@
                             <input class="input" type="number" id="loanTenureMonths" step="1" inputmode="numeric" required>
                         </div>
                     </div>
-                    <button type="button" class="btn btn--primary btn--block" onclick="calculateEMI()">Calculate EMI</button>
+                    <button type="button" class="btn btn--block" onclick="calculateEMI()">Calculate <span aria-hidden="true">→</span></button>
                 </div>
                 <div class="result-box">
                     <span class="result-label">Monthly payment</span>
                     <div class="result-value" id="monthlyEMI">0.00</div>
                     <div class="result-breakdown">
                         <div><span class="result-label">Total interest</span><span id="totalInterest">0.00</span></div>
-                        <div><span class="result-label">Total payment</span><span id="totalPayment">0.00</span></div>
+                        <div><span class="result-label">Total you pay</span><span id="totalPayment">0.00</span></div>
                     </div>
                 </div>
             </div>
 
             <!-- SIP Calculator -->
-            <div id="sipTool" class="card tool-view">
-                <button type="button" class="back-btn" onclick="closeTool()">← Back to tools</button>
+            <div id="sipTool" class="tool-view">
+                <button type="button" class="back-btn" onclick="closeTool()">← All tools</button>
                 <h2 class="tool-view-title">SIP Calculator</h2>
                 <div class="form calculator-form">
                     <div class="field">
-                        <label class="field-label" for="sipAmount">Monthly investment ($)</label>
+                        <label class="field-label" for="sipAmount">Amount per month ($)</label>
                         <input class="input" type="number" id="sipAmount" step="500" inputmode="decimal" required>
                     </div>
                     <div class="field">
-                        <label class="field-label" for="sipRate">Expected return (% p.a.)</label>
+                        <label class="field-label" for="sipRate">Expected return (% per year)</label>
                         <input class="input" type="number" id="sipRate" step="0.1" inputmode="decimal" required>
                     </div>
                     <div class="form-row">
@@ -157,29 +159,29 @@
                             <input class="input" type="number" id="sipTenureMonths" step="1" inputmode="numeric" required>
                         </div>
                     </div>
-                    <button type="button" class="btn btn--primary btn--block" onclick="calculateSIP()">Calculate SIP</button>
+                    <button type="button" class="btn btn--block" onclick="calculateSIP()">Calculate <span aria-hidden="true">→</span></button>
                 </div>
                 <div class="result-box">
-                    <span class="result-label">Total value</span>
+                    <span class="result-label">Final value</span>
                     <div class="result-value" id="sipTotal">0.00</div>
                     <div class="result-breakdown">
-                        <div><span class="result-label">Invested</span><span id="sipInvested">0.00</span></div>
-                        <div><span class="result-label">Returns</span><span id="sipReturns">0.00</span></div>
+                        <div><span class="result-label">You put in</span><span id="sipInvested">0.00</span></div>
+                        <div><span class="result-label">You earn</span><span id="sipReturns">0.00</span></div>
                     </div>
                 </div>
             </div>
 
             <!-- Lumpsum Calculator -->
-            <div id="lumpsumTool" class="card tool-view">
-                <button type="button" class="back-btn" onclick="closeTool()">← Back to tools</button>
+            <div id="lumpsumTool" class="tool-view">
+                <button type="button" class="back-btn" onclick="closeTool()">← All tools</button>
                 <h2 class="tool-view-title">Lumpsum Calculator</h2>
                 <div class="form calculator-form">
                     <div class="field">
-                        <label class="field-label" for="lumpsumAmount">Total investment ($)</label>
+                        <label class="field-label" for="lumpsumAmount">Amount you invest ($)</label>
                         <input class="input" type="number" id="lumpsumAmount" step="1000" inputmode="decimal" required>
                     </div>
                     <div class="field">
-                        <label class="field-label" for="lumpsumRate">Expected return (% p.a.)</label>
+                        <label class="field-label" for="lumpsumRate">Expected return (% per year)</label>
                         <input class="input" type="number" id="lumpsumRate" step="0.1" inputmode="decimal" required>
                     </div>
                     <div class="form-row">
@@ -192,29 +194,29 @@
                             <input class="input" type="number" id="lumpsumTenureMonths" step="1" inputmode="numeric" required>
                         </div>
                     </div>
-                    <button type="button" class="btn btn--primary btn--block" onclick="calculateLumpsum()">Calculate lumpsum</button>
+                    <button type="button" class="btn btn--block" onclick="calculateLumpsum()">Calculate <span aria-hidden="true">→</span></button>
                 </div>
                 <div class="result-box">
-                    <span class="result-label">Total value</span>
+                    <span class="result-label">Final value</span>
                     <div class="result-value" id="lumpsumTotal">0.00</div>
                     <div class="result-breakdown">
-                        <div><span class="result-label">Invested</span><span id="lumpsumInvested">0.00</span></div>
-                        <div><span class="result-label">Returns</span><span id="lumpsumReturns">0.00</span></div>
+                        <div><span class="result-label">You put in</span><span id="lumpsumInvested">0.00</span></div>
+                        <div><span class="result-label">You earn</span><span id="lumpsumReturns">0.00</span></div>
                     </div>
                 </div>
             </div>
 
             <!-- Goal Planner -->
-            <div id="goalTool" class="card tool-view">
-                <button type="button" class="back-btn" onclick="closeTool()">← Back to tools</button>
+            <div id="goalTool" class="tool-view">
+                <button type="button" class="back-btn" onclick="closeTool()">← All tools</button>
                 <h2 class="tool-view-title">Goal Planner</h2>
                 <div class="form calculator-form">
                     <div class="field">
-                        <label class="field-label" for="goalTarget">Target amount ($)</label>
+                        <label class="field-label" for="goalTarget">Goal amount ($)</label>
                         <input class="input" type="number" id="goalTarget" step="1000" inputmode="decimal" required>
                     </div>
                     <div class="field">
-                        <label class="field-label" for="goalRate">Expected return (%)</label>
+                        <label class="field-label" for="goalRate">Expected return (% per year)</label>
                         <input class="input" type="number" id="goalRate" step="0.1" inputmode="decimal" required>
                     </div>
                     <div class="form-row">
@@ -227,25 +229,25 @@
                             <input class="input" type="number" id="goalTenureMonths" step="1" inputmode="numeric" required>
                         </div>
                     </div>
-                    <button type="button" class="btn btn--primary btn--block" onclick="calculateGoal()">Calculate required SIP</button>
+                    <button type="button" class="btn btn--block" onclick="calculateGoal()">Calculate <span aria-hidden="true">→</span></button>
                 </div>
                 <div class="result-box">
-                    <span class="result-label">Required monthly investment</span>
+                    <span class="result-label">Save this much each month</span>
                     <div class="result-value" id="goalSIP">0.00</div>
                 </div>
             </div>
 
             <!-- Loan Affordability -->
-            <div id="affordTool" class="card tool-view">
-                <button type="button" class="back-btn" onclick="closeTool()">← Back to tools</button>
+            <div id="affordTool" class="tool-view">
+                <button type="button" class="back-btn" onclick="closeTool()">← All tools</button>
                 <h2 class="tool-view-title">Loan Affordability</h2>
                 <div class="form calculator-form">
                     <div class="field">
-                        <label class="field-label" for="affordEMI">Max affordable EMI ($)</label>
+                        <label class="field-label" for="affordEMI">Monthly payment you can afford ($)</label>
                         <input class="input" type="number" id="affordEMI" step="500" inputmode="decimal" required>
                     </div>
                     <div class="field">
-                        <label class="field-label" for="affordRate">Interest rate (%)</label>
+                        <label class="field-label" for="affordRate">Interest rate (% per year)</label>
                         <input class="input" type="number" id="affordRate" step="0.1" inputmode="decimal" required>
                     </div>
                     <div class="form-row">
@@ -258,25 +260,25 @@
                             <input class="input" type="number" id="affordTenureMonths" step="1" inputmode="numeric" required>
                         </div>
                     </div>
-                    <button type="button" class="btn btn--primary btn--block" onclick="calculateAffordability()">Calculate max loan</button>
+                    <button type="button" class="btn btn--block" onclick="calculateAffordability()">Calculate <span aria-hidden="true">→</span></button>
                 </div>
                 <div class="result-box">
-                    <span class="result-label">Maximum loan amount</span>
+                    <span class="result-label">Biggest loan you can take</span>
                     <div class="result-value" id="affordLoan">0.00</div>
                     <div class="result-breakdown">
                         <div><span class="result-label">Total interest</span><span id="affordInterest">0.00</span></div>
-                        <div><span class="result-label">Total payment</span><span id="affordTotal">0.00</span></div>
+                        <div><span class="result-label">Total you pay</span><span id="affordTotal">0.00</span></div>
                     </div>
                 </div>
             </div>
 
             <!-- Budget Planner -->
-            <div id="budgetTool" class="card tool-view">
-                <button type="button" class="back-btn" onclick="closeTool()">← Back to tools</button>
+            <div id="budgetTool" class="tool-view">
+                <button type="button" class="back-btn" onclick="closeTool()">← All tools</button>
                 <h2 class="tool-view-title">Budget Planner</h2>
                 <div class="budget-settings">
                     <div class="field">
-                        <label class="field-label" for="budgetCurrencyName">Base currency</label>
+                        <label class="field-label" for="budgetCurrencyName">Main currency</label>
                         <div class="searchable-select-container" id="baseCurrencySelect">
                             <input type="text" id="budgetCurrencyName" class="input searchable-select-trigger" readonly value="INR">
                             <div class="searchable-select-dropdown">
@@ -288,7 +290,7 @@
                         </div>
                     </div>
                     <div class="field">
-                        <label class="field-label" for="foreignCurrencyName">Secondary currency</label>
+                        <label class="field-label" for="foreignCurrencyName">Second currency</label>
                         <div class="searchable-select-container" id="secondaryCurrencySelect">
                             <input type="text" id="foreignCurrencyName" class="input searchable-select-trigger" readonly value="BHD">
                             <div class="searchable-select-dropdown">
@@ -306,44 +308,44 @@
                 </div>
 
                 <div class="budget-grid">
-                <div class="budget-col">
-                    <h3 class="budget-col-title">Income</h3>
-                    <div id="incomeList" class="budget-list">
-                        <div class="budget-item">
-                            <input type="text" value="Salary" placeholder="Source" class="source-input" aria-label="Source">
-                            <input type="number" value="0" class="amount-input" oninput="calculateBudget()"
-                                placeholder="Amount" aria-label="Amount">
-                            <select class="currency-input" onchange="calculateBudget()" aria-label="Currency">
-                                <option value="BHD" selected>BHD</option>
-                            </select>
-                            <button type="button" class="remove-btn invisible" aria-hidden="true" tabindex="-1">×</button>
+                    <div class="budget-col">
+                        <h3 class="budget-col-title">Income</h3>
+                        <div id="incomeList" class="budget-list">
+                            <div class="budget-item">
+                                <input type="text" value="Salary" placeholder="Source" class="source-input" aria-label="Source">
+                                <input type="number" value="0" class="amount-input" oninput="calculateBudget()"
+                                    placeholder="Amount" aria-label="Amount">
+                                <select class="currency-input" onchange="calculateBudget()" aria-label="Currency">
+                                    <option value="BHD" selected>BHD</option>
+                                </select>
+                                <button type="button" class="remove-btn invisible" aria-hidden="true" tabindex="-1">×</button>
+                            </div>
                         </div>
+                        <button type="button" class="add-btn" onclick="addBudgetRow('incomeList')">+ Add income</button>
                     </div>
-                    <button type="button" class="add-btn" onclick="addBudgetRow('incomeList')">+ Add income</button>
-                </div>
-                <div class="budget-col">
-                    <h3 class="budget-col-title">Expenses</h3>
-                    <div id="expenseList" class="budget-list">
-                        <div class="budget-item">
-                            <input type="text" value="Rent" placeholder="Expense" class="source-input" aria-label="Expense">
-                            <input type="number" value="0" class="amount-input" oninput="calculateBudget()"
-                                placeholder="Amount" aria-label="Amount">
-                            <select class="currency-input" onchange="calculateBudget()" aria-label="Currency">
-                                <option value="BHD" selected>BHD</option>
-                            </select>
-                            <button type="button" class="remove-btn invisible" aria-hidden="true" tabindex="-1">×</button>
+                    <div class="budget-col">
+                        <h3 class="budget-col-title">Spending</h3>
+                        <div id="expenseList" class="budget-list">
+                            <div class="budget-item">
+                                <input type="text" value="Rent" placeholder="Expense" class="source-input" aria-label="Expense">
+                                <input type="number" value="0" class="amount-input" oninput="calculateBudget()"
+                                    placeholder="Amount" aria-label="Amount">
+                                <select class="currency-input" onchange="calculateBudget()" aria-label="Currency">
+                                    <option value="BHD" selected>BHD</option>
+                                </select>
+                                <button type="button" class="remove-btn invisible" aria-hidden="true" tabindex="-1">×</button>
+                            </div>
                         </div>
+                        <button type="button" class="add-btn" onclick="addBudgetRow('expenseList')">+ Add expense</button>
                     </div>
-                    <button type="button" class="add-btn" onclick="addBudgetRow('expenseList')">+ Add expense</button>
-                </div>
                 </div>
 
                 <div class="result-box">
-                    <span class="result-label">Estimated monthly savings</span>
+                    <span class="result-label">Left over each month</span>
                     <div class="result-value" id="totalSavings">0.00</div>
                     <div class="result-breakdown">
                         <div><span class="result-label">Total income</span><span id="totalIncome">0.00</span></div>
-                        <div><span class="result-label">Total expenses</span><span id="totalExpenses">0.00</span></div>
+                        <div><span class="result-label">Total spending</span><span id="totalExpenses">0.00</span></div>
                     </div>
                 </div>
             </div>
@@ -351,25 +353,31 @@
     </main>
 
     <footer class="site-footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>© <span data-year></span> Fajis PM. All rights reserved.</p>
-                <div class="socials">
-                    <a class="social-link" href="https://github.com/fajis" target="_blank" rel="noopener"
-                        aria-label="GitHub">
-                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path
-                                d="M12 2C6.48 2 2 6.58 2 12.22c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.35 1.12 2.92.85.09-.66.35-1.12.64-1.37-2.22-.26-4.56-1.14-4.56-5.05 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.92-2.34 4.78-4.57 5.04.36.32.68.94.68 1.9v2.81c0 .27.18.6.69.49A10.1 10.1 0 0 0 22 12.22C22 6.58 17.52 2 12 2Z" />
-                        </svg>
-                    </a>
-                    <a class="social-link" href="downloads/" aria-label="Android apps on Google Play">
-                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path
-                                d="M3.6 2.3a1 1 0 0 0-.4.8v17.8a1 1 0 0 0 .4.8L13.5 12 3.6 2.3Zm11 8.6 2.7-2.7L5.6 1.6l9 9.3Zm0 2.2-9 9.3 11.7-6.6-2.7-2.7Zm3.9-4.1-3 3 3 3 3.2-1.8c.9-.5.9-1.9 0-2.4l-3.2-1.8Z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
+        <div class="wrap grid footer-grid">
+            <p class="brand">fajis<span class="accent">.</span>pm</p>
+            <nav class="footer-col" aria-label="Site">
+                <p class="footer-heading mono">Pages</p>
+                <ul>
+                    <li><a href="./">Home</a></li>
+                    <li><a href="./#work">Work</a></li>
+                    <li><a href="./#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Products">
+                <p class="footer-heading mono">Products</p>
+                <ul>
+                    <li><a href="./downloads/">Android apps</a></li>
+                    <li><a href="./tools">Financial tools</a></li>
+                    <li><a href="./apps/fitness-app/privacy-policy.html">Stay Fit privacy</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Links">
+                <p class="footer-heading mono">Links</p>
+                <ul>
+                    <li><a href="https://github.com/fajis" target="_blank" rel="noopener">GitHub ↗</a></li>
+                </ul>
+            </nav>
+            <p class="footer-legal mono">© <span data-year></span> Fajis PM</p>
         </div>
     </footer>
 
