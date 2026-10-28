@@ -48,7 +48,9 @@
             "Malayalam"
         ],
         "sameAs": [
-            "https://github.com/fajis"
+            "https://github.com/fajis",
+            "https://www.linkedin.com/in/fajispm",
+            "https://www.instagram.com/fajis.pm/"
         ]
     }
     </script>
@@ -59,7 +61,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="stylesheet" href="style.css?v=9">
     <script>
         // Apply the saved theme before first paint
         try {
@@ -195,33 +197,7 @@
                                 <th scope="col">What for</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">Backend</th>
-                                <td>PHP</td>
-                                <td>APIs and server logic</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Mobile</th>
-                                <td>React Native</td>
-                                <td>Android and iOS apps, published on Google Play</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Database</th>
-                                <td>MySQL</td>
-                                <td>Designing tables and making queries fast</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Frontend</th>
-                                <td>JavaScript ES6+, HTML, CSS</td>
-                                <td>Websites that work on any screen</td>
-                            </tr>
-                            <tr class="is-muted">
-                                <th scope="row">Learning</th>
-                                <td>TypeScript, Redux, DevOps</td>
-                                <td>Learning now</td>
-                            </tr>
-                        </tbody>
+                        <tbody id="stackRows"></tbody>
                     </table>
                 </div>
             </div>
@@ -238,23 +214,7 @@
                 <div class="section-body">
                     <h2 class="statement">Where I work.</h2>
 
-                    <article class="job">
-                        <p class="job-dates mono"><time datetime="2023">2023</time> — Now</p>
-                        <div class="job-main">
-                            <h3 class="job-role">Developer</h3>
-                            <p class="job-company">Harvard Soft Tech</p>
-                            <p class="job-intro">Systems I have built here:</p>
-                            <ul class="job-projects">
-                            <li><span class="mono">01</span>Property management system</li>
-                            <li><span class="mono">02</span>Car rental system</li>
-                            <li><span class="mono">03</span>Inventory management system</li>
-                            <li><span class="mono">04</span>Gym management SaaS</li>
-                            <li><span class="mono">05</span>E-shop loyalty program</li>
-                            <li><span class="mono">06</span>School management system</li>
-                                <li class="is-more"><span class="mono">+</span>And many more</li>
-                            </ul>
-                        </div>
-                    </article>
+                    <div id="experienceList"></div>
                 </div>
             </div>
         </section>
@@ -283,84 +243,12 @@
                                 <th scope="col"><span class="sr-only">Link</span></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="app-row is-selected" data-target="app-stayfit">
-                                <td class="mono">01</td>
-                                <td><button type="button" class="row-select" aria-controls="app-stayfit"
-                                        aria-pressed="true">Stay Fit</button></td>
-                                <td class="col-optional">Health &amp; fitness</td>
-                                <td class="col-optional mono">Android</td>
-                                <td class="col-link"><a
-                                        href="https://play.google.com/store/apps/details?id=com.fajis.fitnessapp"
-                                        target="_blank" rel="noopener">Play ↗</a></td>
-                            </tr>
-                            <tr class="app-row" data-target="app-oneline">
-                                <td class="mono">02</td>
-                                <td><button type="button" class="row-select" aria-controls="app-oneline"
-                                        aria-pressed="false">Oneline</button></td>
-                                <td class="col-optional">Productivity</td>
-                                <td class="col-optional mono">Android</td>
-                                <td class="col-link"><a
-                                        href="https://play.google.com/store/apps/details?id=com.fajis.oneline"
-                                        target="_blank" rel="noopener">Play ↗</a></td>
-                            </tr>
-                            <tr class="app-row" data-target="app-calculator">
-                                <td class="mono">03</td>
-                                <td><button type="button" class="row-select" aria-controls="app-calculator"
-                                        aria-pressed="false">Calculator+</button></td>
-                                <td class="col-optional">Tools</td>
-                                <td class="col-optional mono">Android</td>
-                                <td class="col-link"><a
-                                        href="https://play.google.com/store/apps/details?id=com.fajis.SmartCalculator"
-                                        target="_blank" rel="noopener">Play ↗</a></td>
-                            </tr>
-                        </tbody>
+                        <tbody id="appRows"></tbody>
                     </table>
 
                     <div class="terminal" aria-live="polite">
                         <p class="terminal-bar mono"><span>zsh — apps</span><span>README</span></p>
-
-                        <article class="terminal-screen" id="app-stayfit">
-                            <ol class="terminal-lines mono">
-                                <li class="cmd"><span class="prompt">$</span> cat apps/stay-fit/README</li>
-                                <li><span class="key">name</span>Stay Fit</li>
-                                <li><span class="key">platform</span>Android</li>
-                                <li><span class="key">package</span>com.fajis.fitnessapp</li>
-                                <li><span class="key">about</span>Track your workouts, steps and meals.</li>
-                                <li><span class="key">features</span>Step counter, meal photos, Health Connect</li>
-                                <li class="cmd"><span class="prompt">$</span> <a
-                                        href="https://play.google.com/store/apps/details?id=com.fajis.fitnessapp"
-                                        target="_blank" rel="noopener">open play-store ↗</a></li>
-                            </ol>
-                        </article>
-
-                        <article class="terminal-screen" id="app-oneline" hidden>
-                            <ol class="terminal-lines mono">
-                                <li class="cmd"><span class="prompt">$</span> cat apps/oneline/README</li>
-                                <li><span class="key">name</span>Oneline</li>
-                                <li><span class="key">platform</span>Android</li>
-                                <li><span class="key">package</span>com.fajis.oneline</li>
-                                <li><span class="key">about</span>Short notes you can search and look back on.</li>
-                                <li><span class="key">features</span>One-line notes, search, history</li>
-                                <li class="cmd"><span class="prompt">$</span> <a
-                                        href="https://play.google.com/store/apps/details?id=com.fajis.oneline"
-                                        target="_blank" rel="noopener">open play-store ↗</a></li>
-                            </ol>
-                        </article>
-
-                        <article class="terminal-screen" id="app-calculator" hidden>
-                            <ol class="terminal-lines mono">
-                                <li class="cmd"><span class="prompt">$</span> cat apps/calculator-plus/README</li>
-                                <li><span class="key">name</span>Calculator+</li>
-                                <li><span class="key">platform</span>Android</li>
-                                <li><span class="key">package</span>com.fajis.SmartCalculator</li>
-                                <li><span class="key">about</span>A simple calculator for everyday sums.</li>
-                                <li><span class="key">features</span>Currency converter, history</li>
-                                <li class="cmd"><span class="prompt">$</span> <a
-                                        href="https://play.google.com/store/apps/details?id=com.fajis.SmartCalculator"
-                                        target="_blank" rel="noopener">open play-store ↗</a></li>
-                            </ol>
-                        </article>
+                        <div id="appScreens"></div>
                     </div>
                 </div>
             </div>
@@ -376,20 +264,11 @@
 
                 <div class="contact-intro">
                     <h2 class="statement">Have a project?<br>Let's talk.</h2>
-                    <dl class="contact-meta">
+                    <dl class="contact-meta" id="contactMeta">
                         <!-- PLACEHOLDER: replace hello@example.com with your real email (link and text on the line below) -->
-                        <div>
+                        <div id="contactEmailRow">
                             <dt class="mono">Email</dt>
                             <dd><a href="mailto:hello@example.com">hello@example.com</a></dd>
-                        </div>
-                        <div>
-                            <dt class="mono">GitHub</dt>
-                            <dd><a href="https://github.com/fajis" target="_blank" rel="noopener">@Fajis ↗</a></dd>
-                        </div>
-                        <!-- PLACEHOLDER: replace with your LinkedIn profile URL -->
-                        <div>
-                            <dt class="mono">LinkedIn</dt>
-                            <dd><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a></dd>
                         </div>
                         <div>
                             <dt class="mono">Location</dt>
@@ -450,10 +329,7 @@
             </nav>
             <nav class="footer-col" aria-label="Elsewhere">
                 <p class="footer-heading mono">Links</p>
-                <ul>
-                    <li><a href="https://github.com/fajis" target="_blank" rel="noopener">GitHub ↗</a></li>
-                    <!-- PLACEHOLDER: replace with your LinkedIn profile URL -->
-                    <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+                <ul id="footerLinks">
                     <li><a href="cv.pdf" download="Fajis-PM-CV.pdf">CV (PDF)</a></li>
                     <li><a href="downloads/">Google Play</a></li>
                 </ul>
@@ -462,7 +338,8 @@
         </div>
     </footer>
 
-    <script src="script.js?v=7"></script>
+    <script src="data.js?v=9"></script>
+    <script src="script.js?v=9"></script>
 </body>
 
 </html>

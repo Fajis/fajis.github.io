@@ -94,6 +94,130 @@ if (localTime) {
     setInterval(tick, 30000);
 }
 
+// ---------- Render content from data.js ----------
+const data = window.SITE_DATA || { links: [], stack: [], experience: [], apps: [] };
+
+// Small element builder: el('td', { class: 'mono' }, 'text', childEl)
+function el(tag, attrs = {}, ...children) {
+    const node = document.createElement(tag);
+    Object.entries(attrs).forEach(([key, value]) => {
+        if (value === false || value == null) return;
+        node.setAttribute(key, value === true ? '' : value);
+    });
+    node.append(...children);
+    return node;
+}
+
+const playUrl = app => `https://play.google.com/store/apps/details?id=${app.package}`;
+const pad = n => String(n).padStart(2, '0');
+
+function fillStack(tbody) {
+    data.stack.forEach(row => {
+        tbody.append(el('tr', { class: row.muted ? 'is-muted' : null },
+            el('th', { scope: 'row' }, row.area),
+            el('td', {}, row.tools),
+            el('td', {}, row.use)
+        ));
+    });
+}
+
+function fillExperience(list) {
+    data.experience.forEach(job => {
+        const projects = el('ul', { class: 'job-projects' },
+            ...job.projects.map((name, i) => el('li', {}, el('span', { class: 'mono' }, pad(i + 1)), name)));
+        if (job.more) {
+            projects.append(el('li', { class: 'is-more' }, el('span', { class: 'mono' }, '+'), job.more));
+        }
+
+        list.append(el('article', { class: 'job' },
+            el('p', { class: 'job-dates mono' }, el('time', { datetime: job.start }, job.start), ` — ${job.end}`),
+            el('div', { class: 'job-main' },
+                el('h3', { class: 'job-role' }, job.role),
+                el('p', { class: 'job-company' }, job.company),
+                el('p', { class: 'job-intro' }, 'Systems I have built here:'),
+                projects
+            )
+        ));
+    });
+}
+
+function fillAppShowcase(tbody, screens) {
+    data.apps.forEach((app, i) => {
+        const target = `app-${app.id}`;
+        const selected = i === 0;
+
+        tbody.append(el('tr', { class: selected ? 'app-row is-selected' : 'app-row', 'data-target': target },
+            el('td', { class: 'mono' }, pad(i + 1)),
+            el('td', {}, el('button', {
+                type: 'button', class: 'row-select', 'aria-controls': target, 'aria-pressed': String(selected)
+            }, app.name)),
+            el('td', { class: 'col-optional' }, app.category),
+            el('td', { class: 'col-optional mono' }, app.platform),
+            el('td', { class: 'col-link' }, el('a', { href: playUrl(app), target: '_blank', rel: 'noopener' }, 'Play ↗'))
+        ));
+
+        const line = (key, value) => el('li', {}, el('span', { class: 'key' }, key), value);
+        const command = (...content) => el('li', { class: 'cmd' }, el('span', { class: 'prompt' }, '$'), ' ', ...content);
+
+        screens.append(el('article', { class: 'terminal-screen', id: target, hidden: !selected },
+            el('ol', { class: 'terminal-lines mono' },
+                command(`cat apps/${app.id}/README`),
+                line('name', app.name),
+                line('platform', app.platform),
+                line('package', app.package),
+                line('about', app.about),
+                line('features', app.features),
+                command(el('a', { href: playUrl(app), target: '_blank', rel: 'noopener' }, 'open play-store ↗'))
+            )
+        ));
+    });
+}
+
+function fillAppList(list) {
+    data.apps.forEach(app => {
+        list.append(el('li', {},
+            el('a', { class: 'index-row', href: playUrl(app) },
+                el('img', { class: 'index-logo', src: app.logo, alt: '', width: 40, height: 40 }),
+                el('span', { class: 'index-name' }, app.name),
+                el('span', { class: 'index-desc' }, app.about),
+                el('span', { class: 'index-go' }, 'Get it ↗')
+            )
+        ));
+    });
+}
+
+function externalLink(link, text) {
+    return el('a', { href: link.url, target: '_blank', rel: 'noopener' }, text);
+}
+
+// Contact section: one row per link, right after the Email row
+const contactEmailRow = document.getElementById('contactEmailRow');
+if (contactEmailRow) {
+    contactEmailRow.after(...data.links.map(link => el('div', {},
+        el('dt', { class: 'mono' }, link.label),
+        el('dd', {}, externalLink(link, `${link.handle} ↗`))
+    )));
+}
+
+// Footer: links first, then the page's own items (CV, Google Play)
+const footerLinks = document.getElementById('footerLinks');
+if (footerLinks) {
+    footerLinks.prepend(...data.links.map(link => el('li', {}, externalLink(link, `${link.label} ↗`))));
+}
+
+const stackRows = document.getElementById('stackRows');
+if (stackRows) fillStack(stackRows);
+
+const experienceList = document.getElementById('experienceList');
+if (experienceList) fillExperience(experienceList);
+
+const appTable = document.getElementById('appRows');
+const appScreens = document.getElementById('appScreens');
+if (appTable && appScreens) fillAppShowcase(appTable, appScreens);
+
+const appList = document.getElementById('appList');
+if (appList) fillAppList(appList);
+
 // App showcase: selecting a table row shows its README in the terminal
 const appRows = document.querySelectorAll('.app-row');
 
