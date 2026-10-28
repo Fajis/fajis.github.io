@@ -35,7 +35,8 @@ person_schema: true
                     </div>
                     <div class="spec-item">
                         <dt>Apps live</dt>
-                        <dd>{{ site.data.apps | size }} on Google Play</dd>
+                        {%- assign ios_apps = site.data.apps | where_exp: "app", "app.ios != ''" %}
+                        <dd>{{ site.data.apps | size }} on Android · {% if ios_apps.size > 0 %}{{ ios_apps.size }} on iOS{% else %}iOS soon{% endif %}</dd>
                     </div>
                     <div class="spec-item">
                         <dt>Location</dt>

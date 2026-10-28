@@ -1,10 +1,13 @@
-# Home Work table + terminal panel, and the Android apps page.
+# Work table + terminal panel, and the Apps page (/downloads/).
 # `id` is used in element ids and the terminal path (apps/<id>/README).
+# `android`: Google Play package name.
+# `ios`: full App Store link (https://apps.apple.com/...). Leave it empty
+#        until the app is listed: the site shows "iOS · coming soon".
 - id: stay-fit
   name: Stay Fit
   category: Health & fitness
-  platform: Android
-  package: com.fajis.fitnessapp
+  android: com.fajis.fitnessapp
+  ios: ""
   logo: /apps/fitness-app/logo.png
   about: Track your workouts, steps and meals.
   features: Step counter, meal photos, Health Connect
@@ -12,8 +15,8 @@
 - id: oneline
   name: Oneline
   category: Productivity
-  platform: Android
-  package: com.fajis.oneline
+  android: com.fajis.oneline
+  ios: ""
   logo: /apps/oneline/logo.png
   about: Short notes you can search and look back on.
   features: One-line notes, search, history
@@ -21,8 +24,8 @@
 - id: calculator-plus
   name: Calculator+
   category: Tools
-  platform: Android
-  package: com.fajis.SmartCalculator
+  android: com.fajis.SmartCalculator
+  ios: ""
   logo: /apps/smart-calculator/logo.png
   about: A simple calculator with a currency converter and history.
   features: Currency converter, history

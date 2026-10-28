@@ -34,8 +34,12 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     <script>
-        // Before first paint: enable motion styles and apply the saved theme
+        // Before first paint: enable motion styles, note the device platform
+        // (store links show iOS or Android first) and apply the saved theme
         document.documentElement.classList.add('js');
+        var ua = navigator.userAgent;
+        var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+        document.documentElement.dataset.platform = ios ? 'ios' : /Android/.test(ua) ? 'android' : 'desktop';
         try {
             var theme = localStorage.getItem('theme');
             if (theme) document.documentElement.dataset.theme = theme;

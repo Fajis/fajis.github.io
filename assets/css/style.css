@@ -867,6 +867,45 @@ ol {
     color: var(--accent);
 }
 
+/* Store links: Google Play / App Store; the visitor's platform comes first */
+.store-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px 14px;
+}
+
+.store-link {
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    white-space: nowrap;
+    transition: color 0.15s;
+}
+
+a.store-link:hover {
+    color: var(--accent);
+}
+
+.store-link.is-soon {
+    color: var(--subtle);
+    cursor: default;
+}
+
+html[data-platform="ios"] .store-link--ios {
+    order: -1;
+}
+
+html[data-platform="ios"] a.store-link--ios,
+html[data-platform="android"] .store-link--android {
+    color: var(--accent);
+}
+
+/* Apps page rows hold two store links instead of being one big link */
+.app-item {
+    cursor: default;
+}
+
 /* Terminal panel */
 .terminal {
     border-left: 1px solid var(--line-strong);
@@ -1891,6 +1930,7 @@ kbd {
     to {
         opacity: 1;
         transform: none;
+        clip-path: none;
     }
 }
 
@@ -1936,6 +1976,19 @@ kbd {
 .js [data-reveal-stagger] > .is-visible {
     opacity: 1;
     transform: none;
+}
+
+/* Section headings rise out of a mask, like the page titles */
+.js .statement[data-reveal] {
+    opacity: 1;
+    transform: translateY(0.6em);
+    clip-path: inset(0 0 100% 0);
+    transition: transform 0.9s var(--ease), clip-path 0.9s var(--ease);
+}
+
+.js .statement[data-reveal].is-visible {
+    transform: none;
+    clip-path: inset(0 0 -20% 0);
 }
 
 /* If main.js never runs, show everything after a moment */
@@ -2220,6 +2273,13 @@ kbd {
         grid-row: 2;
     }
 
+    .app-item .store-links {
+        grid-column: 2 / -1;
+        grid-row: 3;
+        justify-content: flex-start;
+        margin-top: 6px;
+    }
+
     body::before {
         display: none;
     }
@@ -2318,6 +2378,7 @@ kbd {
     .js .section > .wrap::before {
         opacity: 1;
         transform: none;
+        clip-path: none;
     }
 
     @view-transition {

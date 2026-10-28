@@ -4,7 +4,7 @@
 # `key`: keyboard shortcut — press g, then this key (see the command palette).
 - { label: About, url: /about/, index: "01", key: a, summary: How I work and the tools I use }
 - { label: Experience, url: /experience/, index: "02", key: e, summary: Backend Developer at Harvard Soft Tech since 2023 }
-- { label: Work, url: /work/, index: "03", key: w, summary: Android apps I have published on Google Play }
+- { label: Work, url: /work/, index: "03", key: w, summary: My apps for Android, with iOS coming soon }
 - { label: Services, url: /services/, index: "04", key: s, summary: What you can hire me for }
 - { label: Contact, url: /contact/, index: "05", key: c, summary: Open to freelance projects }
 - { label: Tools, url: /tools, icon: arrow-up-right, key: t }
