@@ -98,9 +98,8 @@ function initReveal() {
         ...$$('[data-reveal-stagger] > *'),
         ...$$('.section')
     ];
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (reduceMotion || !('IntersectionObserver' in window)) {
+    // With Reduce motion on, CSS turns these into plain fades (no movement)
+    if (!('IntersectionObserver' in window)) {
         items.forEach(item => item.classList.add('is-visible'));
         root.classList.add('motion-ready');
         return;
