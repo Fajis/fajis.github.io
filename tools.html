@@ -15,14 +15,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Malayalam:wght@400;500&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="./style.css">
     <script>
-        // Apply saved theme and language before first paint
+        // Apply the saved theme before first paint
         try {
-            var saved = { theme: localStorage.getItem('theme'), lang: localStorage.getItem('lang') };
-            if (saved.theme) document.documentElement.dataset.theme = saved.theme;
-            if (saved.lang === 'ml') document.documentElement.lang = 'ml';
+            var theme = localStorage.getItem('theme');
+            if (theme) document.documentElement.dataset.theme = theme;
         } catch (e) {}
     </script>
 </head>
@@ -44,8 +43,7 @@
             </ul>
 
             <div class="nav-actions">
-                <button class="nav-btn" id="langToggle" type="button" data-no-i18n hidden>മലയാളം</button>
-                <button class="nav-btn" id="themeToggle" type="button" hidden>Light</button>
+                <button class="nav-btn nav-btn--boxed" id="themeToggle" type="button">☀ Light</button>
                 <button class="nav-btn nav-toggle" id="navToggle" type="button" aria-expanded="false"
                     aria-controls="navMenu">
                     <span class="nav-toggle-label">Menu</span>
@@ -396,9 +394,8 @@
         </div>
     </footer>
 
-    <script src="i18n.js"></script>
-    <script src="script.js"></script>
-    <script src="tools.js"></script>
+    <script src="script.js?v=3"></script>
+    <script src="tools.js?v=3"></script>
 </body>
 
 </html>

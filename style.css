@@ -19,8 +19,8 @@
     --accent: #ffb000;
     --danger: #ff6b5b;
 
-    --font-sans: "Inter", "Noto Sans Malayalam", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --font-mono: "JetBrains Mono", "Noto Sans Malayalam", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
     --wrap: 1240px;
     --gutter: clamp(16px, 4vw, 40px);
@@ -64,29 +64,6 @@
 --line-strong: #cfcfcb;
 --accent: #b45309;
 --danger: #c62828;
-}
-
-/* Malayalam: looser tracking and line height for the script */
-:root:lang(ml) .hero-title,
-:root:lang(ml) .page-title {
-    font-size: clamp(32px, 5.4vw, 76px);
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-}
-
-:root:lang(ml) .statement,
-:root:lang(ml) .tool-view-title {
-    line-height: 1.35;
-    letter-spacing: 0;
-}
-
-:root:lang(ml) .field-label,
-:root:lang(ml) .result-label,
-:root:lang(ml) .spec dt,
-:root:lang(ml) .footer-heading,
-:root:lang(ml) .contact-meta dt,
-:root:lang(ml) .data-table thead th {
-    letter-spacing: 0;
 }
 
 /* ---------- Base ---------- */
@@ -339,8 +316,16 @@ ol {
     color: var(--accent);
 }
 
-.nav-btn[hidden] {
-    display: none;
+.nav-btn--boxed {
+    padding: 4px 10px;
+    border: 1px solid var(--line-strong);
+    color: var(--fg);
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.nav-btn--boxed:hover {
+    border-color: var(--accent);
 }
 
 .nav-toggle {
@@ -1327,6 +1312,7 @@ textarea.input {
     }
 
     .nav-actions {
+        gap: 10px;
         margin-left: auto;
         padding-left: 0;
         border-left: 0;
