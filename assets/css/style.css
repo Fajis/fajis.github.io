@@ -643,6 +643,44 @@ ol {
     font-size: 13px;
 }
 
+/* Recommendations (_data/testimonials.yml) */
+.testimonials {
+    margin: 56px 0 0 calc(160px + var(--col-gap));
+}
+
+.testimonial {
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+}
+
+.testimonial blockquote {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.testimonial figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin-top: 12px;
+}
+
+.testimonial-name {
+    font-weight: 500;
+}
+
+.testimonial-role {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.testimonial-letter {
+    margin-left: auto;
+    color: var(--accent);
+    font-size: 13px;
+}
+
 /* ---------- Data tables ---------- */
 .data-table {
     width: 100%;
@@ -1531,6 +1569,10 @@ textarea.input {
     .job {
         grid-template-columns: 1fr;
         row-gap: 8px;
+    }
+
+    .testimonials {
+        margin-left: 0;
     }
 
 

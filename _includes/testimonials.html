@@ -1,0 +1,16 @@
+{%- comment -%} Recommendations from _data/testimonials.yml. Usage: {% include testimonials.html items=site.data.testimonials %} {%- endcomment -%}
+<div class="testimonials">
+                        <p class="job-intro">What people say</p>
+                        {%- for item in include.items %}
+                        <figure class="testimonial">
+                            <blockquote>“{{ item.quote }}”</blockquote>
+                            <figcaption>
+                                <span class="testimonial-name">{{ item.name }}</span>
+                                <span class="testimonial-role">{{ item.role }}{% if item.company %}, {{ item.company }}{% endif %}</span>
+                                {%- if item.letter %}
+                                <a class="testimonial-letter mono" href="{{ item.letter | relative_url }}" target="_blank" rel="noopener">Read the letter ↗</a>
+                                {%- endif %}
+                            </figcaption>
+                        </figure>
+                        {%- endfor %}
+                    </div>

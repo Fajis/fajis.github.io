@@ -1,0 +1,21 @@
+# Recommendations and reference letters ("proof"), shown under Experience.
+# The section stays hidden while every entry below is commented out.
+#
+# To add one: remove the # from the lines of an example and fill it in.
+#   quote:   what they said, in their words
+#   name:    who said it
+#   role:    their job title
+#   company: where they work
+#   letter:  optional, a PDF of the signed letter. Put the file in the
+#            /letters/ folder and write its path here.
+
+# - quote: "Fajis built our property management system and delivered every module on time."
+#   name: Full Name
+#   role: Managing Director
+#   company: Harvard Soft Tech
+#   letter: /letters/harvard-soft-tech.pdf
+
+# - quote: "A dependable developer who takes ownership of the whole system."
+#   name: Full Name
+#   role: Client
+#   company: Company name

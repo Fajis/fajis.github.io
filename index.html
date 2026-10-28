@@ -43,7 +43,7 @@ person_schema: true
                     </div>
                     <div class="spec-item">
                         <dt>Status</dt>
-                        <dd><span class="status-dot" aria-hidden="true"></span>Open to new projects</dd>
+                        <dd><span class="status-dot" aria-hidden="true"></span>Open to freelance projects</dd>
                     </div>
                 </dl>
             </div>
@@ -120,6 +120,9 @@ person_schema: true
                     {%- for job in site.data.experience %}
                     {% include job.html job=job %}
                     {%- endfor %}
+                    {%- if site.data.testimonials %}
+                    {% include testimonials.html items=site.data.testimonials %}
+                    {%- endif %}
                 </div>
             </div>
         </section>
