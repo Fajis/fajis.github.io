@@ -13,6 +13,9 @@ cv: /cv.pdf
 contact_form: https://formspree.io/f/xpwrjorn
 
 # Files that are part of the repo but not the website
+# Blog posts live in _posts/ as YYYY-MM-DD-title.md
+permalink: /blog/:title/
+
 exclude:
   - README.md
   - Gemfile

@@ -1,0 +1,26 @@
+---
+layout: default
+title: Blog — Fajis PM
+description: Notes on building websites, mobile apps and the systems behind them.
+permalink: /blog/
+---
+        {% include page-hero.html path="~/fajis/blog" note="Notes" title="Blog"
+            lead="Notes on building websites, mobile apps and the systems behind them." %}
+
+        <section class="wrap page-content">
+            <ul class="index-list" data-reveal-stagger>
+                {%- for post in site.posts %}
+                <li>
+                    <a class="index-row post-row" href="{{ post.url | relative_url }}">
+                        <time class="index-code" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%b %Y' }}</time>
+                        <span class="index-name">{{ post.title }}</span>
+                        <span class="index-desc">{{ post.description }}</span>
+                        <span class="index-go" aria-hidden="true">→</span>
+                    </a>
+                </li>
+                {%- endfor %}
+            </ul>
+            <p class="post-footer">
+                {% include external-link.html url="/feed.xml" text="Follow with RSS" class="link-cta link-cta--muted" %}
+            </p>
+        </section>

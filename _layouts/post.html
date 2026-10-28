@@ -1,0 +1,15 @@
+---
+layout: default
+---
+{%- capture published -%}{{ page.date | date: '%-d %B %Y' }}{%- endcapture %}
+        {% include page-hero.html path="~/fajis/blog" note=published title=page.title lead=page.description compact=true %}
+
+        <article class="wrap page-content">
+            <div class="post-body">
+                {{ content }}
+            </div>
+            <p class="post-footer">
+                <a href="{{ '/blog/' | relative_url }}" class="link-cta link-cta--muted">All posts <span aria-hidden="true">→</span></a>
+                <a href="{{ '/contact/' | relative_url }}" class="link-cta">Work with me <span aria-hidden="true">→</span></a>
+            </p>
+        </article>

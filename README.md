@@ -14,6 +14,7 @@ Personal site, built by GitHub Pages with Jekyll.
 | Android apps (home + /downloads/) | `_data/apps.yml` |
 | Financial tools | `_data/tools.yml` |
 | Page text | `index.html`, `tools.html`, `downloads/index.html`, `404.html` |
+| Blog posts | add `_posts/YYYY-MM-DD-title.md` (copy the existing post for the format) |
 | Shared head, header, footer | `_includes/`, `_layouts/default.html` |
 | Styles | `assets/css/style.css` |
 | Behaviour | `assets/js/main.js` (all pages), `assets/js/tools.js` |
