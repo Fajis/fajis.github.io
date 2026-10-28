@@ -1,160 +1,122 @@
-/*
+// Shared site behaviour: navigation, scroll state, reveal animations, contact form.
 
-Tooplate 2141 Minimal White
+const header = document.getElementById('siteHeader');
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
 
-https://www.tooplate.com/view/2141-minimal-white
-
-*/
-
-// JavaScript Document
-
-// Mobile menu toggle
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-document.getElementById('currentYear').textContent = new Date().getFullYear();
-menuToggle.addEventListener('click', function () {
-    menuToggle.classList.toggle('active');
-    navLinks.classList.toggle('active');
+// Footer year
+document.querySelectorAll('[data-year]').forEach(el => {
+    el.textContent = new Date().getFullYear();
 });
 
-// Close mobile menu when link is clicked
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function () {
-        menuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
+// Mobile menu
+function setMenuOpen(open) {
+    if (!header || !navToggle) return;
+    header.classList.toggle('is-open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+}
+
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        setMenuOpen(navToggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => setMenuOpen(false));
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') setMenuOpen(false);
+    });
+}
+
+// Header background once the page has scrolled
+function updateHeader() {
+    if (header) header.classList.toggle('is-scrolled', window.scrollY > 12);
+}
+window.addEventListener('scroll', updateHeader, { passive: true });
+updateHeader();
+
+// Highlight the nav link of the section currently in view
+const sectionLinks = new Map();
+document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+    const section = document.querySelector(link.getAttribute('href'));
+    if (section) sectionLinks.set(section, link);
+});
+
+if (sectionLinks.size && 'IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            sectionLinks.forEach(link => link.classList.remove('is-active'));
+            sectionLinks.get(entry.target).classList.add('is-active');
+        });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+
+    sectionLinks.forEach((_, section) => sectionObserver.observe(section));
+}
+
+// Reveal elements as they scroll into view
+const revealEls = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+} else {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+}
+
+// Border light that follows the pointer on interactive cards
+document.querySelectorAll('.card--interactive').forEach(card => {
+    card.addEventListener('pointermove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${e.clientY - rect.top}px`);
     });
 });
 
-// Navbar scroll effect and active menu highlighting
-const sections = document.querySelectorAll('section');
-const navItems = document.querySelectorAll('.nav-link');
-
-window.addEventListener('scroll', function () {
-    const navbar = document.getElementById('navbar');
-
-    // Navbar style on scroll
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-
-    // Active menu highlighting
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 100)) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('href').slice(1) === current) {
-            item.classList.add('active');
-        }
-    });
-});
-
-// Trigger scroll event on load to set initial active state
-window.dispatchEvent(new Event('scroll'));
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Fade in animation on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function (entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.fade-in').forEach(el => {
-    observer.observe(el);
-});
-
-// Form submission (prevent default for demo)
-// Form submission (prevent default for demo)
+// Contact form (Formspree, submitted via fetch)
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    const submitBtn = contactForm.querySelector('.submit-btn');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
-    const originalBackground = submitBtn.style.background || '#475569';
 
-    contactForm.addEventListener('submit', async function (e) {
+    function showStatus(text, state, reset) {
+        submitBtn.textContent = text;
+        submitBtn.classList.add(state);
+        setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.classList.remove(state);
+            submitBtn.disabled = false;
+            if (reset) contactForm.reset();
+        }, 3000);
+    }
+
+    contactForm.addEventListener('submit', async e => {
         e.preventDefault();
-
-        // 1. Start loading state and disable button
-        submitBtn.textContent = 'Sending...';
-        submitBtn.style.background = '#059669'; // Success color during loading
+        submitBtn.textContent = 'Sending…';
         submitBtn.disabled = true;
-        submitBtn.classList.add('loading');
-
-        const data = new FormData(e.target);
 
         try {
-            // 2. Send data using the fetch API
-            const response = await fetch(e.target.action, {
-                method: e.target.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
+            const response = await fetch(contactForm.action, {
+                method: contactForm.method,
+                body: new FormData(contactForm),
+                headers: { Accept: 'application/json' }
             });
 
-            // 3. Handle success or failure response
             if (response.ok) {
-                submitBtn.textContent = 'Message Sent!';
-                // Delay for user to see the success message
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.style.background = originalBackground;
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('loading');
-                    e.target.reset(); // Reset the form fields on success
-                }, 3000);
+                showStatus('Message sent!', 'is-success', true);
             } else {
-                // Handle non-200 responses (e.g., Formspree error)
-                submitBtn.textContent = 'Error!';
-                submitBtn.style.background = '#b91c1c'; // Error color
-
-                setTimeout(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.style.background = originalBackground;
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('loading');
-                }, 3000);
+                showStatus('Something went wrong', 'is-error', false);
             }
         } catch (error) {
-            // 4. Handle network errors
-            submitBtn.textContent = 'Network Error!';
-            submitBtn.style.background = '#b91c1c'; // Error color
-
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.style.background = originalBackground;
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('loading');
-            }, 3000);
+            showStatus('Network error', 'is-error', false);
         }
     });
 }
