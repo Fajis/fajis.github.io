@@ -20,6 +20,38 @@
     <meta property="og:site_name" content="fajis.pm">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://fajis.is-a.dev/">
+    <script type="application/ld+json">
+{
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Fajis PM",
+        "url": "https://fajis.is-a.dev/",
+        "image": "https://fajis.is-a.dev/og-image.png",
+        "jobTitle": "Developer",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Harvard Soft Tech"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "BH"
+        },
+        "knowsAbout": [
+            "PHP",
+            "React Native",
+            "MySQL",
+            "JavaScript"
+        ],
+        "knowsLanguage": [
+            "English",
+            "Hindi",
+            "Malayalam"
+        ],
+        "sameAs": [
+            "https://github.com/fajis"
+        ]
+    }
+    </script>
     <link rel="manifest" href="./manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
@@ -27,7 +59,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=7">
     <script>
         // Apply the saved theme before first paint
         try {
@@ -236,8 +268,7 @@
 
                 <div class="section-body">
                     <h2 class="statement">Things I've built.</h2>
-                    <p class="prose">Three Android apps on Google Play, plus free money calculators for the web.
-                        Click a row to see the details.</p>
+                    <p class="prose">Three Android apps, free on Google Play. Click a row to see the details.</p>
                 </div>
 
                 <div class="showcase">
@@ -281,14 +312,6 @@
                                 <td class="col-link"><a
                                         href="https://play.google.com/store/apps/details?id=com.fajis.SmartCalculator"
                                         target="_blank" rel="noopener">Play ↗</a></td>
-                            </tr>
-                            <tr class="app-row" data-target="app-tools">
-                                <td class="mono">04</td>
-                                <td><button type="button" class="row-select" aria-controls="app-tools"
-                                        aria-pressed="false">Financial Tools</button></td>
-                                <td class="col-optional">Finance</td>
-                                <td class="col-optional mono">Web</td>
-                                <td class="col-link"><a href="tools">Open →</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -335,18 +358,6 @@
                                 <li class="cmd"><span class="prompt">$</span> <a
                                         href="https://play.google.com/store/apps/details?id=com.fajis.SmartCalculator"
                                         target="_blank" rel="noopener">open play-store ↗</a></li>
-                            </ol>
-                        </article>
-
-                        <article class="terminal-screen" id="app-tools" hidden>
-                            <ol class="terminal-lines mono">
-                                <li class="cmd"><span class="prompt">$</span> cat web/tools/README</li>
-                                <li><span class="key">name</span>Financial Tools</li>
-                                <li><span class="key">platform</span>Web browser</li>
-                                <li><span class="key">tools</span>Loan, savings and budget calculators</li>
-                                <li><span class="key">about</span>Free to use. No sign-up needed.</li>
-                                <li><span class="key">features</span>Budget planner with live currency rates</li>
-                                <li class="cmd"><span class="prompt">$</span> <a href="tools">open ./tools →</a></li>
                             </ol>
                         </article>
                     </div>
@@ -450,7 +461,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=6"></script>
+    <script src="script.js?v=7"></script>
 </body>
 
 </html>
