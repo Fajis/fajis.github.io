@@ -34,9 +34,13 @@ function initThemeToggle() {
     const current = () => root.dataset.theme || (prefersLight.matches ? 'light' : 'dark');
     const opposite = theme => (theme === 'dark' ? 'light' : 'dark');
 
+    const label = $('.theme-label', button);
+
+    // data-next picks the icon in CSS (sun for light, moon for dark)
     function render() {
         const next = opposite(current());
-        button.textContent = next === 'light' ? '☀ Light' : '☾ Dark';
+        button.dataset.next = next;
+        label.textContent = next === 'light' ? 'Light' : 'Dark';
         button.setAttribute('aria-label', `Switch to ${next} theme`);
     }
 

@@ -1,0 +1,14 @@
+{%- comment -%}
+  Inline SVG icon that inherits the text colour. Usage: {% include icon.html name="play" %}
+  Names: arrow-up-right, play, sun, moon
+{%- endcomment -%}
+{%- case include.name -%}
+{%- when 'arrow-up-right' -%}
+<svg class="icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.5 11.5l7-7M6 4.5h5.5V10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+{%- when 'play' -%}
+<svg class="icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.5 3v10l8.5-5z" fill="currentColor"/></svg>
+{%- when 'sun' -%}
+<svg class="icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="2.75" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1v2.2M8 12.8V15M1 8h2.2M12.8 8H15M3.05 3.05l1.55 1.55M11.4 11.4l1.55 1.55M3.05 12.95l1.55-1.55M11.4 4.6l1.55-1.55" stroke="currentColor" stroke-width="1.5"/></svg>
+{%- when 'moon' -%}
+<svg class="icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M13.5 9.6A5.75 5.75 0 0 1 6.4 2.5a5.75 5.75 0 1 0 7.1 7.1z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+{%- endcase -%}

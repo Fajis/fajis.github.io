@@ -268,7 +268,7 @@ ol {
 
 .nav-link {
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
     gap: 6px;
     color: var(--muted);
     font-size: 14px;
@@ -280,6 +280,8 @@ ol {
     color: var(--subtle);
     font-family: var(--font-mono);
     font-size: 11px;
+    line-height: 1;
+    text-align: center;
     transition: color 0.15s;
 }
 
@@ -314,12 +316,46 @@ ol {
 }
 
 
+.icon {
+    display: block;
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+}
+
+.nav-index .icon {
+    width: 10px;
+    height: 10px;
+    margin-inline: auto;
+}
+
 .nav-btn--boxed {
-    padding: 4px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 32px;
+    min-width: 32px;
+    padding: 0 10px;
     border: 1px solid var(--line-strong);
     color: var(--fg);
     white-space: nowrap;
     transition: color 0.15s, border-color 0.15s;
+}
+
+/* Theme toggle shows the icon of the theme it switches to */
+.theme-toggle[data-next="light"] .theme-icon--moon,
+.theme-toggle[data-next="dark"] .theme-icon--sun {
+    display: none;
+}
+
+.theme-icon {
+    display: inline-flex;
+}
+
+.nav-play .icon {
+    width: 0.85em;
+    height: 0.85em;
 }
 
 /* Play button: always visible, amber so it stands out */
@@ -2017,7 +2053,7 @@ textarea.input {
     }
 
     .nav-btn--boxed {
-        padding: 4px 8px;
+        padding: 0 8px;
     }
 
     .game-canvas {
