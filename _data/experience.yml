@@ -1,13 +1,37 @@
 # Home: Experience. Newest job first; `end: Now` for a current job.
+# Each project shows its name and summary; features and tech open on click.
 - role: Developer
   company: Harvard Soft Tech
   start: "2023"
   end: Now
   projects:
-    - Property management system
-    - Car rental system
-    - Inventory management system
-    - Gym management SaaS
-    - E-shop loyalty program
-    - School management system
+    - name: Property management system
+      summary: A platform to manage rental units, tenant leases and automated rent collection.
+      features: Tracks tenant records, manages lease agreements and organizes property assets with dedicated e-listing modules.
+      tech: PHP backend with a relational database and mobile companion tools.
+
+    - name: Car rental system
+      summary: A fleet management tool for tracking vehicle availability, bookings and customer rentals.
+      features: Real-time vehicle status tracking, booking schedules, maintenance logs and rental duration calculations.
+      tech: Relational backend API paired with cross-platform mobile interfaces.
+
+    - name: Inventory management system
+      summary: A stock control engine for monitoring warehouse levels and tracking products.
+      features: Real-time stock counts, SKU management, supplier records and low-inventory reorder alerts.
+      tech: High-performance backend queries optimized for fast transaction processing and low-latency lookups.
+
+    - name: Gym membership management system
+      summary: A platform that helps gym owners run their daily business, manage members and handle payments.
+      features: Tracks active memberships, manages class schedules, processes payments and lets members book classes easily.
+      tech: Scalable PHP backend with mobile app access for member check-ins and bookings.
+
+    - name: Digital loyalty & rewards platform with e-commerce
+      summary: A digital loyalty card system for e-commerce stores, integrated with Fatoora for invoicing and billing.
+      features: Customers keep their loyalty card in Google Wallet or Apple Wallet and automatically earn and redeem points on every purchase.
+      tech: API-driven backend connecting the e-commerce platform, Fatoora invoicing and mobile wallet passes.
+
+    - name: School management system
+      summary: An enterprise education platform for managing student records, attendance and academic administration.
+      features: Role-based access for administrators, teachers, parents and students, plus fee collection and timetable generation.
+      tech: Modular PHP backend architecture with secure database relations.
   more: And many more

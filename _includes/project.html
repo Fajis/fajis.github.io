@@ -1,0 +1,24 @@
+{%- comment -%} Expandable project row. Usage: {% include project.html project=project number=1 %} {%- endcomment -%}
+{%- assign project = include.project -%}
+<li class="project">
+                                    <details>
+                                        <summary>
+                                            <span class="mono project-index">{% if include.number < 10 %}0{% endif %}{{ include.number }}</span>
+                                            <span class="project-text">
+                                                <span class="project-name">{{ project.name }}</span>
+                                                <span class="project-summary">{{ project.summary }}</span>
+                                            </span>
+                                            <span class="project-toggle mono" aria-hidden="true"></span>
+                                        </summary>
+                                        <dl class="project-details">
+                                            <div>
+                                                <dt class="mono">Features</dt>
+                                                <dd>{{ project.features }}</dd>
+                                            </div>
+                                            <div>
+                                                <dt class="mono">Tech</dt>
+                                                <dd>{{ project.tech }}</dd>
+                                            </div>
+                                        </dl>
+                                    </details>
+                                </li>

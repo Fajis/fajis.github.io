@@ -542,30 +542,105 @@ ol {
 }
 
 .job-projects {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 32px;
     margin-top: 12px;
     border-top: 1px solid var(--line);
 }
 
-.job-projects li {
-    display: flex;
-    gap: 16px;
-    padding: 14px 0;
+.job-projects > li {
     border-bottom: 1px solid var(--line);
 }
 
-.job-projects .mono {
-    flex-shrink: 0;
-    width: 2ch;
+/* Expandable project: index, name + summary, +/− marker */
+.project summary {
+    display: grid;
+    grid-template-columns: 3ch minmax(0, 1fr) auto;
+    gap: 16px;
+    padding: 16px 0;
+    list-style: none;
+    cursor: pointer;
+}
+
+.project summary::-webkit-details-marker {
+    display: none;
+}
+
+.project-index {
     color: var(--subtle);
     font-size: 13px;
-    line-height: 1.85;
+    line-height: 1.9;
+}
+
+.project-text {
+    display: grid;
+    gap: 2px;
+}
+
+.project-name {
+    font-size: 17px;
+    font-weight: 500;
+    transition: color 0.15s;
+}
+
+.project-summary {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.project-toggle {
+    color: var(--subtle);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.project-toggle::before {
+    content: "+";
+}
+
+.project details[open] .project-toggle::before {
+    content: "−";
+}
+
+.project details[open] .project-index,
+.project details[open] .project-toggle {
+    color: var(--accent);
+}
+
+@media (hover: hover) {
+    .project summary:hover .project-name {
+        color: var(--accent);
+    }
+}
+
+.project-details {
+    display: grid;
+    gap: 12px;
+    margin-left: calc(3ch + 16px);
+    padding-bottom: 20px;
+}
+
+.project-details dt {
+    color: var(--subtle);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.project-details dd {
+    margin-top: 2px;
+    font-size: 15px;
 }
 
 .job-projects .is-more {
+    display: grid;
+    grid-template-columns: 3ch minmax(0, 1fr);
+    gap: 16px;
+    padding: 16px 0;
     color: var(--muted);
+}
+
+.job-projects .is-more .mono {
+    color: var(--subtle);
+    font-size: 13px;
 }
 
 /* ---------- Data tables ---------- */
@@ -1458,9 +1533,7 @@ textarea.input {
         row-gap: 8px;
     }
 
-    .job-projects {
-        grid-template-columns: 1fr;
-    }
+
 
     .principles li+li {
         margin-top: 20px;
