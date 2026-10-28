@@ -1,0 +1,2 @@
+{%- comment -%} Link that opens in a new tab, with a ↗ marker. Usage: {% include external-link.html url=... text=... class=... %} {%- endcomment -%}
+<a href="{{ include.url }}"{% if include.class %} class="{{ include.class }}"{% endif %} target="_blank" rel="noopener">{{ include.text }} ↗</a>

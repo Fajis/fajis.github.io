@@ -1,0 +1,19 @@
+{%- comment -%} A calculator built from one entry in _data/tools.yml. {%- endcomment -%}
+{%- assign tool = include.tool -%}
+{%- assign years = tool.tenure | append: 'Years' -%}
+{%- assign months = tool.tenure | append: 'Months' -%}
+<!-- {{ tool.name }} -->
+            <div id="{{ tool.id }}" class="tool-view">
+                {% include tool-view-head.html tool=tool %}
+                <form class="form calculator-form" data-calculate="{{ tool.calculate }}" novalidate>
+                    {%- for field in tool.fields %}
+                    {% include field.html id=field.id label=field.label step=field.step %}
+                    {%- endfor %}
+                    <div class="form-row">
+                        {% include field.html id=years label="Years" step="1" inputmode="numeric" %}
+                        {% include field.html id=months label="Months" step="1" inputmode="numeric" %}
+                    </div>
+                    <button type="submit" class="btn btn--block">Calculate <span aria-hidden="true">→</span></button>
+                </form>
+                {% include result-box.html result=tool.result breakdown=tool.breakdown %}
+            </div>

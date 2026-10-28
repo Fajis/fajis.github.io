@@ -1,0 +1,13 @@
+{%- comment -%} Searchable currency picker. Usage: {% include currency-select.html container="baseCurrencySelect" id="budgetCurrencyName" label="Main currency" value="INR" %} {%- endcomment -%}
+<div class="field">
+                        <label class="field-label" for="{{ include.id }}">{{ include.label }}</label>
+                        <div class="searchable-select-container" id="{{ include.container }}">
+                            <input type="text" id="{{ include.id }}" class="input searchable-select-trigger" readonly value="{{ include.value }}">
+                            <div class="searchable-select-dropdown">
+                                <div class="search-input-wrapper">
+                                    <input type="text" placeholder="Search currency…" aria-label="Search currency">
+                                </div>
+                                <ul class="select-options-list"></ul>
+                            </div>
+                        </div>
+                    </div>

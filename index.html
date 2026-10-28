@@ -1,110 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fajis PM — PHP, React Native &amp; MySQL Developer</title>
-    <meta name="description"
-        content="Fajis PM builds PHP backends and React Native apps on MySQL. Full-stack and mobile developer based in Bahrain, available remotely.">
-    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
-    <meta property="og:title" content="Fajis PM — PHP, React Native & MySQL Developer">
-    <meta property="og:description" content="PHP backends and React Native apps on MySQL.">
-    <meta property="og:url" content="https://fajis.is-a.dev/">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://fajis.is-a.dev/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="fajis.pm — I build PHP backends, React Native apps and MySQL databases.">
-    <meta property="og:site_name" content="fajis.pm">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://fajis.is-a.dev/">
-    <script type="application/ld+json">
-{
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Fajis PM",
-        "url": "https://fajis.is-a.dev/",
-        "image": "https://fajis.is-a.dev/og-image.png",
-        "jobTitle": "Developer",
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Harvard Soft Tech"
-        },
-        "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "BH"
-        },
-        "knowsAbout": [
-            "PHP",
-            "React Native",
-            "MySQL",
-            "JavaScript"
-        ],
-        "knowsLanguage": [
-            "English",
-            "Hindi",
-            "Malayalam"
-        ],
-        "sameAs": [
-            "https://github.com/fajis",
-            "https://www.linkedin.com/in/fajispm",
-            "https://www.instagram.com/fajis.pm/"
-        ]
-    }
-    </script>
-    <link rel="manifest" href="./manifest.json">
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-    <link rel="stylesheet" href="style.css?v=9">
-    <script>
-        // Apply the saved theme before first paint
-        try {
-            var theme = localStorage.getItem('theme');
-            if (theme) document.documentElement.dataset.theme = theme;
-        } catch (e) {}
-    </script>
-</head>
-
-<body>
-    <a class="skip-link" href="#main">Skip to content</a>
-
-    <header class="site-header" id="siteHeader">
-        <nav class="wrap nav" aria-label="Primary">
-            <a href="#top" class="brand">fajis<span class="accent">.</span>pm</a>
-
-
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#about" class="nav-link"><span class="nav-index">01</span>About</a></li>
-                <li><a href="#stack" class="nav-link"><span class="nav-index">02</span>Stack</a></li>
-                <li><a href="#experience" class="nav-link"><span class="nav-index">03</span>Experience</a></li>
-                <li><a href="#work" class="nav-link"><span class="nav-index">04</span>Work</a></li>
-                <li><a href="#contact" class="nav-link"><span class="nav-index">05</span>Contact</a></li>
-                <li><a href="tools" class="nav-link"><span class="nav-index">↗</span>Tools</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <button class="nav-btn nav-btn--boxed" id="themeToggle" type="button">☀ Light</button>
-                <button class="nav-btn nav-btn--boxed nav-toggle" id="navToggle" type="button" aria-expanded="false"
-                    aria-controls="navMenu">
-                    <span class="nav-toggle-label">Menu</span>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <main id="main">
+---
+layout: default
+title: Fajis PM — PHP, React Native & MySQL Developer
+social_description: PHP backends and React Native apps on MySQL.
+person_schema: true
+---
         <!-- Hero -->
         <section id="top" class="hero">
             <div class="wrap grid">
                 <p class="hero-meta mono">
                     <span>~/fajis</span>
-                    <span>Bahrain · <time id="localTime">UTC+3</time></span>
+                    <span>{{ site.location }} · <time id="localTime" data-timezone="{{ site.timezone }}">UTC+3</time></span>
                 </p>
 
                 <h1 class="hero-title">
@@ -130,11 +35,11 @@
                     </div>
                     <div class="spec-item">
                         <dt>Apps live</dt>
-                        <dd>3 on Google Play</dd>
+                        <dd>{{ site.data.apps | size }} on Google Play</dd>
                     </div>
                     <div class="spec-item">
                         <dt>Location</dt>
-                        <dd>Bahrain, works remotely</dd>
+                        <dd>{{ site.location }}, works remotely</dd>
                     </div>
                     <div class="spec-item">
                         <dt>Status</dt>
@@ -147,10 +52,7 @@
         <!-- About -->
         <section id="about" class="section">
             <div class="wrap grid">
-                <header class="section-head">
-                    <p class="section-index mono">01</p>
-                    <p class="section-file mono">about.md</p>
-                </header>
+                {% include section-head.html index="01" file="about.md" %}
 
                 <div class="section-body">
                     <h2 class="statement">I write clean, fast code that is easy to grow.</h2>
@@ -179,13 +81,10 @@
             </div>
         </section>
 
-        <!-- Stack -->
+        <!-- Stack: _data/stack.yml -->
         <section id="stack" class="section">
             <div class="wrap grid">
-                <header class="section-head">
-                    <p class="section-index mono">02</p>
-                    <p class="section-file mono">stack.json</p>
-                </header>
+                {% include section-head.html index="02" file="stack.json" %}
 
                 <div class="section-body">
                     <h2 class="statement">Tools I use.</h2>
@@ -197,39 +96,42 @@
                                 <th scope="col">What for</th>
                             </tr>
                         </thead>
-                        <tbody id="stackRows"></tbody>
+                        <tbody>
+                            {%- for row in site.data.stack %}
+                            <tr{% if row.muted %} class="is-muted"{% endif %}>
+                                <th scope="row">{{ row.area }}</th>
+                                <td>{{ row.tools }}</td>
+                                <td>{{ row.use }}</td>
+                            </tr>
+                            {%- endfor %}
+                        </tbody>
                     </table>
                 </div>
             </div>
         </section>
 
-        <!-- Experience -->
+        <!-- Experience: _data/experience.yml -->
         <section id="experience" class="section">
             <div class="wrap grid">
-                <header class="section-head">
-                    <p class="section-index mono">03</p>
-                    <p class="section-file mono">experience.log</p>
-                </header>
+                {% include section-head.html index="03" file="experience.log" %}
 
                 <div class="section-body">
                     <h2 class="statement">Where I work.</h2>
-
-                    <div id="experienceList"></div>
+                    {%- for job in site.data.experience %}
+                    {% include job.html job=job %}
+                    {%- endfor %}
                 </div>
             </div>
         </section>
 
-        <!-- Work -->
+        <!-- Work: _data/apps.yml -->
         <section id="work" class="section">
             <div class="wrap grid">
-                <header class="section-head">
-                    <p class="section-index mono">04</p>
-                    <p class="section-file mono">apps/</p>
-                </header>
+                {% include section-head.html index="04" file="apps/" %}
 
                 <div class="section-body">
                     <h2 class="statement">Things I've built.</h2>
-                    <p class="prose">Three Android apps, free on Google Play. Click a row to see the details.</p>
+                    <p class="prose">Android apps, free on Google Play. Click a row to see the details.</p>
                 </div>
 
                 <div class="showcase">
@@ -243,12 +145,18 @@
                                 <th scope="col"><span class="sr-only">Link</span></th>
                             </tr>
                         </thead>
-                        <tbody id="appRows"></tbody>
+                        <tbody>
+                            {%- for app in site.data.apps %}
+                            {% include app-row.html app=app number=forloop.index selected=forloop.first %}
+                            {%- endfor %}
+                        </tbody>
                     </table>
 
                     <div class="terminal" aria-live="polite">
                         <p class="terminal-bar mono"><span>zsh — apps</span><span>README</span></p>
-                        <div id="appScreens"></div>
+                        {%- for app in site.data.apps %}
+                        {% include app-readme.html app=app selected=forloop.first %}
+                        {%- endfor %}
                     </div>
                 </div>
             </div>
@@ -257,22 +165,24 @@
         <!-- Contact -->
         <section id="contact" class="section">
             <div class="wrap grid">
-                <header class="section-head">
-                    <p class="section-index mono">05</p>
-                    <p class="section-file mono">contact.sh</p>
-                </header>
+                {% include section-head.html index="05" file="contact.sh" %}
 
                 <div class="contact-intro">
                     <h2 class="statement">Have a project?<br>Let's talk.</h2>
-                    <dl class="contact-meta" id="contactMeta">
-                        <!-- PLACEHOLDER: replace hello@example.com with your real email (link and text on the line below) -->
-                        <div id="contactEmailRow">
+                    <dl class="contact-meta">
+                        <div>
                             <dt class="mono">Email</dt>
-                            <dd><a href="mailto:hello@example.com">hello@example.com</a></dd>
+                            <dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd>
                         </div>
+                        {%- for link in site.data.links %}
+                        <div>
+                            <dt class="mono">{{ link.label }}</dt>
+                            <dd>{% include external-link.html url=link.url text=link.handle %}</dd>
+                        </div>
+                        {%- endfor %}
                         <div>
                             <dt class="mono">Location</dt>
-                            <dd>Bahrain · Remote</dd>
+                            <dd>{{ site.location }} · Remote</dd>
                         </div>
                         <div>
                             <dt class="mono">Languages</dt>
@@ -280,13 +190,12 @@
                         </div>
                     </dl>
                     <p class="contact-cv">
-                        <a href="cv.pdf" class="link-cta link-cta--down" download="Fajis-PM-CV.pdf">Download CV
+                        <a href="{{ site.cv | relative_url }}" class="link-cta link-cta--down" download="Fajis-PM-CV.pdf">Download CV
                             <span aria-hidden="true">↓</span></a>
                     </p>
                 </div>
 
-                <form id="contactForm" class="form contact-form" action="https://formspree.io/f/xpwrjorn"
-                    method="POST">
+                <form id="contactForm" class="form contact-form" action="{{ site.contact_form }}" method="POST">
                     <div class="field">
                         <label class="field-label mono" for="contactName">Name</label>
                         <input class="input" id="contactName" type="text" name="name" autocomplete="name" required>
@@ -304,42 +213,3 @@
                 </form>
             </div>
         </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="wrap grid footer-grid">
-            <p class="brand">fajis<span class="accent">.</span>pm</p>
-            <nav class="footer-col" aria-label="Site">
-                <p class="footer-heading mono">Pages</p>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#stack">Stack</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <nav class="footer-col" aria-label="Products">
-                <p class="footer-heading mono">Products</p>
-                <ul>
-                    <li><a href="downloads/">Android apps</a></li>
-                    <li><a href="tools">Financial tools</a></li>
-                    <li><a href="apps/fitness-app/privacy-policy.html">Stay Fit privacy</a></li>
-                </ul>
-            </nav>
-            <nav class="footer-col" aria-label="Elsewhere">
-                <p class="footer-heading mono">Links</p>
-                <ul id="footerLinks">
-                    <li><a href="cv.pdf" download="Fajis-PM-CV.pdf">CV (PDF)</a></li>
-                    <li><a href="downloads/">Google Play</a></li>
-                </ul>
-            </nav>
-            <p class="footer-legal mono">© <span data-year></span> Fajis PM</p>
-        </div>
-    </footer>
-
-    <script src="data.js?v=9"></script>
-    <script src="script.js?v=9"></script>
-</body>
-
-</html>

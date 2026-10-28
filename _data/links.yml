@@ -1,0 +1,10 @@
+# Social links: contact section and every footer.
+- label: GitHub
+  handle: "@Fajis"
+  url: https://github.com/fajis
+- label: LinkedIn # PLACEHOLDER: temporary, replace with your real profile URL
+  handle: "@fajispm"
+  url: https://www.linkedin.com/in/fajispm
+- label: Instagram
+  handle: "@fajis.pm"
+  url: https://www.instagram.com/fajis.pm/

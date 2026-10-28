@@ -1,0 +1,21 @@
+# Site settings, used by the layouts and includes.
+title: Fajis PM
+brand: fajis.pm
+description: >-
+  Fajis PM builds PHP backends and React Native apps on MySQL. Full-stack and
+  mobile developer based in Bahrain, available remotely.
+url: https://fajis.is-a.dev
+baseurl: ""
+location: Bahrain
+timezone: Asia/Bahrain
+email: hello@example.com # PLACEHOLDER: replace with your real email
+cv: /cv.pdf
+contact_form: https://formspree.io/f/xpwrjorn
+
+# Files that are part of the repo but not the website
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+play_store: https://play.google.com/store/apps/details?id=

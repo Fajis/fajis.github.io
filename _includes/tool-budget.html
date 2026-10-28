@@ -1,0 +1,19 @@
+{%- comment -%} Budget planner. Rows, totals and saving are handled by tools.js. {%- endcomment -%}
+{%- assign tool = include.tool -%}
+<!-- {{ tool.name }} -->
+            <div id="{{ tool.id }}" class="tool-view">
+                {% include tool-view-head.html tool=tool %}
+                <div class="budget-settings">
+                    {% include currency-select.html container="baseCurrencySelect" id="budgetCurrencyName" label="Main currency" value="INR" %}
+                    {% include currency-select.html container="secondaryCurrencySelect" id="foreignCurrencyName" label="Second currency" value="BHD" %}
+                    {% include field.html id="budgetExchangeRate" label="Exchange rate" step="0.0001" value="0.0041" %}
+                </div>
+
+                <div class="budget-grid">
+                    {% include budget-column.html title="Income" list="incomeList" add="Add income" %}
+                    {% include budget-column.html title="Spending" list="expenseList" add="Add expense" %}
+                </div>
+
+
+                {% include result-box.html result=tool.result breakdown=tool.breakdown %}
+            </div>

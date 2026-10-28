@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {%- include head.html %}
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    {% include header.html %}
+
+    <main id="main">
+        {{ content }}
+    </main>
+
+    {% include footer.html %}
+
+    {% include script.html src="main.js" %}
+    {%- for script in page.scripts %}
+    {% include script.html src=script %}
+    {%- endfor %}
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+{%- comment -%} Labelled number input. Usage: {% include field.html id="loanAmount" label="Loan amount ($)" step="1000" %} {%- endcomment -%}
+<div class="field">
+                        <label class="field-label" for="{{ include.id }}">{{ include.label }}</label>
+                        <input class="input" type="number" id="{{ include.id }}" step="{{ include.step | default: 'any' }}" inputmode="{{ include.inputmode | default: 'decimal' }}"{% if include.value %} value="{{ include.value }}"{% endif %}>
+                    </div>

@@ -1,0 +1,6 @@
+# Home: Stack table. `muted: true` greys out a row.
+- { area: Backend, tools: PHP, use: APIs and server logic }
+- { area: Mobile, tools: React Native, use: "Android and iOS apps, published on Google Play" }
+- { area: Database, tools: MySQL, use: Designing tables and making queries fast }
+- { area: Frontend, tools: "JavaScript ES6+, HTML, CSS", use: Websites that work on any screen }
+- { area: Learning, tools: "TypeScript, Redux, DevOps", use: Learning now, muted: true }

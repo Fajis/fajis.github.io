@@ -1,0 +1,18 @@
+{%- comment -%}
+  Header for sub-pages.
+  Usage: {% include page-hero.html path="~/fajis/apps" note="Google Play" title="Android apps" lead="..." actions=captured_html %}
+{%- endcomment -%}
+<section class="page-hero">
+            <div class="wrap grid">
+                <p class="hero-meta mono"><span>{{ include.path }}</span><span>{{ include.note }}</span></p>
+                <h1 class="page-title">{{ include.title }}<span class="cursor" aria-hidden="true"></span></h1>
+                {%- if include.actions %}
+                <div class="hero-side">
+                    <p class="hero-lead">{{ include.lead }}</p>
+                    <p class="hero-actions">{{ include.actions }}</p>
+                </div>
+                {%- else %}
+                <p class="hero-lead">{{ include.lead }}</p>
+                {%- endif %}
+            </div>
+        </section>

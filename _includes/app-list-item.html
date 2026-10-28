@@ -1,0 +1,10 @@
+{%- comment -%} App row on the Android apps page. Usage: {% include app-list-item.html app=app %} {%- endcomment -%}
+{%- assign app = include.app -%}
+<li>
+                    <a class="index-row" href="{{ site.play_store }}{{ app.package }}">
+                        <img class="index-logo" src="{{ app.logo | relative_url }}" alt="" width="40" height="40">
+                        <span class="index-name">{{ app.name }}</span>
+                        <span class="index-desc">{{ app.about }}</span>
+                        <span class="index-go">Get it ↗</span>
+                    </a>
+                </li>

@@ -1,0 +1,16 @@
+{%- assign job = site.data.experience | first -%}
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": {{ site.title | jsonify }},
+        "url": {{ '/' | absolute_url | jsonify }},
+        "image": {{ '/og-image.png' | absolute_url | jsonify }},
+        "jobTitle": {{ job.role | jsonify }},
+        "worksFor": { "@type": "Organization", "name": {{ job.company | jsonify }} },
+        "address": { "@type": "PostalAddress", "addressCountry": "BH" },
+        "knowsAbout": ["PHP", "React Native", "MySQL", "JavaScript"],
+        "knowsLanguage": ["English", "Hindi", "Malayalam"],
+        "sameAs": {{ site.data.links | map: 'url' | jsonify }}
+    }
+    </script>

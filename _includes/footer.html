@@ -1,0 +1,32 @@
+<footer class="site-footer">
+        <div class="wrap grid footer-grid">
+            {% include brand.html tag="p" %}
+            <nav class="footer-col" aria-label="Site">
+                <p class="footer-heading mono">Pages</p>
+                <ul>
+                    <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                    <li><a href="{{ '/#experience' | relative_url }}">Experience</a></li>
+                    <li><a href="{{ '/#work' | relative_url }}">Work</a></li>
+                    <li><a href="{{ '/#contact' | relative_url }}">Contact</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Products">
+                <p class="footer-heading mono">Products</p>
+                <ul>
+                    <li><a href="{{ '/downloads/' | relative_url }}">Android apps</a></li>
+                    <li><a href="{{ '/tools' | relative_url }}">Financial tools</a></li>
+                    <li><a href="{{ '/apps/fitness-app/privacy-policy.html' | relative_url }}">Stay Fit privacy</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Links">
+                <p class="footer-heading mono">Links</p>
+                <ul>
+                    {%- for link in site.data.links %}
+                    <li>{% include external-link.html url=link.url text=link.label %}</li>
+                    {%- endfor %}
+                    <li><a href="{{ site.cv | relative_url }}" download="Fajis-PM-CV.pdf">CV (PDF)</a></li>
+                </ul>
+            </nav>
+            <p class="footer-legal mono">© {{ site.time | date: '%Y' }} {{ site.title }}</p>
+        </div>
+    </footer>

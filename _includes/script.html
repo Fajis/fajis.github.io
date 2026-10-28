@@ -1,0 +1,2 @@
+{%- comment -%} A script from assets/js, cache-busted on every build. Usage: {% include script.html src="main.js" %} {%- endcomment -%}
+<script src="{{ '/assets/js/' | append: include.src | relative_url }}?v={{ site.time | date: '%s' }}"></script>

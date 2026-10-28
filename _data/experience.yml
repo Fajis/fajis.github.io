@@ -1,0 +1,13 @@
+# Home: Experience. Newest job first; `end: Now` for a current job.
+- role: Developer
+  company: Harvard Soft Tech
+  start: "2023"
+  end: Now
+  projects:
+    - Property management system
+    - Car rental system
+    - Inventory management system
+    - Gym management SaaS
+    - E-shop loyalty program
+    - School management system
+  more: And many more

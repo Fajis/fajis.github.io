@@ -1,0 +1,28 @@
+# Home Work table + terminal panel, and the Android apps page.
+# `id` is used in element ids and the terminal path (apps/<id>/README).
+- id: stay-fit
+  name: Stay Fit
+  category: Health & fitness
+  platform: Android
+  package: com.fajis.fitnessapp
+  logo: /apps/fitness-app/logo.png
+  about: Track your workouts, steps and meals.
+  features: Step counter, meal photos, Health Connect
+
+- id: oneline
+  name: Oneline
+  category: Productivity
+  platform: Android
+  package: com.fajis.oneline
+  logo: /apps/oneline/logo.png
+  about: Short notes you can search and look back on.
+  features: One-line notes, search, history
+
+- id: calculator-plus
+  name: Calculator+
+  category: Tools
+  platform: Android
+  package: com.fajis.SmartCalculator
+  logo: /apps/smart-calculator/logo.png
+  about: A simple calculator with a currency converter and history.
+  features: Currency converter, history

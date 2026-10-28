@@ -1,0 +1,3 @@
+{%- comment -%} Site wordmark. Usage: {% include brand.html tag="a" %} or tag="p" {%- endcomment -%}
+{%- assign tag = include.tag | default: 'a' -%}
+<{{ tag }} class="brand"{% if tag == 'a' %} href="{{ '/' | relative_url }}"{% endif %}>fajis<span class="accent">.</span>pm</{{ tag }}>

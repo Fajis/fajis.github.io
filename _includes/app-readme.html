@@ -1,0 +1,14 @@
+{%- comment -%} Terminal README for one app. Usage: {% include app-readme.html app=app selected=true %} {%- endcomment -%}
+{%- assign app = include.app -%}
+{%- assign play_url = site.play_store | append: app.package -%}
+<article class="terminal-screen" id="app-{{ app.id }}"{% unless include.selected %} hidden{% endunless %}>
+                            <ol class="terminal-lines mono">
+                                <li class="cmd"><span class="prompt">$</span> cat apps/{{ app.id }}/README</li>
+                                <li><span class="key">name</span>{{ app.name }}</li>
+                                <li><span class="key">platform</span>{{ app.platform }}</li>
+                                <li><span class="key">package</span>{{ app.package }}</li>
+                                <li><span class="key">about</span>{{ app.about }}</li>
+                                <li><span class="key">features</span>{{ app.features }}</li>
+                                <li class="cmd"><span class="prompt">$</span> {% include external-link.html url=play_url text="open play-store" %}</li>
+                            </ol>
+                        </article>

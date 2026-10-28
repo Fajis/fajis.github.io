@@ -1,0 +1,7 @@
+# Main menu. `index` is the small number shown before the label.
+- { label: About, url: "/#about", index: "01" }
+- { label: Stack, url: "/#stack", index: "02" }
+- { label: Experience, url: "/#experience", index: "03" }
+- { label: Work, url: "/#work", index: "04" }
+- { label: Contact, url: "/#contact", index: "05" }
+- { label: Tools, url: "/tools", index: "↗" }

@@ -1,113 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apps — Fajis PM</title>
-    <meta name="description" content="Stay Fit, Oneline and Calculator+: free Android apps by Fajis PM on Google Play.">
-    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
-    <meta property="og:title" content="Apps — Fajis PM">
-    <meta property="og:description" content="Stay Fit, Oneline and Calculator+: free Android apps on Google Play.">
-    <meta property="og:url" content="https://fajis.is-a.dev/downloads/">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://fajis.is-a.dev/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="fajis.pm — I build PHP backends, React Native apps and MySQL databases.">
-    <meta property="og:site_name" content="fajis.pm">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://fajis.is-a.dev/downloads/">
-    <link rel="manifest" href="../manifest.json">
-    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-    <link rel="stylesheet" href="../style.css?v=9">
-    <script>
-        // Apply the saved theme before first paint
-        try {
-            var theme = localStorage.getItem('theme');
-            if (theme) document.documentElement.dataset.theme = theme;
-        } catch (e) {}
-    </script>
-</head>
-
-<body>
-    <a class="skip-link" href="#main">Skip to content</a>
-
-    <header class="site-header" id="siteHeader">
-        <nav class="wrap nav" aria-label="Primary">
-            <a href="../" class="brand">fajis<span class="accent">.</span>pm</a>
-
-
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="../#about" class="nav-link"><span class="nav-index">01</span>About</a></li>
-                <li><a href="../#stack" class="nav-link"><span class="nav-index">02</span>Stack</a></li>
-                <li><a href="../#experience" class="nav-link"><span class="nav-index">03</span>Experience</a></li>
-                <li><a href="../#work" class="nav-link"><span class="nav-index">04</span>Work</a></li>
-                <li><a href="../#contact" class="nav-link"><span class="nav-index">05</span>Contact</a></li>
-                <li><a href="../tools" class="nav-link"><span class="nav-index">↗</span>Tools</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <button class="nav-btn nav-btn--boxed" id="themeToggle" type="button">☀ Light</button>
-                <button class="nav-btn nav-btn--boxed nav-toggle" id="navToggle" type="button" aria-expanded="false"
-                    aria-controls="navMenu">
-                    <span class="nav-toggle-label">Menu</span>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <main id="main">
-        <section class="page-hero">
-            <div class="wrap grid">
-                <p class="hero-meta mono"><span>~/fajis/apps</span><span>Google Play</span></p>
-                <h1 class="page-title">Android apps<span class="cursor" aria-hidden="true"></span></h1>
-                <p class="hero-lead">Free apps on Google Play. Tap one to open its store page.</p>
-            </div>
-        </section>
+---
+layout: default
+title: Apps — Fajis PM
+description: "Stay Fit, Oneline and Calculator+: free Android apps by Fajis PM on Google Play."
+social_description: "Stay Fit, Oneline and Calculator+: free Android apps on Google Play."
+---
+        {% include page-hero.html path="~/fajis/apps" note="Google Play" title="Android apps"
+            lead="Free apps on Google Play. Tap one to open its store page." %}
 
         <section class="wrap page-content">
-            <ul class="index-list" id="appList"></ul>
+            <ul class="index-list">
+                {%- for app in site.data.apps %}
+                {% include app-list-item.html app=app %}
+                {%- endfor %}
+            </ul>
         </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="wrap grid footer-grid">
-            <p class="brand">fajis<span class="accent">.</span>pm</p>
-            <nav class="footer-col" aria-label="Site">
-                <p class="footer-heading mono">Pages</p>
-                <ul>
-                    <li><a href="../">Home</a></li>
-                    <li><a href="../#work">Work</a></li>
-                    <li><a href="../#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <nav class="footer-col" aria-label="Products">
-                <p class="footer-heading mono">Products</p>
-                <ul>
-                    <li><a href="../downloads/">Android apps</a></li>
-                    <li><a href="../tools">Financial tools</a></li>
-                    <li><a href="../apps/fitness-app/privacy-policy.html">Stay Fit privacy</a></li>
-                </ul>
-            </nav>
-            <nav class="footer-col" aria-label="Links">
-                <p class="footer-heading mono">Links</p>
-                <ul id="footerLinks">
-                    <li><a href="../cv.pdf" download="Fajis-PM-CV.pdf">CV (PDF)</a></li>
-                </ul>
-            </nav>
-            <p class="footer-legal mono">© <span data-year></span> Fajis PM</p>
-        </div>
-    </footer>
-
-    <script src="../data.js?v=9"></script>
-    <script src="../script.js?v=9"></script>
-</body>
-
-</html>

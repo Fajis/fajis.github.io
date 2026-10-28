@@ -1,0 +1,18 @@
+{%- comment -%} One job in the Experience section. Usage: {% include job.html job=job %} {%- endcomment -%}
+{%- assign job = include.job -%}
+<article class="job">
+                        <p class="job-dates mono"><time datetime="{{ job.start }}">{{ job.start }}</time> — {{ job.end }}</p>
+                        <div class="job-main">
+                            <h3 class="job-role">{{ job.role }}</h3>
+                            <p class="job-company">{{ job.company }}</p>
+                            <p class="job-intro">Systems I have built here:</p>
+                            <ul class="job-projects">
+                                {%- for project in job.projects %}
+                                <li><span class="mono">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>{{ project }}</li>
+                                {%- endfor %}
+                                {%- if job.more %}
+                                <li class="is-more"><span class="mono">+</span>{{ job.more }}</li>
+                                {%- endif %}
+                            </ul>
+                        </div>
+                    </article>

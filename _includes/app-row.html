@@ -1,0 +1,11 @@
+{%- comment -%} Row in the Work table. Usage: {% include app-row.html app=app number=1 selected=true %} {%- endcomment -%}
+{%- assign app = include.app -%}
+{%- assign play_url = site.play_store | append: app.package -%}
+<tr class="app-row{% if include.selected %} is-selected{% endif %}" data-target="app-{{ app.id }}">
+                                <td class="mono">{% if include.number < 10 %}0{% endif %}{{ include.number }}</td>
+                                <td><button type="button" class="row-select" aria-controls="app-{{ app.id }}"
+                                        aria-pressed="{% if include.selected %}true{% else %}false{% endif %}">{{ app.name }}</button></td>
+                                <td class="col-optional">{{ app.category }}</td>
+                                <td class="col-optional mono">{{ app.platform }}</td>
+                                <td class="col-link">{% include external-link.html url=play_url text="Play" %}</td>
+                            </tr>

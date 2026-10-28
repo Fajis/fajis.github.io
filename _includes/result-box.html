@@ -1,0 +1,15 @@
+{%- comment -%}
+  Result panel. Usage: {% include result-box.html result=tool.result breakdown=tool.breakdown %}
+  result: { id, label }; breakdown: list of { id, label } (optional)
+{%- endcomment -%}
+<div class="result-box">
+                    <span class="result-label">{{ include.result.label }}</span>
+                    <div class="result-value" id="{{ include.result.id }}">0.00</div>
+                    {%- if include.breakdown %}
+                    <div class="result-breakdown">
+                        {%- for item in include.breakdown %}
+                        <div><span class="result-label">{{ item.label }}</span><span id="{{ item.id }}">0.00</span></div>
+                        {%- endfor %}
+                    </div>
+                    {%- endif %}
+                </div>

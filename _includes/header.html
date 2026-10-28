@@ -1,0 +1,21 @@
+<header class="site-header" id="siteHeader">
+        <nav class="wrap nav" aria-label="Primary">
+            {% include brand.html tag="a" %}
+
+            <ul class="nav-menu" id="navMenu">
+                {%- for item in site.data.navigation %}
+                {%- assign current = false %}
+                {%- if page.url == item.url %}{% assign current = true %}{% endif %}
+                <li><a href="{{ item.url | relative_url }}" class="nav-link{% if current %} is-active{% endif %}"{% if current %} aria-current="page"{% endif %}><span class="nav-index">{{ item.index }}</span>{{ item.label }}</a></li>
+                {%- endfor %}
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-btn nav-btn--boxed" id="themeToggle" type="button">☀ Light</button>
+                <button class="nav-btn nav-btn--boxed nav-toggle" id="navToggle" type="button" aria-expanded="false"
+                    aria-controls="navMenu">
+                    <span class="nav-toggle-label">Menu</span>
+                </button>
+            </div>
+        </nav>
+    </header>

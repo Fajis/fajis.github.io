@@ -1,0 +1,6 @@
+{%- comment -%} Income or spending column. Rows are added by tools.js. {%- endcomment -%}
+<div class="budget-col">
+                        <h3 class="budget-col-title">{{ include.title }}</h3>
+                        <div id="{{ include.list }}" class="budget-list"></div>
+                        <button type="button" class="add-btn" data-add-row="{{ include.list }}">+ {{ include.add }}</button>
+                    </div>

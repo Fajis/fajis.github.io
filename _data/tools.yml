@@ -1,0 +1,83 @@
+# Tools page. Each calculator is built from the same template
+# (_includes/tool-calculator.html); `calculate` names the function in
+# assets/js/tools.js. Every calculator also gets Years + Months fields
+# named <tenure>Years and <tenure>Months.
+- id: emiTool
+  code: EMI
+  name: EMI Calculator
+  summary: Find your monthly loan payment
+  calculate: emi
+  fields:
+    - { id: loanAmount, label: Loan amount ($), step: "1000" }
+    - { id: interestRate, label: Interest rate (% per year), step: "0.1" }
+  tenure: loanTenure
+  result: { id: monthlyEMI, label: Monthly payment }
+  breakdown:
+    - { id: totalInterest, label: Total interest }
+    - { id: totalPayment, label: Total you pay }
+
+- id: sipTool
+  code: SIP
+  name: SIP Calculator
+  summary: See how a monthly investment grows
+  calculate: sip
+  fields:
+    - { id: sipAmount, label: Amount per month ($), step: "500" }
+    - { id: sipRate, label: Expected return (% per year), step: "0.1" }
+  tenure: sipTenure
+  result: { id: sipTotal, label: Final value }
+  breakdown:
+    - { id: sipInvested, label: You put in }
+    - { id: sipReturns, label: You earn }
+
+- id: lumpsumTool
+  code: LMP
+  name: Lumpsum
+  title: Lumpsum Calculator
+  summary: See how a one-time investment grows
+  calculate: lumpsum
+  fields:
+    - { id: lumpsumAmount, label: Amount you invest ($), step: "1000" }
+    - { id: lumpsumRate, label: Expected return (% per year), step: "0.1" }
+  tenure: lumpsumTenure
+  result: { id: lumpsumTotal, label: Final value }
+  breakdown:
+    - { id: lumpsumInvested, label: You put in }
+    - { id: lumpsumReturns, label: You earn }
+
+- id: goalTool
+  code: GOL
+  name: Goal Planner
+  summary: Find how much to save each month for a goal
+  calculate: goal
+  fields:
+    - { id: goalTarget, label: Goal amount ($), step: "1000" }
+    - { id: goalRate, label: Expected return (%), step: "0.1" }
+  tenure: goalTenure
+  result: { id: goalSIP, label: Save this much each month }
+
+- id: affordTool
+  code: AFF
+  name: Affordability
+  title: Loan Affordability
+  summary: Find the biggest loan you can afford
+  calculate: affordability
+  fields:
+    - { id: affordEMI, label: Monthly payment you can afford ($), step: "500" }
+    - { id: affordRate, label: Interest rate (% per year), step: "0.1" }
+  tenure: affordTenure
+  result: { id: affordLoan, label: Biggest loan you can take }
+  breakdown:
+    - { id: affordInterest, label: Total interest }
+    - { id: affordTotal, label: Total you pay }
+
+# The budget planner has its own markup (_includes/tool-budget.html)
+- id: budgetTool
+  code: BGT
+  name: Budget Planner
+  summary: Track income and spending in two currencies
+  custom: budget
+  result: { id: totalSavings, label: Left over each month }
+  breakdown:
+    - { id: totalIncome, label: Total income }
+    - { id: totalExpenses, label: Total spending }
