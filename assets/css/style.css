@@ -1965,6 +1965,17 @@ kbd {
     animation: fade-up 0.8s var(--ease) 0.35s both;
 }
 
+/* Hold the entrance animations on their first frame until fonts have
+   loaded and the page is on screen (main.js adds .is-loaded; head.html
+   adds it after 1.5s at the latest), so they are never over before
+   the visitor sees them */
+.js:not(.is-loaded) .line > span,
+.js:not(.is-loaded) .hero-meta,
+.js:not(.is-loaded) .hero-side,
+.js:not(.is-loaded) .page-hero .hero-lead {
+    animation-play-state: paused;
+}
+
 /* Scroll reveal */
 .js [data-reveal],
 .js [data-reveal-stagger] > * {
@@ -2108,20 +2119,6 @@ kbd {
 .index-row,
 .app-row td:first-child {
     position: relative;
-}
-
-/* Smooth cross-fade between pages; the header stays put */
-@view-transition {
-    navigation: auto;
-}
-
-.site-header {
-    view-transition-name: site-header;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-    animation-duration: 0.3s;
 }
 
 /* Touch screens have no keyboard: hide shortcut hints */
@@ -2381,10 +2378,6 @@ kbd {
         opacity: 1;
         transform: none;
         clip-path: none;
-    }
-
-    @view-transition {
-        navigation: none;
     }
 
     *,

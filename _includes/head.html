@@ -37,6 +37,8 @@
         // Before first paint: enable motion styles, note the device platform
         // (phones only see their own app store) and apply the saved theme
         document.documentElement.classList.add('js');
+        // Safety net: start entrance animations even if main.js is slow
+        setTimeout(function () { document.documentElement.classList.add('is-loaded'); }, 1500);
         var ua = navigator.userAgent;
         var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
         document.documentElement.dataset.platform = ios ? 'ios' : /Android/.test(ua) ? 'android' : 'desktop';

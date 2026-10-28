@@ -75,6 +75,20 @@ function initMobileMenu() {
     });
 }
 
+// ---------- Entrance animations ----------
+
+// Start the headline animations once fonts are ready and the page has
+// painted, so they play in front of the visitor instead of during loading
+function initEntrance() {
+    const root = document.documentElement;
+    const start = () => requestAnimationFrame(() => root.classList.add('is-loaded'));
+    if (document.fonts && document.fonts.status !== 'loaded') {
+        document.fonts.ready.then(start);
+    } else {
+        start();
+    }
+}
+
 // ---------- Scroll reveal ----------
 
 function initReveal() {
@@ -221,6 +235,7 @@ function initContactForm() {
 
 // ---------- Start ----------
 
+initEntrance();
 initReveal();
 initScrollProgress();
 initThemeToggle();
