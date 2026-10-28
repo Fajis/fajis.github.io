@@ -39,6 +39,7 @@
         const ctx = canvas.getContext('2d');
         const scoreOutput = $('[data-score]', root);
         const status = $('[data-status]', root);
+        const playButton = $('[data-play]', root);
 
         let width = 0;
         let height = 0;
@@ -80,6 +81,12 @@
             status.textContent = text;
         }
 
+        // The Play button shows before a game and after a crash, hidden while running
+        function showPlayButton(label) {
+            playButton.textContent = label;
+            playButton.hidden = !label;
+        }
+
         function showScore() {
             scoreOutput.textContent = `HI ${pad(highScore)} · ${pad(score)}`;
         }
@@ -89,6 +96,8 @@
         function start() {
             reset();
             state = 'running';
+            showPlayButton('');
+            canvas.focus({ preventScroll: true });
             setStatus('Jump: Space · ↑ · tap');
             lastTime = performance.now();
             requestAnimationFrame(loop);
@@ -109,7 +118,8 @@
                 storage.set(HIGH_SCORE_KEY, String(highScore));
             }
             showScore();
-            setStatus(`Game over · score ${Math.floor(score)} · Space or tap to retry`);
+            setStatus(`Game over · score ${Math.floor(score)} · press Play again`);
+            showPlayButton('↻ Play again');
             draw();
         }
 
@@ -196,11 +206,11 @@
             ctx.fillStyle = colors.accent;
             ctx.fillRect(PLAYER.x, ground - PLAYER.height - player.y, PLAYER.width, PLAYER.height);
 
+            // Messages sit above the Play button (centred over the canvas by CSS)
             if (state === 'ready') {
-                drawCentered('Press Space or tap to start', height / 2 - 10, 15, colors.muted);
+                drawCentered('Jump over the bugs', height / 2 - 34, 16, colors.muted);
             } else if (state === 'over') {
-                drawCentered('Game over', height / 2 - 18, 22, colors.text);
-                drawCentered('Space or tap to retry', height / 2 + 10, 14, colors.muted);
+                drawCentered(`Game over · ${Math.floor(score)}`, height / 2 - 34, 20, colors.text);
             }
         }
 
@@ -220,6 +230,8 @@
         }
 
         // ---------- Input ----------
+
+        playButton.addEventListener('click', start);
 
         canvas.addEventListener('pointerdown', e => {
             e.preventDefault();

@@ -1504,6 +1504,39 @@ textarea.input {
     color: var(--muted);
 }
 
+.game-stage {
+    position: relative;
+}
+
+/* Centred over the canvas, below the canvas message */
+.game-play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -20%);
+    height: 40px;
+    padding: 0 20px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.game-play[hidden] {
+    display: none;
+}
+
+@media (hover: hover) {
+    .game-play:hover {
+        background: transparent;
+        color: var(--accent);
+    }
+}
+
 .game-canvas {
     display: block;
     width: 100%;

@@ -5,3 +5,4 @@
 - { label: Work, url: /work/, index: "03", summary: Android apps I have published on Google Play }
 - { label: Contact, url: /contact/, index: "04", summary: Open to freelance projects }
 - { label: Tools, url: /tools, index: "↗" }
+- { label: Play, url: /play/, index: "▶" }
