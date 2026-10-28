@@ -12,7 +12,7 @@ permalink: /experience/
                 {% include section-head.html index="01" file="experience.log" %}
 
                 <div class="section-body">
-                    <h2 class="statement">Where I work.</h2>
+                    <h2 class="statement" data-reveal>Where I work.</h2>
                     {%- for job in site.data.experience %}
                     {% include job.html job=job %}
                     {%- endfor %}
@@ -29,8 +29,8 @@ permalink: /experience/
                 {% include section-head.html index="02" file="before.log" %}
 
                 <div class="section-body">
-                    <h2 class="statement">Before development.</h2>
-                    <p class="prose">Sales and finance roles, working with customers, loans and targets every day.</p>
+                    <h2 class="statement" data-reveal>Before development.</h2>
+                    <p class="prose" data-reveal>Sales and finance roles, working with customers, loans and targets every day.</p>
                     {% include info-table.html rows=site.data.background label="years" main="role" detail="company" headings="Years,Role,Company" %}
                 </div>
             </div>
@@ -42,7 +42,7 @@ permalink: /experience/
                 {% include section-head.html index="03" file="education.md" %}
 
                 <div class="section-body">
-                    <h2 class="statement">Education.</h2>
+                    <h2 class="statement" data-reveal>Education.</h2>
                     {% include info-table.html rows=site.data.education label="years" main="degree" detail="school" headings="Years,Degree,School" %}
                 </div>
             </div>

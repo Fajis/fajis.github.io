@@ -71,6 +71,65 @@ function initMobileMenu() {
     });
 }
 
+// ---------- Scroll reveal ----------
+
+function initReveal() {
+    const root = document.documentElement;
+    const items = [
+        ...$$('[data-reveal]'),
+        ...$$('[data-reveal-stagger] > *'),
+        ...$$('.section')
+    ];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+        items.forEach(item => item.classList.add('is-visible'));
+        root.classList.add('motion-ready');
+        return;
+    }
+
+    // Children of a stagger group come in one after another
+    $$('[data-reveal-stagger]').forEach(group => {
+        [...group.children].forEach((child, i) => {
+            child.style.setProperty('--delay', `${Math.min(i, 8) * 70}ms`);
+        });
+    });
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+        });
+    }, { rootMargin: '0px 0px -8% 0px' });
+
+    items.forEach(item => observer.observe(item));
+    root.classList.add('motion-ready');
+}
+
+// ---------- Reading progress (amber line under the header) ----------
+
+function initScrollProgress() {
+    const header = $('#siteHeader');
+    if (!header) return;
+
+    let queued = false;
+    function update() {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+        header.style.setProperty('--scroll', progress.toFixed(4));
+        queued = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!queued) {
+            queued = true;
+            requestAnimationFrame(update);
+        }
+    }, { passive: true });
+    update();
+}
+
 // ---------- Local time ----------
 
 function initLocalTime() {
@@ -158,6 +217,8 @@ function initContactForm() {
 
 // ---------- Start ----------
 
+initReveal();
+initScrollProgress();
 initThemeToggle();
 initMobileMenu();
 initLocalTime();

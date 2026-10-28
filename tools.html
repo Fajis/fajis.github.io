@@ -12,7 +12,7 @@ sitemap: false # personal tools, not listed for search engines
 
         <section class="wrap page-content">
             <!-- Tool list: _data/tools.yml -->
-            <ul id="toolsDashboard" class="index-list">
+            <ul id="toolsDashboard" class="index-list" data-reveal-stagger>
                 {%- for tool in site.data.tools %}
                 <li>
                     <button type="button" class="index-row" data-open-tool="{{ tool.id }}">

@@ -1145,6 +1145,9 @@ textarea.input {
 .index-row:focus-visible {
     background: var(--bg-hover);
     outline: none;
+}
+
+.index-row:focus-visible {
     box-shadow: inset 2px 0 0 var(--accent);
 }
 
@@ -1481,6 +1484,225 @@ textarea.input {
     text-overflow: ellipsis;
 }
 
+/* ---------- Motion ----------
+   Hidden states apply only under .js (set in <head> before first paint),
+   so pages without JavaScript show everything. main.js adds .is-visible
+   as elements scroll into view, and .motion-ready once it has started. */
+
+@keyframes line-up {
+    from {
+        transform: translateY(105%);
+    }
+
+    to {
+        transform: none;
+    }
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes type-in {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes show {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Headlines: each line slides up out of a mask */
+.line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.06em;
+}
+
+.line > span {
+    display: inline-block;
+    animation: line-up 0.9s var(--ease) both;
+}
+
+.line:nth-child(2) > span {
+    animation-delay: 0.08s;
+}
+
+.line:nth-child(3) > span {
+    animation-delay: 0.16s;
+}
+
+.hero-meta {
+    animation: fade-up 0.6s var(--ease) both;
+}
+
+.hero-side,
+.page-hero .hero-lead {
+    animation: fade-up 0.8s var(--ease) 0.35s both;
+}
+
+/* Scroll reveal */
+.js [data-reveal],
+.js [data-reveal-stagger] > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    transition-delay: var(--delay, 0s);
+}
+
+.js [data-reveal].is-visible,
+.js [data-reveal-stagger] > .is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* If main.js never runs, show everything after a moment */
+.js:not(.motion-ready) [data-reveal],
+.js:not(.motion-ready) [data-reveal-stagger] > * {
+    animation: show 0s 2.5s forwards;
+}
+
+/* Section rules draw across as the section arrives */
+.js .section > .wrap::before {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s var(--ease);
+}
+
+.js .section.is-visible > .wrap::before {
+    transform: none;
+}
+
+/* Terminal: lines type in when an app is selected */
+.terminal-screen:not([hidden]) .terminal-lines li {
+    animation: type-in 0.45s steps(24, end) both;
+}
+
+.terminal-screen:not([hidden]) .terminal-lines li:nth-child(2) { animation-delay: 0.12s; }
+.terminal-screen:not([hidden]) .terminal-lines li:nth-child(3) { animation-delay: 0.2s; }
+.terminal-screen:not([hidden]) .terminal-lines li:nth-child(4) { animation-delay: 0.28s; }
+.terminal-screen:not([hidden]) .terminal-lines li:nth-child(5) { animation-delay: 0.36s; }
+.terminal-screen:not([hidden]) .terminal-lines li:nth-child(6) { animation-delay: 0.44s; }
+.terminal-screen:not([hidden]) .terminal-lines li:nth-child(7) { animation-delay: 0.6s; }
+
+/* Project details open smoothly */
+.project details[open] .project-details {
+    animation: fade-up 0.4s var(--ease) both;
+}
+
+/* Reading progress: thin amber line under the header */
+.site-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(var(--scroll, 0));
+    transform-origin: left;
+}
+
+/* Underlines that sweep in on hover */
+.link-cta,
+.nav-link {
+    position: relative;
+}
+
+.link-cta::after,
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s var(--ease);
+}
+
+.nav-link::after {
+    bottom: -4px;
+}
+
+.nav-link.is-active::after {
+    transform: none;
+}
+
+@media (hover: hover) {
+    .link-cta:hover::after,
+    .nav-link:hover::after {
+        transform: none;
+        transform-origin: left;
+    }
+
+    /* Rows: amber bar grows in, the name nudges right */
+    .index-row::before,
+    .app-row td:first-child::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--accent);
+        transform: scaleY(0);
+        transition: transform 0.3s var(--ease);
+    }
+
+    .index-row:hover::before,
+    .app-row:hover td:first-child::before {
+        transform: none;
+    }
+
+    .index-name,
+    .row-select {
+        transition: transform 0.3s var(--ease), color 0.15s;
+    }
+
+    .index-row:hover .index-name,
+    .app-row:hover .row-select {
+        transform: translateX(6px);
+    }
+}
+
+.index-row,
+.app-row td:first-child {
+    position: relative;
+}
+
+/* Smooth cross-fade between pages; the header stays put */
+@view-transition {
+    navigation: auto;
+}
+
+.site-header {
+    view-transition-name: site-header;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.3s;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
     .showcase {
@@ -1691,6 +1913,17 @@ textarea.input {
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
+    }
+
+    .js [data-reveal],
+    .js [data-reveal-stagger] > *,
+    .js .section > .wrap::before {
+        opacity: 1;
+        transform: none;
+    }
+
+    @view-transition {
+        navigation: none;
     }
 
     *,

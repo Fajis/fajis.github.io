@@ -13,7 +13,7 @@
                                 {%- endfor %}
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody data-reveal-stagger>
                             {%- for row in include.rows %}
                             <tr{% if row.muted %} class="is-muted"{% endif %}>
                                 <th scope="row">{{ row[include.label] }}</th>

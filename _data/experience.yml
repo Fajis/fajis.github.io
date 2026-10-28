@@ -28,9 +28,9 @@
       tech: Scalable PHP backend with mobile app access for member check-ins and bookings.
 
     - name: Digital loyalty & rewards platform with e-commerce
-      summary: A digital loyalty card system for e-commerce stores, integrated with Fatoora for invoicing and billing.
+      summary: A digital loyalty card system for e-commerce stores, integrated with inventory management.
       features: Customers keep their loyalty card in Google Wallet or Apple Wallet and automatically earn and redeem points on every purchase.
-      tech: API-driven backend connecting the e-commerce platform, Fatoora invoicing and mobile wallet passes.
+      tech: API-driven backend connecting the e-commerce platform, inventory management and mobile wallet passes.
 
     - name: School management system
       summary: An enterprise education platform for managing student records, attendance and academic administration.

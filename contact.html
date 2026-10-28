@@ -12,8 +12,8 @@ permalink: /contact/
                 {% include section-head.html index="01" file="contact.sh" %}
 
                 <div class="contact-intro">
-                    <h2 class="statement">Have a project?<br>Let's talk.</h2>
-                    <dl class="contact-meta">
+                    <h2 class="statement" data-reveal>Have a project?<br>Let's talk.</h2>
+                    <dl class="contact-meta" data-reveal-stagger>
                         <div>
                             <dt class="mono">Email</dt>
                             <dd><a href="mailto:{{ site.email }}">Send me an email →</a></dd>
@@ -33,13 +33,13 @@ permalink: /contact/
                             <dd>English, Hindi, Malayalam</dd>
                         </div>
                     </dl>
-                    <p class="contact-cv">
+                    <p class="contact-cv" data-reveal>
                         <a href="{{ site.cv | relative_url }}" class="link-cta link-cta--down" download="Fajis-PM-CV.pdf">Download CV
                             <span aria-hidden="true">↓</span></a>
                     </p>
                 </div>
 
-                <form id="contactForm" class="form contact-form" action="{{ site.contact_form }}" method="POST">
+                <form id="contactForm" class="form contact-form" data-reveal-stagger action="{{ site.contact_form }}" method="POST">
                     <div class="field">
                         <label class="field-label mono" for="contactName">Name</label>
                         <input class="input" id="contactName" type="text" name="name" autocomplete="name" required>

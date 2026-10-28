@@ -13,9 +13,9 @@ person_schema: true
                 </p>
 
                 <h1 class="hero-title">
-                    I build PHP backends,<br>
-                    React Native apps<br>
-                    and MySQL databases.<span class="cursor" aria-hidden="true"></span>
+                    <span class="line"><span>I build PHP backends,</span></span>
+                    <span class="line"><span>React Native apps</span></span>
+                    <span class="line"><span>and MySQL databases.<span class="cursor" aria-hidden="true"></span></span></span>
                 </h1>
 
                 <div class="hero-side">
@@ -28,7 +28,7 @@ person_schema: true
                     </p>
                 </div>
 
-                <dl class="spec">
+                <dl class="spec" data-reveal-stagger>
                     <div class="spec-item">
                         <dt>Stack</dt>
                         <dd>PHP / React Native / MySQL</dd>
@@ -55,7 +55,7 @@ person_schema: true
                 {% include section-head.html index="00" file="index" %}
 
                 <div class="section-body">
-                    <ul class="index-list">
+                    <ul class="index-list" data-reveal-stagger>
                         {%- for item in site.data.navigation %}
                         {%- if item.summary %}
                         {% include page-link.html item=item %}

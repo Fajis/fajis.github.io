@@ -12,12 +12,12 @@ permalink: /about/
                 {% include section-head.html index="01" file="about.md" %}
 
                 <div class="section-body">
-                    <h2 class="statement">I write clean, fast code that is easy to grow.</h2>
-                    <p class="prose">I work on every part of an app: the server (PHP), the database
+                    <h2 class="statement" data-reveal>I write clean, fast code that is easy to grow.</h2>
+                    <p class="prose" data-reveal>I work on every part of an app: the server (PHP), the database
                         (MySQL) and the mobile app (React Native). I keep the code simple, so it is easy to change
                         later.</p>
 
-                    <ol class="principles">
+                    <ol class="principles" data-reveal-stagger>
                         <li>
                             <span class="mono">a.</span>
                             <h3>Fast</h3>
@@ -44,7 +44,7 @@ permalink: /about/
                 {% include section-head.html index="02" file="stack.json" %}
 
                 <div class="section-body">
-                    <h2 class="statement">Tools I use.</h2>
+                    <h2 class="statement" data-reveal>Tools I use.</h2>
                     {% include info-table.html rows=site.data.stack label="area" main="tools" detail="use" headings="Area,Tools,What for" %}
                 </div>
             </div>

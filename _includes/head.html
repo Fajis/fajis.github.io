@@ -34,7 +34,8 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     <script>
-        // Apply the saved theme before first paint
+        // Before first paint: enable motion styles and apply the saved theme
+        document.documentElement.classList.add('js');
         try {
             var theme = localStorage.getItem('theme');
             if (theme) document.documentElement.dataset.theme = theme;
