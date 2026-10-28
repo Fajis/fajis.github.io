@@ -799,6 +799,10 @@ ol {
     color: var(--accent);
 }
 
+.contact-cv {
+    margin-top: 40px;
+}
+
 .contact-form {
     grid-column: 9 / -1;
 }
