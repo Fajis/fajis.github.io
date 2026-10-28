@@ -4,200 +4,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apps - Fajis</title>
-    <meta name="description"
-        content="Stay Fit, OneLine and Smart Calculator, Android apps by Fajis PM, on Google Play.">
-    <meta name="color-scheme" content="light dark">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <title>Apps — Fajis PM</title>
+    <meta name="description" content="Stay Fit, Oneline and Calculator+: free Android apps by Fajis PM on Google Play.">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="canonical" href="https://fajis.is-a.dev/downloads/">
+    <link rel="manifest" href="../manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-    <style>
-        :root {
-            --bg: #f6f4ef;
-            --ink: #1a1a18;
-            --muted: #6b6a63;
-            --line: #d9d6cc;
-            --accent: #1a1a18;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #121211;
-                --ink: #f1efe8;
-                --muted: #98968c;
-                --line: #2e2d2a;
-                --accent: #f1efe8;
-            }
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--ink);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            font-size: 17px;
-            line-height: 1.5;
-            padding: 0 24px;
-        }
-
-        .page {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 96px 0 72px;
-        }
-
-        h1 {
-            font-family: ui-serif, Georgia, "Times New Roman", serif;
-            font-size: clamp(40px, 8vw, 64px);
-            font-weight: 400;
-            line-height: 1.05;
-            letter-spacing: -0.02em;
-        }
-
-        .lede {
-            color: var(--muted);
-            margin-top: 16px;
-        }
-
-        .apps {
-            list-style: none;
-            margin-top: 64px;
-            border-top: 1px solid var(--line);
-        }
-
-        .apps li {
-            border-bottom: 1px solid var(--line);
-        }
-
-        .app {
-            display: grid;
-            grid-template-columns: 72px 1fr auto;
-            align-items: center;
-            gap: 24px;
-            padding: 28px 0;
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .app img {
-            width: 72px;
-            height: 72px;
-            border-radius: 16px;
-            display: block;
-        }
-
-        .app h2 {
-            font-size: 20px;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-        }
-
-        .app p {
-            color: var(--muted);
-            font-size: 15px;
-            margin-top: 2px;
-        }
-
-        .go {
-            font-size: 15px;
-            white-space: nowrap;
-        }
-
-        .go span {
-            display: inline-block;
-            transition: transform .2s;
-        }
-
-        .app:hover .go span,
-        .app:focus-visible .go span {
-            transform: translateX(4px);
-        }
-
-        .app:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 4px;
-        }
-
-        footer {
-            margin-top: 48px;
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        @media (max-width: 560px) {
-            .page {
-                padding-top: 56px;
-            }
-
-            .apps {
-                margin-top: 40px;
-            }
-
-            .app {
-                grid-template-columns: 60px 1fr;
-                gap: 16px;
-                padding: 22px 0;
-            }
-
-            .app img {
-                width: 60px;
-                height: 60px;
-                border-radius: 14px;
-            }
-
-            .go {
-                grid-column: 2;
-                margin-top: -6px;
-            }
-        }
-    </style>
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
-    <div class="page">
-        <h1>Apps by Fajis</h1>
-        <p class="lede">Free on Google Play for Android.</p>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-        <ul class="apps">
-            <li>
-                <a class="app" href="https://play.google.com/store/apps/details?id=com.fajis.fitnessapp">
-                    <img src="../apps/fitness-app/logo.png" alt="">
-                    <div>
-                        <h2>Stay Fit</h2>
-                        <p>Track your workouts and stay on top of your fitness.</p>
-                    </div>
-                    <div class="go">Get on Google Play <span>&rarr;</span></div>
-                </a>
-            </li>
-            <li>
-                <a class="app" href="https://play.google.com/store/apps/details?id=com.fajis.oneline">
-                    <img src="../apps/oneline/logo.png" alt="">
-                    <div>
-                        <h2>Oneline</h2>
-                        <p>Quick, minimal notes you can search and look back on.</p>
-                    </div>
-                    <div class="go">Get on Google Play <span>&rarr;</span></div>
-                </a>
-            </li>
-            <li>
-                <a class="app" href="https://play.google.com/store/apps/details?id=com.fajis.SmartCalculator">
-                    <img src="../apps/smart-calculator/logo.png" alt="">
-                    <div>
-                        <h2>Calculator+</h2>
-                        <p>A clean calculator with currency conversion and calculation history.</p>
-                    </div>
-                    <div class="go">Get on Google Play <span>&rarr;</span></div>
-                </a>
-            </li>
-        </ul>
+    <header class="site-header" id="siteHeader">
+        <nav class="wrap nav" aria-label="Primary">
+            <a href="../" class="brand">fajis<span class="accent">.</span>pm</a>
 
-        <footer>&copy; <span id="y"></span> Fajis PM</footer>
-    </div>
-    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu">
+                <span class="nav-toggle-label">Menu</span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../#about" class="nav-link"><span class="nav-index">01</span>About</a></li>
+                <li><a href="../#stack" class="nav-link"><span class="nav-index">02</span>Stack</a></li>
+                <li><a href="../#work" class="nav-link"><span class="nav-index">03</span>Work</a></li>
+                <li><a href="../#contact" class="nav-link"><span class="nav-index">04</span>Contact</a></li>
+                <li><a href="../tools" class="nav-link"><span class="nav-index">↗</span>Tools</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section class="page-hero">
+            <div class="wrap grid">
+                <p class="hero-meta mono"><span>~/fajis/apps</span><span>Google Play</span></p>
+                <h1 class="page-title">Android apps<span class="cursor" aria-hidden="true"></span></h1>
+                <p class="hero-lead">Free apps on Google Play. Tap one to open its store page.</p>
+            </div>
+        </section>
+
+        <section class="wrap page-content">
+            <ul class="index-list">
+                <li>
+                    <a class="index-row" href="https://play.google.com/store/apps/details?id=com.fajis.fitnessapp">
+                        <img class="index-logo" src="../apps/fitness-app/logo.png" alt="" width="40" height="40">
+                        <span class="index-name">Stay Fit</span>
+                        <span class="index-desc">Track your workouts, steps and meals.</span>
+                        <span class="index-go">Get it ↗</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="index-row" href="https://play.google.com/store/apps/details?id=com.fajis.oneline">
+                        <img class="index-logo" src="../apps/oneline/logo.png" alt="" width="40" height="40">
+                        <span class="index-name">Oneline</span>
+                        <span class="index-desc">Short notes you can search and look back on.</span>
+                        <span class="index-go">Get it ↗</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="index-row" href="https://play.google.com/store/apps/details?id=com.fajis.SmartCalculator">
+                        <img class="index-logo" src="../apps/smart-calculator/logo.png" alt="" width="40" height="40">
+                        <span class="index-name">Calculator+</span>
+                        <span class="index-desc">A simple calculator with a currency converter and history.</span>
+                        <span class="index-go">Get it ↗</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap grid footer-grid">
+            <p class="brand">fajis<span class="accent">.</span>pm</p>
+            <nav class="footer-col" aria-label="Site">
+                <p class="footer-heading mono">Pages</p>
+                <ul>
+                    <li><a href="../">Home</a></li>
+                    <li><a href="../#work">Work</a></li>
+                    <li><a href="../#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Products">
+                <p class="footer-heading mono">Products</p>
+                <ul>
+                    <li><a href="../downloads/">Android apps</a></li>
+                    <li><a href="../tools">Financial tools</a></li>
+                    <li><a href="../apps/fitness-app/privacy-policy.html">Stay Fit privacy</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Links">
+                <p class="footer-heading mono">Links</p>
+                <ul>
+                    <li><a href="https://github.com/fajis" target="_blank" rel="noopener">GitHub ↗</a></li>
+                </ul>
+            </nav>
+            <p class="footer-legal mono">© <span data-year></span> Fajis PM</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
 </body>
 
 </html>

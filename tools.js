@@ -48,10 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateBudgetCurrencyOptions();
         updateExchangeRate();
     }
-
-    // Set Footer Year
-    const yearEl = document.getElementById('currentYear');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
 function initSearchableSelect(containerId, onSelect) {
@@ -197,7 +193,7 @@ function calculateBudget() {
 
     const savingsEl = document.getElementById('totalSavings');
     savingsEl.textContent = `${formatCurrency(savings)} ${baseCurrency}`;
-    savingsEl.style.color = savings < 0 ? "#ff4d4d" : "#fff";
+    savingsEl.classList.toggle('is-negative', savings < 0);
     saveBudgetData();
 }
 // --- LocalStorage Logic ---
