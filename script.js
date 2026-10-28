@@ -1,4 +1,62 @@
-// Shared site behaviour: navigation, app showcase, local time, contact form.
+// Shared site behaviour: theme, language, navigation, app showcase, local time,
+// contact form. Expects i18n.js to be loaded first.
+
+const i18n = window.siteI18n || { t: text => text, lang: 'en', setLang() {}, onChange() {} };
+const t = i18n.t;
+const root = document.documentElement;
+
+// Theme: follows the device setting until the visitor picks one
+const themeToggle = document.getElementById('themeToggle');
+const lightQuery = window.matchMedia('(prefers-color-scheme: light)');
+
+function currentTheme() {
+    return root.dataset.theme || (lightQuery.matches ? 'light' : 'dark');
+}
+
+function renderThemeToggle() {
+    if (!themeToggle) return;
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    themeToggle.textContent = t(next === 'light' ? 'Light' : 'Dark');
+    themeToggle.setAttribute('aria-label', t(next === 'light' ? 'Switch to light theme' : 'Switch to dark theme'));
+}
+
+if (themeToggle) {
+    themeToggle.hidden = false;
+    themeToggle.addEventListener('click', () => {
+        const next = currentTheme() === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try {
+            localStorage.setItem('theme', next);
+        } catch (e) { /* storage unavailable: choice lasts for this visit */ }
+        renderThemeToggle();
+    });
+    lightQuery.addEventListener('change', renderThemeToggle);
+    renderThemeToggle();
+}
+
+// Language toggle: shows the language you can switch to
+const langToggle = document.getElementById('langToggle');
+
+function renderLangToggle() {
+    if (!langToggle) return;
+    const toMalayalam = i18n.lang === 'en';
+    langToggle.textContent = toMalayalam ? 'മലയാളം' : 'English';
+    langToggle.lang = toMalayalam ? 'ml' : 'en';
+    langToggle.setAttribute('aria-label', toMalayalam ? 'മലയാളത്തിൽ കാണുക' : 'View in English');
+}
+
+if (langToggle) {
+    langToggle.hidden = false;
+    langToggle.addEventListener('click', () => {
+        i18n.setLang(i18n.lang === 'en' ? 'ml' : 'en');
+    });
+    renderLangToggle();
+}
+
+i18n.onChange(() => {
+    renderLangToggle();
+    renderThemeToggle();
+});
 
 const header = document.getElementById('siteHeader');
 const navToggle = document.getElementById('navToggle');
@@ -13,7 +71,7 @@ document.querySelectorAll('[data-year]').forEach(el => {
 function setMenuOpen(open) {
     header.classList.toggle('is-open', open);
     navToggle.setAttribute('aria-expanded', String(open));
-    navToggle.firstElementChild.textContent = open ? 'Close' : 'Menu';
+    navToggle.firstElementChild.textContent = t(open ? 'Close' : 'Menu');
 }
 
 if (navToggle && navMenu) {
@@ -58,10 +116,11 @@ if (localTime) {
         timeZone: 'Asia/Bahrain'
     });
     const tick = () => {
-        localTime.textContent = `${formatter.format(new Date())} local`;
+        localTime.textContent = `${formatter.format(new Date())} ${t('local')}`;
     };
     tick();
     setInterval(tick, 30000);
+    i18n.onChange(tick);
 }
 
 // App showcase: selecting a table row shows its README in the terminal
@@ -88,13 +147,13 @@ appRows.forEach(row => {
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalHTML = submitBtn.innerHTML;
+    const submitLabel = submitBtn.querySelector('.btn-label');
 
     function showStatus(text, state, reset) {
-        submitBtn.textContent = text;
+        submitLabel.textContent = t(text);
         submitBtn.classList.add(state);
         setTimeout(() => {
-            submitBtn.innerHTML = originalHTML;
+            submitLabel.textContent = t('Send message');
             submitBtn.classList.remove(state);
             submitBtn.disabled = false;
             if (reset) contactForm.reset();
@@ -103,7 +162,7 @@ if (contactForm) {
 
     contactForm.addEventListener('submit', async e => {
         e.preventDefault();
-        submitBtn.textContent = 'Sending…';
+        submitLabel.textContent = t('Sending…');
         submitBtn.disabled = true;
 
         try {

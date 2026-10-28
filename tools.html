@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Tools — Fajis PM</title>
     <meta name="description" content="Free calculators for loans, savings and your monthly budget. They run in your browser.">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
     <link rel="canonical" href="https://fajis.is-a.dev/tools">
     <link rel="manifest" href="./manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
@@ -14,8 +15,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Malayalam:wght@400;500&display=swap">
     <link rel="stylesheet" href="./style.css">
+    <script>
+        // Apply saved theme and language before first paint
+        try {
+            var saved = { theme: localStorage.getItem('theme'), lang: localStorage.getItem('lang') };
+            if (saved.theme) document.documentElement.dataset.theme = saved.theme;
+            if (saved.lang === 'ml') document.documentElement.lang = 'ml';
+        } catch (e) {}
+    </script>
 </head>
 
 <body>
@@ -25,9 +34,6 @@
         <nav class="wrap nav" aria-label="Primary">
             <a href="./" class="brand">fajis<span class="accent">.</span>pm</a>
 
-            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu">
-                <span class="nav-toggle-label">Menu</span>
-            </button>
 
             <ul class="nav-menu" id="navMenu">
                 <li><a href="./#about" class="nav-link"><span class="nav-index">01</span>About</a></li>
@@ -36,6 +42,15 @@
                 <li><a href="./#contact" class="nav-link"><span class="nav-index">04</span>Contact</a></li>
                 <li><a href="./tools" class="nav-link is-active" aria-current="page"><span class="nav-index">↗</span>Tools</a></li>
             </ul>
+
+            <div class="nav-actions">
+                <button class="nav-btn" id="langToggle" type="button" data-no-i18n hidden>മലയാളം</button>
+                <button class="nav-btn" id="themeToggle" type="button" hidden>Light</button>
+                <button class="nav-btn nav-toggle" id="navToggle" type="button" aria-expanded="false"
+                    aria-controls="navMenu">
+                    <span class="nav-toggle-label">Menu</span>
+                </button>
+            </div>
         </nav>
     </header>
 
@@ -381,6 +396,7 @@
         </div>
     </footer>
 
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
     <script src="tools.js"></script>
 </body>
