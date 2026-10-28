@@ -2,8 +2,7 @@
 # (shown as month and year); `end: Now` for a current job.
 # Each project shows its name and summary; features and tech open on click.
 - role: Backend Developer
-  company: Harvard Soft Tech
-  location: Bahrain
+  company: Harvard Capital Bahrain
   start: 2023-05-15
   end: Now
   projects:
