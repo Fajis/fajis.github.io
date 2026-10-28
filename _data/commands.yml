@@ -3,7 +3,7 @@
 pages:
   - { label: Home, url: /, go: h, keywords: start index }
   - { label: Now, url: /now/, go: n, keywords: current learning working on }
-  - { label: Apps (Android & iOS), url: /downloads/, keywords: google play app store iphone download stay fit oneline calculator }
+  - { label: Apps (Android & iPhone), url: /downloads/, keywords: google play app store iphone download stay fit oneline calculator }
   - { label: Bug runner game, url: /play/, key: p, keywords: play game fun }
 actions:
   - { label: Download CV, action: cv, keywords: resume pdf }

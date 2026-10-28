@@ -1,17 +1,17 @@
 {%- comment -%}
   Store buttons for one app: Google Play and the App Store, or "coming soon"
-  when there is no App Store link yet. The visitor's own platform is shown
-  first and highlighted (data-platform is set in head.html).
+  when there is no App Store link yet. Phones only see their own store
+  (data-platform is set in head.html); computers see both.
   Usage: {% include store-links.html app=app %}   long=true for full store names
 {%- endcomment -%}
 {%- assign app = include.app -%}
 <span class="store-links">
     {%- if app.android %}
-    <a class="store-link store-link--android" href="{{ site.play_store }}{{ app.android }}" target="_blank" rel="noopener">{% if include.long %}Google Play{% else %}Android{% endif %} ↗</a>
+    <a class="store-link store-link--android" href="{{ site.play_store }}{{ app.android }}" target="_blank" rel="noopener">{% if include.long %}Get it on Google Play{% else %}Android{% endif %} ↗</a>
     {%- endif %}
     {%- if app.ios != "" and app.ios %}
-    <a class="store-link store-link--ios" href="{{ app.ios }}" target="_blank" rel="noopener">{% if include.long %}App Store{% else %}iOS{% endif %} ↗</a>
+    <a class="store-link store-link--ios" href="{{ app.ios }}" target="_blank" rel="noopener">{% if include.long %}Get it on the App Store{% else %}iPhone{% endif %} ↗</a>
     {%- else %}
-    <span class="store-link store-link--ios is-soon" title="Coming soon to the App Store">{% if include.long %}App Store · coming soon{% else %}iOS soon{% endif %}</span>
+    <span class="store-link store-link--ios is-soon" title="Coming soon to the App Store">{% if include.long %}iPhone version coming soon{% else %}iPhone soon{% endif %}</span>
     {%- endif %}
 </span>

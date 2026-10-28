@@ -867,7 +867,7 @@ ol {
     color: var(--accent);
 }
 
-/* Store links: Google Play / App Store; the visitor's platform comes first */
+/* Store links: Google Play / App Store, matched to the visitor's device */
 .store-links {
     display: inline-flex;
     flex-wrap: wrap;
@@ -892,8 +892,10 @@ a.store-link:hover {
     cursor: default;
 }
 
-html[data-platform="ios"] .store-link--ios {
-    order: -1;
+/* Phones only see their own store; computers see both */
+html[data-platform="ios"] .store-link--android,
+html[data-platform="android"] .store-link--ios {
+    display: none;
 }
 
 html[data-platform="ios"] a.store-link--ios,

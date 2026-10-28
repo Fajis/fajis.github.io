@@ -5,7 +5,7 @@ offers:
     examples: Property and rental management, car rental, inventory, gym memberships, school administration.
 
   - title: Mobile apps
-    summary: Cross-platform apps for Android and iOS with React Native, from first screen to store listing.
+    summary: Apps for Android and iPhone, built with React Native, from the first screen to the app store.
     examples: Companion apps for your system, member check-ins and bookings, standalone apps like Stay Fit.
 
   - title: APIs and integrations

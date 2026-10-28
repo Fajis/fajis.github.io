@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     <script>
         // Before first paint: enable motion styles, note the device platform
-        // (store links show iOS or Android first) and apply the saved theme
+        // (phones only see their own app store) and apply the saved theme
         document.documentElement.classList.add('js');
         var ua = navigator.userAgent;
         var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);

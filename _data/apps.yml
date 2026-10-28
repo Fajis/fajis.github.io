@@ -2,7 +2,7 @@
 # `id` is used in element ids and the terminal path (apps/<id>/README).
 # `android`: Google Play package name.
 # `ios`: full App Store link (https://apps.apple.com/...). Leave it empty
-#        until the app is listed: the site shows "iOS · coming soon".
+#        until the app is listed: the site shows "iPhone version coming soon".
 - id: stay-fit
   name: Stay Fit
   category: Health & fitness
