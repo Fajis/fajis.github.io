@@ -506,6 +506,68 @@ ol {
     font-size: 15px;
 }
 
+/* ---------- Experience ---------- */
+.job {
+    display: grid;
+    grid-template-columns: 160px minmax(0, 1fr);
+    gap: var(--col-gap);
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-strong);
+}
+
+.job-dates {
+    color: var(--accent);
+    font-size: 13px;
+    line-height: 2.1;
+}
+
+.job-role {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.job-company {
+    color: var(--muted);
+}
+
+.job-intro {
+    margin-top: 28px;
+    color: var(--subtle);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.job-projects {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 32px;
+    margin-top: 12px;
+    border-top: 1px solid var(--line);
+}
+
+.job-projects li {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.job-projects .mono {
+    flex-shrink: 0;
+    width: 2ch;
+    color: var(--subtle);
+    font-size: 13px;
+    line-height: 1.85;
+}
+
+.job-projects .is-more {
+    color: var(--muted);
+}
+
 /* ---------- Data tables ---------- */
 .data-table {
     width: 100%;
@@ -1384,6 +1446,15 @@ textarea.input {
     }
 
     .principles {
+        grid-template-columns: 1fr;
+    }
+
+    .job {
+        grid-template-columns: 1fr;
+        row-gap: 8px;
+    }
+
+    .job-projects {
         grid-template-columns: 1fr;
     }
 
