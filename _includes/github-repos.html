@@ -1,0 +1,20 @@
+{%- comment -%}
+  Latest public GitHub repos, loaded in the browser by assets/js/repos.js.
+  Stays hidden if GitHub can't be reached or there are none to show.
+  Usage: {% include github-repos.html index="02" %}
+{%- endcomment -%}
+<section id="github" class="section" data-github-repos data-user="{{ site.github_username }}" data-limit="6" hidden>
+            <div class="wrap grid">
+                {% include section-head.html index=include.index file="github/" %}
+
+                <div class="section-body">
+                    <h2 class="statement">Latest on GitHub.</h2>
+                    <p class="prose">My newest public repositories, updated automatically.</p>
+                    <ul class="index-list repo-list"></ul>
+                    <p class="hero-actions">
+                        {%- assign github = 'https://github.com/' | append: site.github_username %}
+                        {% include external-link.html url=github text="All repositories" class="link-cta link-cta--muted" %}
+                    </p>
+                </div>
+            </div>
+        </section>

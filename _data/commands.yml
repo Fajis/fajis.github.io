@@ -1,0 +1,10 @@
+# Extra entries for the command palette (⌘K / Ctrl+K), after the menu pages.
+# `key` is a single-key shortcut; `go` is a g-then-key shortcut.
+pages:
+  - { label: Home, url: /, go: h, keywords: start index }
+  - { label: Now, url: /now/, go: n, keywords: current learning working on }
+  - { label: Android apps, url: /downloads/, keywords: google play download stay fit oneline calculator }
+  - { label: Bug runner game, url: /play/, key: p, keywords: play game fun }
+actions:
+  - { label: Download CV, action: cv, keywords: resume pdf }
+  - { label: Switch light / dark theme, action: theme, key: d, keywords: dark light mode colour }

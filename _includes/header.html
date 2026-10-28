@@ -11,6 +11,7 @@
             </ul>
 
             <div class="nav-actions">
+                <button class="nav-btn nav-btn--boxed nav-search" id="paletteOpen" type="button" aria-label="Search pages and actions" aria-haspopup="dialog">{% include icon.html name="search" %}<kbd class="nav-search-key" id="paletteShortcut">⌘K</kbd></button>
                 <a class="nav-btn nav-btn--boxed nav-play" href="{{ '/play/' | relative_url }}" aria-label="Play the Bug runner game"{% if page.url == '/play/' %} aria-current="page"{% endif %}>{% include icon.html name="play" %}<span class="nav-play-label">Play</span></a>
                 <button class="nav-btn nav-btn--boxed theme-toggle" id="themeToggle" type="button" data-next="light">
                     <span class="theme-icon theme-icon--sun">{% include icon.html name="sun" %}</span>

@@ -3,8 +3,11 @@
                 <p class="game-bar mono"><span>bug-runner</span><span data-score>HI 00000 · 00000</span></p>
                 <div class="game-stage">
                     <canvas class="game-canvas" tabindex="0"
-                        aria-label="Bug runner game. Press Space, the up arrow or tap to jump over the bugs."></canvas>
-                    <button type="button" class="game-play" data-play>▶ Play</button>
+                        aria-label="Bug runner game. Space, the up arrow or tap to jump. Hold the down arrow or swipe down to duck."></canvas>
+                    <div class="game-actions">
+                        <button type="button" class="game-play" data-play>▶ Play</button>
+                        <button type="button" class="game-share" data-share hidden>Share score</button>
+                    </div>
                 </div>
                 <figcaption class="game-status mono" data-status aria-live="polite">Press Play, Space or tap to start</figcaption>
             </figure>

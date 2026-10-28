@@ -407,9 +407,9 @@ ol {
 }
 
 .hero-title {
-    grid-column: 1 / span 11;
+    grid-column: 1 / -1;
     margin-top: clamp(56px, 10vw, 128px);
-    font-size: clamp(38px, 7.2vw, 104px);
+    font-size: clamp(36px, 6.4vw, 84px);
     font-weight: 500;
     line-height: 0.98;
     letter-spacing: -0.05em;
@@ -1545,6 +1545,205 @@ textarea.input {
     text-overflow: ellipsis;
 }
 
+/* ---------- Services ---------- */
+.offers {
+    margin-top: 48px;
+    border-top: 1px solid var(--line-strong);
+}
+
+.offer {
+    display: grid;
+    grid-template-columns: 3ch minmax(0, 1fr);
+    gap: 16px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.offer-index {
+    color: var(--accent);
+    font-size: 13px;
+    line-height: 2;
+}
+
+.offer-title {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+.offer-summary {
+    margin-top: 6px;
+    color: var(--muted);
+}
+
+.offer-examples {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.offer-examples .mono {
+    color: var(--subtle);
+    font-size: 12px;
+}
+
+#process .hero-actions {
+    margin-top: 48px;
+}
+
+/* ---------- Now ---------- */
+.now-list {
+    border-top: 1px solid var(--line-strong);
+}
+
+.now-item {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.now-item dt {
+    color: var(--accent);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.now-item dd {
+    font-size: 17px;
+}
+
+@media (max-width: 600px) {
+    .now-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+}
+
+/* ---------- Command palette ---------- */
+kbd {
+    font-family: var(--font-mono);
+    font-size: 11px;
+}
+
+.nav-search-key {
+    color: var(--subtle);
+}
+
+.palette {
+    width: min(560px, calc(100vw - 32px));
+    max-height: min(520px, calc(100vh - 120px));
+    margin: 12vh auto auto;
+    padding: 0;
+    border: 1px solid var(--line-strong);
+    background: var(--bg);
+    color: var(--fg);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.palette[open] {
+    display: flex;
+    flex-direction: column;
+    animation: fade-up 0.2s var(--ease) both;
+}
+
+.palette::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+
+.palette-search {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--line-strong);
+    color: var(--subtle);
+}
+
+.palette-input {
+    flex: 1;
+    min-width: 0;
+    height: 52px;
+    border: 0;
+    background: none;
+    color: var(--fg);
+    font-size: 16px;
+}
+
+.palette-input:focus {
+    outline: none;
+}
+
+.palette-esc {
+    padding: 2px 6px;
+    border: 1px solid var(--line-strong);
+    color: var(--subtle);
+}
+
+.palette-list {
+    overflow-y: auto;
+    padding: 6px 0;
+}
+
+.palette-item {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.palette-item[hidden] {
+    display: none;
+}
+
+.palette-item[aria-selected="true"] {
+    background: var(--bg-hover);
+    box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.palette-group {
+    color: var(--subtle);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.palette-item[aria-selected="true"] .palette-group {
+    color: var(--accent);
+}
+
+.palette-keys {
+    color: var(--subtle);
+    font-size: 12px;
+}
+
+.palette-keys kbd {
+    display: inline-block;
+    min-width: 20px;
+    padding: 1px 5px;
+    border: 1px solid var(--line-strong);
+    text-align: center;
+}
+
+.palette-empty {
+    padding: 16px;
+    color: var(--muted);
+}
+
+.palette-help {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    padding: 10px 16px;
+    border-top: 1px solid var(--line);
+    color: var(--subtle);
+    font-size: 11px;
+}
+
 /* ---------- Bug runner game ---------- */
 .game {
     border-top: 1px solid var(--line-strong);
@@ -1569,14 +1768,21 @@ textarea.input {
     position: relative;
 }
 
-/* Centred over the canvas, below the canvas message */
-.game-play {
+/* Buttons centred over the canvas, below the canvas message */
+.game-actions {
     position: absolute;
     left: 50%;
     top: 50%;
+    display: flex;
+    gap: 10px;
     transform: translate(-50%, -20%);
+    white-space: nowrap;
+}
+
+.game-play,
+.game-share {
     height: 40px;
-    padding: 0 20px;
+    padding: 0 18px;
     border: 1px solid var(--accent);
     background: var(--accent);
     color: var(--bg);
@@ -1585,6 +1791,16 @@ textarea.input {
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.15s, color 0.15s;
+}
+
+.game-share {
+    border-color: var(--line-strong);
+    background: var(--bg);
+    color: var(--fg);
+}
+
+.game-share[hidden] {
+    display: none;
 }
 
 .game-play[hidden] {
@@ -1596,18 +1812,35 @@ textarea.input {
         background: transparent;
         color: var(--accent);
     }
+
+    .game-share:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
 }
 
+.game {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* The game area handles its own taps and swipes (no scrolling or zooming on it) */
 .game-canvas {
     display: block;
     width: 100%;
     height: 240px;
     cursor: pointer;
-    touch-action: manipulation;
+    touch-action: none;
 }
 
-.game-canvas:focus-visible {
-    outline-offset: -2px;
+/* The game takes focus while playing; the status line says what's happening */
+.game-canvas:focus {
+    outline: none;
+}
+
+.principles--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .game-status {
@@ -1836,28 +2069,19 @@ textarea.input {
     animation-duration: 0.3s;
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 1024px) {
-    .showcase {
-        grid-template-columns: 1fr;
-    }
-
-    .terminal {
-        border-left: 0;
-        border-top: 1px solid var(--line-strong);
-    }
-
-    .contact-intro {
-        grid-column: 4 / -1;
-    }
-
-    .contact-form {
-        grid-column: 4 / -1;
-        margin-top: 56px;
+/* Touch screens have no keyboard: hide shortcut hints */
+@media (hover: none) {
+    .nav-search-key,
+    .palette-keys kbd,
+    .palette-help,
+    .palette-esc {
+        display: none;
     }
 }
 
-@media (max-width: 860px) {
+/* ---------- Responsive ---------- */
+/* The menu collapses into the Menu button below 1080px */
+@media (max-width: 1080px) {
     .nav-toggle {
         display: block;
     }
@@ -1897,7 +2121,29 @@ textarea.input {
     .nav-menu li:last-child .nav-link {
         border-bottom: 0;
     }
+}
 
+@media (max-width: 1024px) {
+    .showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .terminal {
+        border-left: 0;
+        border-top: 1px solid var(--line-strong);
+    }
+
+    .contact-intro {
+        grid-column: 4 / -1;
+    }
+
+    .contact-form {
+        grid-column: 4 / -1;
+        margin-top: 56px;
+    }
+}
+
+@media (max-width: 860px) {
     .section-head {
         grid-column: 1 / -1;
         position: static;
@@ -2044,7 +2290,8 @@ textarea.input {
 }
 
 @media (max-width: 400px) {
-    .nav-play-label {
+    .nav-play-label,
+    .nav-search-key {
         display: none;
     }
 

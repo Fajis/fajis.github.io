@@ -1,0 +1,12 @@
+# Now page (/now/): what you are doing at the moment. Update `updated` when you change it.
+# DRAFT: written from what is already on the site, check and adjust.
+updated: 2026-10-28
+items:
+  - label: Working
+    text: Backend Developer at Harvard Soft Tech in Bahrain, building business management systems in Core PHP and MySQL.
+  - label: Building
+    text: Updates to my own Android apps. Stay Fit recently added meal photos, a phone step counter and saving workouts to Health Connect.
+  - label: Learning
+    text: TypeScript, Redux and DevOps.
+  - label: Open to
+    text: Freelance projects — business systems, mobile apps and integrations.

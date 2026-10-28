@@ -1,0 +1,23 @@
+# Services page. DRAFT: written from your projects and stack, check the wording.
+offers:
+  - title: Business management systems
+    summary: Custom web systems that run day-to-day operations, built in Core PHP and MySQL.
+    examples: Property and rental management, car rental, inventory, gym memberships, school administration.
+
+  - title: Mobile apps
+    summary: Cross-platform apps for Android and iOS with React Native, from first screen to store listing.
+    examples: Companion apps for your system, member check-ins and bookings, standalone apps like Stay Fit.
+
+  - title: APIs and integrations
+    summary: REST APIs that connect your system to the services around it.
+    examples: E-commerce platforms, inventory management, loyalty cards in Google Wallet and Apple Wallet.
+
+  - title: Fixes and improvements
+    summary: Speeding up, fixing and extending existing PHP and MySQL systems.
+    examples: Slow queries, new modules, bug fixes, cleaning up code that has become hard to change.
+
+process:
+  - { step: Talk, text: "You tell me what the system needs to do. I ask questions until it is clear." }
+  - { step: Plan, text: "I write down the scope, the timeline and a quote, so there are no surprises." }
+  - { step: Build, text: "I build in small steps and show you progress along the way." }
+  - { step: Launch, text: "I put it live, hand it over and stay available for fixes and changes." }

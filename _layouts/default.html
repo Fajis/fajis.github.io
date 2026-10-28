@@ -16,10 +16,16 @@
 
     {% include footer.html %}
 
+    {% include command-palette.html %}
+
     {% include script.html src="main.js" %}
+    {% include script.html src="palette.js" %}
     {%- for script in page.scripts %}
     {% include script.html src=script %}
     {%- endfor %}
+    {%- if site.goatcounter != "" and site.goatcounter %}
+    <script data-goatcounter="https://{{ site.goatcounter }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    {%- endif %}
 </body>
 
 </html>

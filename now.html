@@ -1,0 +1,26 @@
+---
+layout: default
+title: Now — Fajis PM
+description: What I am working on, building and learning right now.
+permalink: /now/
+---
+        {%- capture updated -%}Updated {{ site.data.now.updated | date: '%B %Y' }}{%- endcapture %}
+        {% include page-hero.html path="~/fajis/now" note=updated title="Now"
+            lead="What I'm focused on at the moment." %}
+
+        <section id="now" class="section">
+            <div class="wrap grid">
+                {% include section-head.html index="01" file="now.md" %}
+
+                <div class="section-body">
+                    <dl class="now-list" data-reveal-stagger>
+                        {%- for item in site.data.now.items %}
+                        <div class="now-item">
+                            <dt class="mono">{{ item.label }}</dt>
+                            <dd>{{ item.text }}</dd>
+                        </div>
+                        {%- endfor %}
+                    </dl>
+                </div>
+            </div>
+        </section>

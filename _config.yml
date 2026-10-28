@@ -19,3 +19,8 @@ exclude:
   - Gemfile.lock
   - vendor
 play_store: https://play.google.com/store/apps/details?id=
+github_username: fajis # latest public repos on /work/
+
+# Visitor stats with GoatCounter (free): sign up at goatcounter.com and put
+# your site code here, e.g. goatcounter: fajis. Left empty, nothing is loaded.
+goatcounter: ""

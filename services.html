@@ -1,0 +1,55 @@
+---
+layout: default
+title: Services — Fajis PM
+description: Freelance PHP, React Native and MySQL work — business management systems, mobile apps, APIs and integrations, fixes and improvements.
+permalink: /services/
+---
+        {% include page-hero.html path="~/fajis/services" note="Open to freelance" title="Services"
+            lead="What you can hire me for. Business systems, apps and the APIs that connect them." %}
+
+        <!-- What I offer: _data/services.yml -->
+        <section id="offers" class="section">
+            <div class="wrap grid">
+                {% include section-head.html index="01" file="services.yml" %}
+
+                <div class="section-body">
+                    <h2 class="statement" data-reveal>What I build.</h2>
+                    <ul class="offers" data-reveal-stagger>
+                        {%- for offer in site.data.services.offers %}
+                        <li class="offer">
+                            <span class="mono offer-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+                            <div>
+                                <h3 class="offer-title">{{ offer.title }}</h3>
+                                <p class="offer-summary">{{ offer.summary }}</p>
+                                <p class="offer-examples"><span class="mono">e.g.</span> {{ offer.examples }}</p>
+                            </div>
+                        </li>
+                        {%- endfor %}
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- How I work -->
+        <section id="process" class="section">
+            <div class="wrap grid">
+                {% include section-head.html index="02" file="process.md" %}
+
+                <div class="section-body">
+                    <h2 class="statement" data-reveal>How I work.</h2>
+                    <ol class="principles principles--4" data-reveal-stagger>
+                        {%- for item in site.data.services.process %}
+                        <li>
+                            <span class="mono">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+                            <h3>{{ item.step }}</h3>
+                            <p>{{ item.text }}</p>
+                        </li>
+                        {%- endfor %}
+                    </ol>
+                    <p class="hero-actions" data-reveal>
+                        <a href="{{ '/contact/' | relative_url }}" class="link-cta">Start a project <span aria-hidden="true">→</span></a>
+                        <a href="{{ '/experience/' | relative_url }}" class="link-cta link-cta--muted">See what I've built <span aria-hidden="true">→</span></a>
+                    </p>
+                </div>
+            </div>
+        </section>

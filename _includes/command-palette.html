@@ -1,0 +1,35 @@
+{%- comment -%}
+  Command palette (⌘K / Ctrl+K, or / and ?). Entries are rendered here from
+  _data/navigation.yml, _data/commands.yml and _data/links.yml; palette.js
+  filters them and handles the keyboard. data-go = "g then key" shortcut,
+  data-key = single-key shortcut.
+{%- endcomment -%}
+<dialog class="palette" id="palette" aria-label="Search pages and actions" data-cv="{{ site.cv | relative_url }}">
+        <div class="palette-search">
+            {% include icon.html name="search" %}
+            <input class="palette-input" id="paletteInput" type="text" placeholder="Search pages and actions…"
+                autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true"
+                aria-controls="paletteList" aria-autocomplete="list">
+            <kbd class="palette-esc">Esc</kbd>
+        </div>
+        <ul class="palette-list" id="paletteList" role="listbox" aria-label="Results">
+            {%- for item in site.data.commands.pages %}
+            {%- if forloop.first %}
+            {% include palette-item.html group="Page" label=item.label url=item.url go=item.go key=item.key keywords=item.keywords %}
+            {%- for nav in site.data.navigation %}
+            {% include palette-item.html group="Page" label=nav.label url=nav.url go=nav.key keywords=nav.summary %}
+            {%- endfor %}
+            {%- else %}
+            {% include palette-item.html group="Page" label=item.label url=item.url go=item.go key=item.key keywords=item.keywords %}
+            {%- endif %}
+            {%- endfor %}
+            {%- for item in site.data.commands.actions %}
+            {% include palette-item.html group="Action" label=item.label action=item.action key=item.key keywords=item.keywords %}
+            {%- endfor %}
+            {%- for link in site.data.links %}
+            {% include palette-item.html group="Link" label=link.label url=link.url external=true keywords=link.handle %}
+            {%- endfor %}
+        </ul>
+        <p class="palette-empty" id="paletteEmpty" hidden>No matches.</p>
+        <p class="palette-help mono"><span>↑ ↓ move</span><span>Enter open</span><span>g + key jump</span><span>? this list</span></p>
+    </dialog>

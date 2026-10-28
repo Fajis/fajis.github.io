@@ -1,0 +1,12 @@
+{%- comment -%} One command palette entry. Used by command-palette.html. {%- endcomment -%}
+<li class="palette-item" role="option" aria-selected="false" tabindex="-1"
+                {%- if include.url %} data-url="{% if include.external %}{{ include.url }}{% else %}{{ include.url | relative_url }}{% endif %}"{% endif %}
+                {%- if include.external %} data-external{% endif %}
+                {%- if include.action %} data-action="{{ include.action }}"{% endif %}
+                {%- if include.go %} data-go="{{ include.go }}"{% endif %}
+                {%- if include.key %} data-key="{{ include.key }}"{% endif %}
+                data-search="{{ include.label | append: ' ' | append: include.keywords | append: ' ' | append: include.group | downcase | escape }}">
+                <span class="palette-group mono">{{ include.group }}</span>
+                <span class="palette-label">{{ include.label }}</span>
+                <span class="palette-keys mono">{% if include.go %}<kbd>g</kbd> <kbd>{{ include.go }}</kbd>{% elsif include.key %}<kbd>{{ include.key }}</kbd>{% elsif include.external %}↗{% endif %}</span>
+            </li>
