@@ -276,6 +276,7 @@ ol {
 }
 
 .nav-index {
+    min-width: 2ch;
     color: var(--subtle);
     font-family: var(--font-mono);
     font-size: 11px;
@@ -312,9 +313,6 @@ ol {
     transition: color 0.15s;
 }
 
-.nav-btn:hover {
-    color: var(--accent);
-}
 
 .nav-btn--boxed {
     padding: 4px 10px;
@@ -324,8 +322,15 @@ ol {
     transition: color 0.15s, border-color 0.15s;
 }
 
-.nav-btn--boxed:hover {
-    border-color: var(--accent);
+/* Hover colours only where there is a pointer, so taps don't leave them stuck */
+@media (hover: hover) {
+    .nav-btn:hover {
+        color: var(--accent);
+    }
+
+    .nav-btn--boxed:hover {
+        border-color: var(--accent);
+    }
 }
 
 .nav-toggle {
@@ -334,6 +339,7 @@ ol {
 }
 
 .nav-toggle[aria-expanded="true"] {
+    border-color: var(--accent);
     color: var(--accent);
 }
 
