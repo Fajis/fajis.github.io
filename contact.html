@@ -1,0 +1,59 @@
+---
+layout: default
+title: Contact — Fajis PM
+description: Contact Fajis PM for freelance PHP, React Native and MySQL projects.
+permalink: /contact/
+---
+        {% include page-hero.html path="~/fajis/contact" note="Open to freelance" title="Contact" lead="Send a message here, or reach me by email and social links." %}
+
+        <!-- Contact -->
+        <section id="contact" class="section">
+            <div class="wrap grid">
+                {% include section-head.html index="01" file="contact.sh" %}
+
+                <div class="contact-intro">
+                    <h2 class="statement">Have a project?<br>Let's talk.</h2>
+                    <dl class="contact-meta">
+                        <div>
+                            <dt class="mono">Email</dt>
+                            <dd><a href="mailto:{{ site.email }}">Send me an email →</a></dd>
+                        </div>
+                        {%- for link in site.data.links %}
+                        <div>
+                            <dt class="mono">{{ link.label }}</dt>
+                            <dd>{% include external-link.html url=link.url text=link.handle %}</dd>
+                        </div>
+                        {%- endfor %}
+                        <div>
+                            <dt class="mono">Location</dt>
+                            <dd>{{ site.location }} · Remote</dd>
+                        </div>
+                        <div>
+                            <dt class="mono">Languages</dt>
+                            <dd>English, Hindi, Malayalam</dd>
+                        </div>
+                    </dl>
+                    <p class="contact-cv">
+                        <a href="{{ site.cv | relative_url }}" class="link-cta link-cta--down" download="Fajis-PM-CV.pdf">Download CV
+                            <span aria-hidden="true">↓</span></a>
+                    </p>
+                </div>
+
+                <form id="contactForm" class="form contact-form" action="{{ site.contact_form }}" method="POST">
+                    <div class="field">
+                        <label class="field-label mono" for="contactName">Name</label>
+                        <input class="input" id="contactName" type="text" name="name" autocomplete="name" required>
+                    </div>
+                    <div class="field">
+                        <label class="field-label mono" for="contactEmail">Email</label>
+                        <input class="input" id="contactEmail" type="email" name="_replyto" autocomplete="email"
+                            required>
+                    </div>
+                    <div class="field">
+                        <label class="field-label mono" for="contactMessage">Message</label>
+                        <textarea class="input" id="contactMessage" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn"><span class="btn-label">Send message</span> <span aria-hidden="true">→</span></button>
+                </form>
+            </div>
+        </section>

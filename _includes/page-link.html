@@ -1,0 +1,10 @@
+{%- comment -%} Row linking to a page, used on the home page. Usage: {% include page-link.html item=item %} {%- endcomment -%}
+{%- assign item = include.item -%}
+<li>
+                            <a class="index-row" href="{{ item.url | relative_url }}">
+                                <span class="index-code">{{ item.index }}</span>
+                                <span class="index-name">{{ item.label }}</span>
+                                <span class="index-desc">{{ item.summary }}</span>
+                                <span class="index-go" aria-hidden="true">→</span>
+                            </a>
+                        </li>

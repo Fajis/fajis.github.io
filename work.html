@@ -1,0 +1,45 @@
+---
+layout: default
+title: Work — Fajis PM
+description: Stay Fit, Oneline and Calculator+ — Android apps by Fajis PM, free on Google Play.
+permalink: /work/
+---
+        {% include page-hero.html path="~/fajis/work" note="apps/" title="Work" lead="Android apps I have built and published on Google Play." %}
+
+        <!-- Work: _data/apps.yml -->
+        <section id="work" class="section">
+            <div class="wrap grid">
+                {% include section-head.html index="01" file="apps/" %}
+
+                <div class="section-body">
+                    <h2 class="statement">Things I've built.</h2>
+                    <p class="prose">Android apps, free on Google Play. Click a row to see the details.</p>
+                </div>
+
+                <div class="showcase">
+                    <table class="data-table apps-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col" class="col-optional">Category</th>
+                                <th scope="col" class="col-optional">Platform</th>
+                                <th scope="col"><span class="sr-only">Link</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%- for app in site.data.apps %}
+                            {% include app-row.html app=app number=forloop.index selected=forloop.first %}
+                            {%- endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="terminal" aria-live="polite">
+                        <p class="terminal-bar mono"><span>zsh — apps</span><span>README</span></p>
+                        {%- for app in site.data.apps %}
+                        {% include app-readme.html app=app selected=forloop.first %}
+                        {%- endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>

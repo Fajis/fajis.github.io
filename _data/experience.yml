@@ -1,8 +1,10 @@
-# Home: Experience. Newest job first; `end: Now` for a current job.
+# Experience page: development jobs, newest first. `start` is a date
+# (shown as month and year); `end: Now` for a current job.
 # Each project shows its name and summary; features and tech open on click.
 - role: Backend Developer
   company: Harvard Soft Tech
-  start: "2023"
+  location: Bahrain
+  start: 2023-05-15
   end: Now
   projects:
     - name: Property management system

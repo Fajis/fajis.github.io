@@ -718,16 +718,27 @@ ol {
     font-weight: 400;
 }
 
-.stack-table td:nth-child(2) {
+.info-table td:nth-child(2) {
     font-weight: 500;
 }
 
-.stack-table td:last-child {
+.info-table td:last-child {
     color: var(--muted);
 }
 
-.stack-table tr.is-muted th,
-.stack-table tr.is-muted td {
+.info-table tbody th {
+    white-space: nowrap;
+}
+
+.info-note {
+    display: block;
+    margin-top: 4px;
+    color: var(--subtle);
+    font-size: 13px;
+}
+
+.info-table tr.is-muted th,
+.info-table tr.is-muted td {
     color: var(--subtle);
 }
 
@@ -1660,18 +1671,18 @@ textarea.input {
         gap: 6px;
     }
 
-    .stack-table thead {
+    .info-table thead {
         display: none;
     }
 
-    .stack-table tr {
+    .info-table tr {
         display: grid;
         padding: 16px 0;
         border-bottom: 1px solid var(--line);
     }
 
-    .stack-table tbody th,
-    .stack-table td {
+    .info-table tbody th,
+    .info-table td {
         padding: 2px 0;
         border: 0;
     }

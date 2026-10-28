@@ -1,0 +1,49 @@
+---
+layout: default
+title: Experience — Fajis PM
+description: Backend Developer at Harvard Soft Tech, Bahrain, since May 2023 — property, rental, inventory, gym, loyalty and school management systems.
+permalink: /experience/
+---
+        {% include page-hero.html path="~/fajis/experience" note="experience.log" title="Experience" lead="Where I work and the systems I have built there." %}
+
+        <!-- Experience: _data/experience.yml -->
+        <section id="experience" class="section">
+            <div class="wrap grid">
+                {% include section-head.html index="01" file="experience.log" %}
+
+                <div class="section-body">
+                    <h2 class="statement">Where I work.</h2>
+                    {%- for job in site.data.experience %}
+                    {% include job.html job=job %}
+                    {%- endfor %}
+                    {%- if site.data.testimonials %}
+                    {% include testimonials.html items=site.data.testimonials %}
+                    {%- endif %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Before development: _data/background.yml -->
+        <section id="background" class="section">
+            <div class="wrap grid">
+                {% include section-head.html index="02" file="before.log" %}
+
+                <div class="section-body">
+                    <h2 class="statement">Before development.</h2>
+                    <p class="prose">Sales and finance roles, working with customers, loans and targets every day.</p>
+                    {% include info-table.html rows=site.data.background label="years" main="role" detail="company" headings="Years,Role,Company" %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Education: _data/education.yml -->
+        <section id="education" class="section">
+            <div class="wrap grid">
+                {% include section-head.html index="03" file="education.md" %}
+
+                <div class="section-body">
+                    <h2 class="statement">Education.</h2>
+                    {% include info-table.html rows=site.data.education label="years" main="degree" detail="school" headings="Years,Degree,School" %}
+                </div>
+            </div>
+        </section>

@@ -5,9 +5,11 @@
                 <p class="footer-heading mono">Pages</p>
                 <ul>
                     <li><a href="{{ '/' | relative_url }}">Home</a></li>
-                    <li><a href="{{ '/#experience' | relative_url }}">Experience</a></li>
-                    <li><a href="{{ '/#work' | relative_url }}">Work</a></li>
-                    <li><a href="{{ '/#contact' | relative_url }}">Contact</a></li>
+                    {%- for item in site.data.navigation %}
+                    {%- if item.summary %}
+                    <li><a href="{{ item.url | relative_url }}">{{ item.label }}</a></li>
+                    {%- endif %}
+                    {%- endfor %}
                 </ul>
             </nav>
             <nav class="footer-col" aria-label="Products">

@@ -1,0 +1,51 @@
+---
+layout: default
+title: About — Fajis PM
+description: How I work and the tools I use — Core PHP, React Native and MySQL.
+permalink: /about/
+---
+        {% include page-hero.html path="~/fajis/about" note="about.md" title="About" lead="How I work and the tools I use." %}
+
+        <!-- About -->
+        <section id="about" class="section">
+            <div class="wrap grid">
+                {% include section-head.html index="01" file="about.md" %}
+
+                <div class="section-body">
+                    <h2 class="statement">I write clean, fast code that is easy to grow.</h2>
+                    <p class="prose">I work on every part of an app: the server (PHP), the database
+                        (MySQL) and the mobile app (React Native). I keep the code simple, so it is easy to change
+                        later.</p>
+
+                    <ol class="principles">
+                        <li>
+                            <span class="mono">a.</span>
+                            <h3>Fast</h3>
+                            <p>Pages, apps and database queries that load quickly.</p>
+                        </li>
+                        <li>
+                            <span class="mono">b.</span>
+                            <h3>Ready to grow</h3>
+                            <p>Code and data planned to handle more users.</p>
+                        </li>
+                        <li>
+                            <span class="mono">c.</span>
+                            <h3>Easy to maintain</h3>
+                            <p>Clear code that other developers can pick up.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stack: _data/stack.yml -->
+        <section id="stack" class="section">
+            <div class="wrap grid">
+                {% include section-head.html index="02" file="stack.json" %}
+
+                <div class="section-body">
+                    <h2 class="statement">Tools I use.</h2>
+                    {% include info-table.html rows=site.data.stack label="area" main="tools" detail="use" headings="Area,Tools,What for" %}
+                </div>
+            </div>
+        </section>

@@ -1,10 +1,10 @@
 {%- comment -%} One job in the Experience section. Usage: {% include job.html job=job %} {%- endcomment -%}
 {%- assign job = include.job -%}
 <article class="job">
-                        <p class="job-dates mono"><time datetime="{{ job.start }}">{{ job.start }}</time> — {{ job.end }}</p>
+                        <p class="job-dates mono"><time datetime="{{ job.start | date: '%Y-%m-%d' }}">{{ job.start | date: '%b %Y' }}</time> — {{ job.end }}</p>
                         <div class="job-main">
                             <h3 class="job-role">{{ job.role }}</h3>
-                            <p class="job-company">{{ job.company }}</p>
+                            <p class="job-company">{{ job.company }}{% if job.location %} · {{ job.location }}{% endif %}</p>
                             <p class="job-intro">Systems I have built here — open one for details</p>
                             <ul class="job-projects">
                                 {%- for project in job.projects %}

@@ -1,0 +1,25 @@
+{%- comment -%}
+  Three-column table: a mono label column, a bold main column and a muted detail column.
+  Usage: {% include info-table.html rows=site.data.education label="years" main="degree" detail="school"
+                                    headings="Years,Degree,School" %}
+  A row's `note` (optional) shows under the detail; `muted: true` greys out the row.
+{%- endcomment -%}
+{%- assign headings = include.headings | split: ',' -%}
+<table class="data-table info-table">
+                        <thead>
+                            <tr>
+                                {%- for heading in headings %}
+                                <th scope="col">{{ heading }}</th>
+                                {%- endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%- for row in include.rows %}
+                            <tr{% if row.muted %} class="is-muted"{% endif %}>
+                                <th scope="row">{{ row[include.label] }}</th>
+                                <td>{{ row[include.main] }}</td>
+                                <td>{{ row[include.detail] }}{% if row.note %}<span class="info-note">{{ row.note }}</span>{% endif %}</td>
+                            </tr>
+                            {%- endfor %}
+                        </tbody>
+                    </table>

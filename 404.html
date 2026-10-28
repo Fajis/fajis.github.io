@@ -6,7 +6,7 @@ noindex: true
 ---
         {%- capture actions -%}
         <a href="{{ '/' | relative_url }}" class="link-cta">Go to home <span aria-hidden="true">→</span></a>
-                        <a href="{{ '/#work' | relative_url }}" class="link-cta link-cta--muted">See my work <span aria-hidden="true">→</span></a>
+                        <a href="{{ '/work/' | relative_url }}" class="link-cta link-cta--muted">See my work <span aria-hidden="true">→</span></a>
         {%- endcapture %}
         {% include page-hero.html path="~/fajis/404" note="Not found" title="Page not found"
             lead="This page doesn't exist, or it has moved." actions=actions %}

@@ -1,7 +1,7 @@
-# Main menu. `index` is the small number shown before the label.
-- { label: About, url: "/#about", index: "01" }
-- { label: Stack, url: "/#stack", index: "02" }
-- { label: Experience, url: "/#experience", index: "03" }
-- { label: Work, url: "/#work", index: "04" }
-- { label: Contact, url: "/#contact", index: "05" }
-- { label: Tools, url: "/tools", index: "↗" }
+# Main menu. `index` is the small number before the label.
+# Items with a `summary` are also listed on the home page.
+- { label: About, url: /about/, index: "01", summary: How I work and the tools I use }
+- { label: Experience, url: /experience/, index: "02", summary: Backend Developer at Harvard Soft Tech since 2023 }
+- { label: Work, url: /work/, index: "03", summary: Android apps I have published on Google Play }
+- { label: Contact, url: /contact/, index: "04", summary: Open to freelance projects }
+- { label: Tools, url: /tools, index: "↗" }

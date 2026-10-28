@@ -71,32 +71,6 @@ function initMobileMenu() {
     });
 }
 
-// ---------- Active section in the nav ----------
-
-function initActiveNav() {
-    if (!('IntersectionObserver' in window)) return;
-
-    // Nav links that point to a section on this page
-    const sectionLinks = new Map();
-    $$('.nav-link').forEach(link => {
-        const url = new URL(link.href);
-        if (!url.hash || url.pathname !== location.pathname) return;
-        const section = document.getElementById(url.hash.slice(1));
-        if (section) sectionLinks.set(section, link);
-    });
-    if (!sectionLinks.size) return;
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            sectionLinks.forEach(link => link.classList.remove('is-active'));
-            sectionLinks.get(entry.target).classList.add('is-active');
-        });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-
-    sectionLinks.forEach((_, section) => observer.observe(section));
-}
-
 // ---------- Local time ----------
 
 function initLocalTime() {
@@ -186,7 +160,6 @@ function initContactForm() {
 
 initThemeToggle();
 initMobileMenu();
-initActiveNav();
 initLocalTime();
 initAppShowcase();
 initContactForm();

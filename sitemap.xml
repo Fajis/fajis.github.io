@@ -1,13 +1,14 @@
+---
+layout: null
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for page in site.html_pages %}
+{%- unless page.noindex or page.sitemap == false %}
    <url>
-      <loc>https://fajis.is-a.dev/</loc>
-      <changefreq>weekly</changefreq>
-      <priority>1.0</priority>
+      <loc>{{ page.url | absolute_url }}</loc>
+      <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
    </url>
-   <url>
-      <loc>https://fajis.is-a.dev/downloads/</loc>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-   </url>
+{%- endunless %}
+{%- endfor %}
 </urlset>
