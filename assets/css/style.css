@@ -322,6 +322,17 @@ ol {
     transition: color 0.15s, border-color 0.15s;
 }
 
+/* Play button: always visible, amber so it stands out */
+.nav-play {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.nav-play[aria-current="page"] {
+    background: var(--accent);
+    color: var(--bg);
+}
+
 /* Hover colours only where there is a pointer, so taps don't leave them stuck */
 @media (hover: hover) {
     .nav-btn:hover {
@@ -1114,6 +1125,20 @@ textarea.input {
 .page-hero .hero-lead {
     grid-column: 7 / -1;
     margin-top: 32px;
+}
+
+.page-hero--compact {
+    padding-block: clamp(20px, 3vw, 32px) clamp(20px, 3vw, 32px);
+}
+
+.page-hero--compact .page-title {
+    margin-top: clamp(20px, 3vw, 36px);
+    font-size: clamp(32px, 5vw, 56px);
+}
+
+.page-hero--compact .hero-lead {
+    grid-column: 1 / -1;
+    margin-top: 12px;
 }
 
 .page-content {
@@ -1979,6 +2004,24 @@ textarea.input {
     .info-table td {
         padding: 2px 0;
         border: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .nav-play-label {
+        display: none;
+    }
+
+    .nav-actions {
+        gap: 8px;
+    }
+
+    .nav-btn--boxed {
+        padding: 4px 8px;
+    }
+
+    .game-canvas {
+        height: 200px;
     }
 }
 

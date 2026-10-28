@@ -1,8 +1,9 @@
 {%- comment -%}
   Header for sub-pages.
-  Usage: {% include page-hero.html path="~/fajis/apps" note="Google Play" title="Android apps" lead="..." actions=captured_html %}
+  Usage: {% include page-hero.html path="~/fajis/apps" note="Google Play" title="Android apps" lead="..." actions=captured_html compact=true %}
+  compact: smaller header, so content below shows without scrolling
 {%- endcomment -%}
-<section class="page-hero">
+<section class="page-hero{% if include.compact %} page-hero--compact{% endif %}">
             <div class="wrap grid">
                 <p class="hero-meta mono"><span>{{ include.path }}</span><span>{{ include.note }}</span></p>
                 <h1 class="page-title"><span class="line"><span>{{ include.title }}<span class="cursor" aria-hidden="true"></span></span></span></h1>

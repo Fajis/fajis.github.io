@@ -11,6 +11,7 @@
             </ul>
 
             <div class="nav-actions">
+                <a class="nav-btn nav-btn--boxed nav-play" href="{{ '/play/' | relative_url }}" aria-label="Play the Bug runner game"{% if page.url == '/play/' %} aria-current="page"{% endif %}><span aria-hidden="true">▶</span><span class="nav-play-label"> Play</span></a>
                 <button class="nav-btn nav-btn--boxed" id="themeToggle" type="button">☀ Light</button>
                 <button class="nav-btn nav-btn--boxed nav-toggle" id="navToggle" type="button" aria-expanded="false"
                     aria-controls="navMenu">
