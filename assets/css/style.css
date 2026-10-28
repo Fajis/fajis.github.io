@@ -1484,6 +1484,45 @@ textarea.input {
     text-overflow: ellipsis;
 }
 
+/* ---------- Bug runner game ---------- */
+.game {
+    border-top: 1px solid var(--line-strong);
+    border-bottom: 1px solid var(--line-strong);
+    background: var(--bg-raised);
+}
+
+.game-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    color: var(--subtle);
+    font-size: 12px;
+}
+
+.game-bar [data-score] {
+    color: var(--muted);
+}
+
+.game-canvas {
+    display: block;
+    width: 100%;
+    height: 240px;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.game-canvas:focus-visible {
+    outline-offset: -2px;
+}
+
+.game-status {
+    padding: 10px 16px;
+    border-top: 1px solid var(--line);
+    color: var(--subtle);
+    font-size: 12px;
+}
+
 /* ---------- Motion ----------
    Hidden states apply only under .js (set in <head> before first paint),
    so pages without JavaScript show everything. main.js adds .is-visible
