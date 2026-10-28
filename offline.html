@@ -1,0 +1,13 @@
+---
+layout: default
+title: Offline — Fajis PM
+permalink: /offline/
+noindex: true
+sitemap: false
+---
+        {%- capture actions -%}
+        <a href="{{ '/play/' | relative_url }}" class="link-cta">Play Bug runner <span aria-hidden="true">→</span></a>
+                        <a href="{{ '/' | relative_url }}" class="link-cta link-cta--muted">Try the home page <span aria-hidden="true">→</span></a>
+        {%- endcapture %}
+        {% include page-hero.html path="~/fajis/offline" note="No connection" title="You're offline"
+            lead="This page isn't saved yet. Pages you've already opened still work, and so does the game." actions=actions %}

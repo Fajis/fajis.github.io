@@ -232,9 +232,21 @@ function initContactForm() {
     });
 }
 
+// ---------- Offline support (sw.js) ----------
+
+function initServiceWorker() {
+    if (!('serviceWorker' in navigator)) return;
+    // Service workers need HTTPS (or localhost while testing)
+    if (location.protocol !== 'https:' && location.hostname !== 'localhost') return;
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => { /* the site works without it */ });
+    });
+}
+
 // ---------- Start ----------
 
 initEntrance();
+initServiceWorker();
 initReveal();
 initScrollProgress();
 initThemeToggle();
