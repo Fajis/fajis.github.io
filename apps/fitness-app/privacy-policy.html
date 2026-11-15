@@ -249,6 +249,93 @@
     section { animation: rise .5s ease both; }
     @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
   }
+  /* ── App look: the Profile screen's photo backdrop, dark translucent blurred
+     cards, bold DM Sans headings, small spaced-out labels, a white pill button.
+     Profile has no accent colour of its own, so the accent is just the text colour. ── */
+  :root{
+    --ink-muted:#454D58;
+    --accent:#16191E; --accent-soft:rgba(22,25,30,0.08);
+    --card: rgba(255,255,255,0.55);
+    --card-shadow: 0 6px 14px rgba(13,15,18,0.14);
+    --veil: linear-gradient(180deg, rgba(244,245,247,.45) 0%, rgba(244,245,247,.10) 22%, rgba(244,245,247,.28) 55%, rgba(244,245,247,.72) 100%);
+    --btn:#16191E; --btn-text:#FFFFFF;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+    --ink-muted:#D1D7E0; --accent:#F2F4F7; --accent-soft:rgba(242,244,247,0.10);
+    --card: rgba(14,17,22,0.48); --card-shadow: 0 6px 14px rgba(0,0,0,0.28);
+    --veil: linear-gradient(180deg, rgba(6,7,8,.60) 0%, rgba(6,7,8,.78) 45%, rgba(6,7,8,.92) 100%);
+    --btn:#F2F4F7; --btn-text:#060708;
+  } }
+  :root[data-theme="dark"]{
+    --ink-muted:#D1D7E0; --accent:#F2F4F7; --accent-soft:rgba(242,244,247,0.10);
+    --card: rgba(14,17,22,0.48); --card-shadow: 0 6px 14px rgba(0,0,0,0.28);
+    --veil: linear-gradient(180deg, rgba(6,7,8,.60) 0%, rgba(6,7,8,.78) 45%, rgba(6,7,8,.92) 100%);
+    --btn:#F2F4F7; --btn-text:#060708;
+  }
+  body{ background: var(--bg); font-size: 16px; }
+  body::before{
+    content:""; position: fixed; inset: 0; z-index: -1;
+    background: var(--veil), url("bg-profile.jpg") center / cover no-repeat;
+  }
+  a { text-decoration-thickness: 1px; }
+
+  .masthead { border-bottom: none; padding-block-end: 6px; }
+  .mark { width: 44px; height: 44px; border-radius: 0; object-fit: cover; aspect-ratio: 1/1; }
+  .app-name { font-weight: 700; font-size: 16px; }
+  .meta { font-size: 10px; font-weight: 800; letter-spacing: .1em; }
+  .eyebrow { font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--ink-muted); }
+  h1.title { font-size: clamp(44px, 12vw, 58px); line-height: .98; background: none; color: var(--ink); }
+  .dek { font-size: 16px; }
+
+  .summary-card, nav.toc, .contact-card, section{
+    background: var(--card);
+    -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px);
+    box-shadow: var(--card-shadow);
+    border-radius: 20px;
+  }
+  .summary-card { padding: 18px 20px; }
+  .summary-card .ic { width: 38px; height: 38px; border-radius: 50%; background: var(--accent-soft); color: var(--ink); box-shadow: none; }
+  .summary-card .ic svg { width: 18px; height: 18px; }
+  .summary-card h3 { font-family: "DM Sans", sans-serif; font-weight: 700; font-size: 16px; text-transform: none; letter-spacing: 0; }
+  .summary-card p { font-size: 14px; color: var(--ink-muted); }
+  nav.toc { padding: 18px 20px; }
+  nav.toc h2 { font-family: "DM Sans", sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .11em; }
+  nav.toc a { font-size: 14.5px; font-weight: 600; }
+  nav.toc a:hover { color: var(--ink); text-decoration: underline; }
+  nav.toc .num { color: var(--ink-muted); font-size: 15px; }
+
+  section { padding: 20px 20px 10px; margin-block-end: 14px; }
+  section h2 { font-family: "DM Sans", sans-serif; font-weight: 700; font-size: 20px; text-transform: none; letter-spacing: 0; line-height: 1.2; margin-block-end: 14px; }
+  section h2 .num { font-family: "Barlow Condensed", sans-serif; font-size: 18px; color: var(--ink-muted); background: none; padding: 0; border-radius: 0; }
+  section li::marker { color: var(--ink-muted); }
+  .callout { background: var(--accent-soft); border-radius: 14px; }
+  .callout strong { color: var(--ink); }
+  .contact-card { padding: 20px; }
+  .contact-card .label { font-size: 10px; font-weight: 800; letter-spacing: .11em; }
+  .contact-card .value { font-family: "DM Sans", sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; height: 46px; padding: 0 26px; border-radius: 999px; background: var(--btn); color: var(--btn-text); font-weight: 700; font-size: 15px; text-decoration: none; }
+  footer a { color: var(--ink); }
+  section h2 { border-bottom: none; padding-block-end: 0; }
+  section .contact-card { background: var(--accent-soft); box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; border-radius: 16px; margin-block-end: 12px; }
+  footer { border-top: none; }
+  .data-table { background: var(--card); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); box-shadow: none; border-radius: 16px; }
+  .data-table th { background: var(--accent-soft); color: var(--ink-muted); font-size: 10px; font-weight: 800; letter-spacing: .11em; }
+  .data-table th, .data-table td { border-bottom-color: var(--accent-soft); }
+  .data-table td.where { color: var(--ink); }
+  nav.toc .num { font-family: "Barlow Condensed", sans-serif; }
+  .data-table td.where { white-space: normal; }
+  .data-table th, .data-table td { padding: 10px 10px; }
+  .data-table { font-size: 13px; }
+  @media (max-width: 560px){
+    .data-table, .data-table tbody, .data-table tr, .data-table td { display: block; width: 100%; }
+    .data-table thead { display: none; }
+    .data-table tr { padding: 12px 14px; border-bottom: 1px solid var(--accent-soft); }
+    .data-table tr:last-child { border-bottom: none; }
+    .data-table td { border: none; padding: 0; }
+    .data-table td:first-child { font-weight: 700; font-size: 14.5px; margin-bottom: 3px; }
+    .data-table td:nth-child(2) { color: var(--ink-muted); margin-bottom: 6px; }
+    .data-table td.where { font-size: 10px; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; color: var(--ink-muted); }
+  }
 </style>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800&family=DM+Sans:wght@400;500;700&display=swap">
@@ -463,10 +550,7 @@
         <div class="label">Email</div>
         <div class="value">pmfajis@gmail.com</div>
       </div>
-      <div>
-        <div class="label">App</div>
-        <div class="value">Stay Fit</div>
-      </div>
+      <a class="btn" href="mailto:pmfajis@gmail.com">Email us</a>
     </div>
   </section>
 
